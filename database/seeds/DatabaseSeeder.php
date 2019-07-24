@@ -11,26 +11,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(RolesTableSeeder::class);
-         $this->call(UserTableSeeder::class);
-         $this->call(DishTypesTableSeeder::class);
-         $this->call(MealBookTableSeeder::class);
-         $this->call(CookingRecipeTableSeeder::class);
-         $this->call(MealBookDisheTableSeeder::class);
-         $this->call(PointsTableSeeder::class);
-         $this->call(MealBookCommentTableSeeder::class);
-         $this->call(CookingRecipesCommentTableSeeder::class);
-         
+         $this->call([RolesTableSeeder::class,DishTypesTableSeeder::class,PointsTableSeeder::class]);
+    
+         factory(App\User::class, 5)->create()
+            ->each(function($item){
+                $item->mealBook()->saveMany(factory(App\MealBook::class,rand(1,10))->make()
+                )->each(function($meal){
+                    $meal->mealBookDishe()->saveMany(factory(App\MealBookDishe::class,rand(1,2))->make());
+                     });
+                $item->cookingRecipe()->saveMany(factory(App\CookingRecipe::class,rand(1,10))->make());
+                $item->mealBookComment()->saveMany(factory(App\MealBookComment::class,rand(1,10))->make());
+                $item->cookingRecipesComment()->saveMany(factory(App\CookingRecipesComment::class,rand(1,10))->make());
 
-         // factory(App\User::class, 5)->make();
-            // ->each(function($item){
-            //     $item->mealBook()->saveMany(factory(App\MealBook::class,rand(1,10))->make())
-            //  ->each(function($cooking_repice){
-            //     $cooking_repice->cookingRepice()->saveMany(factory(
-            //         App\CookingRepice::class,rand(1,10))->make());
-            // });
-            // factory(App\MealBook::class, rand(1,10))->make();
-            // factory(App\CookingRepice::class, rand(1,10))->make();
-
+        });
     }
 }

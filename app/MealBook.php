@@ -16,5 +16,9 @@ class MealBook extends Model
     public function  mealBookComment(){
         return $this->hasMany(MealBookComment::class);
     }
+    public function  mealBookDishe(){
+        return $this->hasMany(MealBookDishe::class);
+    }
+  
   
 }

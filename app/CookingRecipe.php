@@ -19,4 +19,7 @@ class CookingRecipe extends Model
     public function  cookingRecipesComment(){
         return $this->hasMany(CookingRecipesComment::class);
     }
+    public function  mealBookDishe(){
+        return $this->hasMany(MealBookDishe::class);
+    }
 }
