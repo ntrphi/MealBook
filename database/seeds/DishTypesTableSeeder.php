@@ -13,20 +13,41 @@ class DishTypesTableSeeder extends Seeder
     {
         $dish_types =[ 
             [
-              'name'=> "Sườn Xào Chua Ngọt",
+              'name'=> "Ăn sáng",
             ],
             [
-                'name'=>"Rau Muống Nấu Chua",
+                'name'=>"Ăn vặt",
             ],
             [
-                'name'=>"Bò Xào Xả Ớt",
+                'name'=>"Khai vị",
             ],
             [
-                'name'=>"Ếch Nấu Chua",
+                'name'=>"Món chay",
             ],
             [
-                'name'=>"Gà Xào Lăn",
-            ]
+                'name'=>"Món chính",
+            ],
+            [
+                'name'=>"Làm bánh",
+            ],
+            [
+                'name'=>"Lẩu",
+            ],
+            [
+                'name'=>"Thức uống",
+            ],
+            [
+                'name'=>"Salad",
+            ],
+            [
+                'name'=>"Nước chấm",
+            ],
+            [
+                'name'=>"Bún - Mì - Phở",
+            ],
+            [
+                'name'=>"Snacks",
+            ],
           ];
           DB::table('dish_types')->insert($dish_types);
     }
