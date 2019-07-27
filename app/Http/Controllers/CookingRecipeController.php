@@ -7,9 +7,9 @@ use App\CookingRecipe;
 
 class CookingRecipeController extends Controller
 {
-    public function getListCookingRecipes()
+    public function getCookingRecipeList()
     {
-        $cookingRecipeList = CookingRecipe::all();
-        var_dump($cookingRecipeList); die;
+        $listRecipes = CookingRecipe::all();
+        return $listRecipes;
     }
 }

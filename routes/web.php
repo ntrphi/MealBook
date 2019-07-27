@@ -14,4 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/repcipe-list', 'CookingRecipeController@getListCookingRecipes');
+Route::get('/listRecipe', 'CookingRecipeController@getCookingRecipeList');
