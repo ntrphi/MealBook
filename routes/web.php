@@ -15,3 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/listRecipe', 'CookingRecipeController@getCookingRecipeList');
+Route::prefix('/admin')->group(function () {
+    Route::get('/home', function () {
+        return view('admin.index');
+    });
+});
