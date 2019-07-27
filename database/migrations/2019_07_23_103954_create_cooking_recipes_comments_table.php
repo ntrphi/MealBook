@@ -20,6 +20,7 @@ class CreateCookingRecipesCommentsTable extends Migration
             $table->text('content');
             $table->unsignedInteger('point')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('cooking_recipes_id')->references('id')->on('cooking_recipes')->onDelete('SET NULL');
             $table->foreign('point')->references('id')->on('points')->onDelete('SET NULL');

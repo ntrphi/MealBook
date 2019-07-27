@@ -20,6 +20,7 @@ class CreateMealBookCommentsTable extends Migration
             $table->text('content');
             $table->unsignedInteger('mealbook_id')->nullable();
             $table->unsignedInteger('point')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('mealbook_id')->references('id')->on('meal_books')->onDelete('SET NULL');

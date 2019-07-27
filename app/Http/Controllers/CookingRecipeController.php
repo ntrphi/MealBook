@@ -10,6 +10,6 @@ class CookingRecipeController extends Controller
     public function getCookingRecipeList()
     {
         $listRecipes = CookingRecipe::all();
-        return $listRecipes;
+        //return $listRecipes;
     }
 }

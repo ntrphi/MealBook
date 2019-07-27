@@ -17,6 +17,7 @@ class CreateMealBooksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('user_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
         });

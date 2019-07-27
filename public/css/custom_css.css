@@ -1,0 +1,16 @@
+.main-header{
+    box-shadow: 0px 6px 9px -7px rgba(0,0,0,0.75);
+}
+.dishes-wrap>.col-md-6{
+    max-width: 48.5%;
+    border-radius: 10px;
+}
+.dishes-wrap>.col-md-6:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.4s all;
+}
+@media (max-width: 575.98px) {
+    .dishes-wrap>.col-md-6{
+        max-width: initial;
+    }
+}

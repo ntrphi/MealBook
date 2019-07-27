@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->Integer('tel');
             $table->unsignedInteger('role')->nullable();
             $table->rememberToken();
+           $table->softDeletes();
             $table->timestamps();
             $table->foreign('role')->references('id')->on('roles')->onDelete('SET NULL');
         });
