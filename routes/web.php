@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 Route::get('/listRecipe', 'CookingRecipeController@getCookingRecipeList');
 Route::prefix('/admin')->group(function () {
+    Route::get('/login', function () {
+        return view('admin.login');
+    })->name('adminLogin');
+    Route::post('/login', 'AdminController@login');
     Route::get('/home', function () {
         return view('admin.index');
-    });
+    })->name('adminHome');
 });
