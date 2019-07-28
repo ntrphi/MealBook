@@ -15,12 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/listRecipe', 'CookingRecipeController@getCookingRecipeList');
-Route::prefix('/admin')->group(function () {
-    Route::get('/login', function () {
-        return view('admin.login');
-    })->name('adminLogin');
-    Route::post('/login', 'AdminController@login');
-    Route::get('/home', function () {
-        return view('admin.index');
-    })->name('adminHome');
+Route::get('login', 'LoginController@getLogin');
+
+Route::get('/login', function () {
+    return view('admin.login');
+})->name('login');
+Route::post('login', 'LoginController@postLogin');
+Route::get('logout', 'LoginController@getLogout');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+    Route::get('/home','AdminController@getDashboard' )->name('dashboard');
 });
