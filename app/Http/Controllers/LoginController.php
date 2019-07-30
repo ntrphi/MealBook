@@ -20,25 +20,24 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-    	// $rules = [
-    	// 	'email' => 'required | min : 4 | max : 25 ',
-    	// 	'password' => 'required | min: 8'
-    	// ];
+    	$rules = [
+    		'email' => 'required | email',
+    		'password' => 'required | min: 8'
+    	];
 
-    	// $msg = [
-		//     'required' => ':attribute không được bỏ trống.',
-		//     'password.min' => 'Password phải lớn hơn :min ký tự.',
-		//     'email.min' => 'Username phải lớn hơn :min ký tự.',
-		//     'email.max' => 'Username phải nhỏ hơn :max ký tự.',
-		// ];
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+		    'password.min' => 'Password phải lớn hơn :min ký tự.',
+		    'email.email' => 'Email không đúng định dạng',
+		];
 	
-    	// $validator = Validator::make($request->all(), $rules , $msg);
+    	$validator = Validator::make($request->all(), $rules , $msg);
 
-    	// if ($validator->fails()) {
-        //     return redirect()->back()
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // } else {
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
         	$email = $request->input('email');
         	$password = $request->input('password');
         	
@@ -51,7 +50,7 @@ class LoginController extends Controller
         		$msg = new MessageBag(['errlogin'=> 'Sai thông tin đăng nhập.']);
         		return redirect()->back()->withErrors($msg);
         	}
-        // }
+        }
     }
     
     public function getLogout()

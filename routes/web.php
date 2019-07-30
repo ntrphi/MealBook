@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/listRecipe', 'CookingRecipeController@getCookingRecipeList');
 Route::get('login', 'LoginController@getLogin');
 
@@ -22,6 +22,6 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('login', 'LoginController@postLogin');
 Route::get('logout', 'LoginController@getLogout');
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     Route::get('/home','AdminController@getDashboard' )->name('dashboard');
 });
