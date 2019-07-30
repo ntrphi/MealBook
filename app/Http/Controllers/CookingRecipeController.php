@@ -11,5 +11,6 @@ class CookingRecipeController extends Controller
     {
         $listRecipes = CookingRecipe::all();
         //return $listRecipes;
+        return view('page.cookingRecipes');
     }
 }
