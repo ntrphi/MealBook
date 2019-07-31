@@ -24,7 +24,7 @@
 </div>
 <!-- ./wrapper -->
 @include('patials.admin.script')
-
+@yield('script')
 
 </body>
 </html>
