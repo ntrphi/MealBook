@@ -11,13 +11,13 @@ class CookingRecipe extends Model
     ];
     
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'author_id');
     }
     public function dishType(){
         return $this->belongsTo(DishType::class);
     }
-    public function  cookingRecipesComment(){
-        return $this->hasMany(CookingRecipesComment::class);
+    public function  comment(){
+        return $this->morphMany(Comment::class,'commentable');
     }
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);

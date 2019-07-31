@@ -20,9 +20,8 @@ class DatabaseSeeder extends Seeder
                     $meal->mealBookDishe()->saveMany(factory(App\MealBookDishe::class,rand(1,2))->make());
                      });
                 $item->cookingRecipe()->saveMany(factory(App\CookingRecipe::class,rand(1,10))->make());
-                $item->mealBookComment()->saveMany(factory(App\MealBookComment::class,rand(1,10))->make());
-                $item->cookingRecipesComment()->saveMany(factory(App\CookingRecipesComment::class,rand(1,10))->make());
-
+                $item->post()->saveMany(factory(App\Post::Class,rand(1,10))->make());
+                $item->comment()->saveMany(factory(App\Comment::class,rand(1,20))->make());
         });
     }
 }

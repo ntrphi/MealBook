@@ -4,21 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MealBook extends Model
+class Post extends Model
 {
     protected $fillable = [
-        'name'
+        'title','content','image'
     ];
-
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
     public function  comment(){
         return $this->morphMany(Comment::class,'commentable');
     }
-    public function  mealBookDishe(){
-        return $this->hasMany(MealBookDishe::class);
-    }
-  
-  
 }

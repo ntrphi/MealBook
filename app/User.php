@@ -41,16 +41,17 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
     public function  mealBook(){
-        return $this->hasMany(MealBook::class,'user_id');
+        return $this->hasMany(MealBook::class);
     }
     public function  cookingRecipe(){
         return $this->hasMany(CookingRecipe::class,'author_id');
     }
-    public function  mealBookComment(){
-        return $this->hasMany(MealBookComment::class);
+    public function  post(){
+        return $this->hasMany(Post::class);
     }
-    public function  cookingRecipesComment(){
-        return $this->hasMany(CookingRecipesComment::class);
+    public function  comment(){
+        return $this->hasMany(Comment::class);
     }
+
 
 }
