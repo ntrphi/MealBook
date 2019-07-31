@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->Integer('tel');
-            $table->unsignedInteger('role')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
             $table->rememberToken();
-           $table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('role')->references('id')->on('roles')->onDelete('SET NULL');
         });

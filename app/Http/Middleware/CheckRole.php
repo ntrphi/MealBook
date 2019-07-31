@@ -17,9 +17,9 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if( Auth::check() ){
-            if( Auth::user()->role == 1 ){
+            if( Auth::user()->role_id == 1 ){
                 return $next($request);
-            } elseif (Auth::user()->role == 3)
+            } elseif (Auth::user()->role_id == 3)
             return redirect()->route('home'); 
         }
         return redirect()->route('login'); 

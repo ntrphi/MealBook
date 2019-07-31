@@ -14,7 +14,7 @@ class CookingRecipe extends Model
         return $this->belongsTo(User::class,'author_id');
     }
     public function dishType(){
-        return $this->belongsTo(DishType::class);
+        return $this->belongsTo(DishType::class,'dish_type_id');
     }
     public function  comment(){
         return $this->morphMany(Comment::class,'commentable');
