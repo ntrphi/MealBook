@@ -20,7 +20,7 @@ class CheckRole
             if( Auth::user()->role == 1 ){
                 return $next($request);
             } elseif (Auth::user()->role == 3)
-            return redirect()->route('home'); 
+            return redirect()->route('userpage', ['id' => Auth::user()->id]); 
         }
         return redirect()->route('login'); 
     }

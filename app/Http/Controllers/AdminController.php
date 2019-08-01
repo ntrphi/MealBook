@@ -18,4 +18,9 @@ class AdminController extends Controller
         $user_count = User::where('role', '3')->count();
         return view('admin.index', ['recipe_count' => $recipe_count, 'mealbook_count' => $mealbook_count, 'dishtype_count' => $dishtype_count, 'user_count' => $user_count]);
     }
+    public function getUserPage()
+    {
+        $user_id=$this->param('id');
+        return view('admin.user_mypage', ['user_id'=>$user_id]);
+    }
 }

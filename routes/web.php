@@ -25,3 +25,6 @@ Route::get('logout', 'LoginController@getLogout');
 Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     Route::get('/home','AdminController@getDashboard' )->name('dashboard');
 });
+Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
+    Route::get('/user/{id}','AdminController@getUserPage' )->name('userpage');
+});
