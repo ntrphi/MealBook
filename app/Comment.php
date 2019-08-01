@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CookingRecipesComment extends Model
+class Comment extends Model
 {
     protected $fillable = [
         'title','content'
     ];
-    
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function cookingRecipes(){
-        return $this->belongsTo(CookingRecipe::class);
+    public function mealBook(){
+        return $this->morphTo();
     }
     
     public function point(){

@@ -10,11 +10,11 @@ class MealBook extends Model
         'name'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function getAuthor(){
+        return $this->belongsTo(User::class,'author_id');
     }
-    public function  mealBookComment(){
-        return $this->hasMany(MealBookComment::class);
+    public function  comment(){
+        return $this->morphMany(Comment::class,'commentable');
     }
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);
