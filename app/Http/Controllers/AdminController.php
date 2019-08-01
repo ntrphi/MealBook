@@ -25,9 +25,9 @@ class AdminController extends Controller
         $recipesList = CookingRecipe::all();
         return view('admin.cookingRecipes.list',['recipesList'=>$recipesList]);
     }
-    public function getUserPage()
+    public function getUserPage(Request $request)
     {
-        $user_id=$this->param('id');
+        $user_id = $request->id;
         return view('admin.user_mypage', ['user_id'=>$user_id]);
     }
 }

@@ -23,10 +23,9 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('login', 'LoginController@postLogin');
 Route::get('logout', 'LoginController@getLogout');
-
+Route::get('mypage/user/{id}', 'AdminController@getUserPage' )->middleware('role')->name('userpage');
 Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     Route::get('/home','AdminController@getDashboard' )->name('dashboard');
-    Route::get('/user/{id}','AdminController@getUserPage' )->name('userpage');
     Route::prefix('cooking-recipes')->group(function () {
         Route::get('/', 'AdminController@getListCookingRecipes')->name('manageCookingRecipes');
         Route::get('add', 'PostController@getAdd');

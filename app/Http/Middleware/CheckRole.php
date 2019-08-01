@@ -17,10 +17,10 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if( Auth::check() ){
-            if( Auth::user()->role_id == 1 ){
+            if( Auth::user()->role->name == 'Admin' ){
                 return $next($request);
-            } elseif (Auth::user()->role_id == 3)
-            return redirect()->route('home'); 
+            } elseif (Auth::user()->role->name == 'Member')
+            return redirect()->route('userpage', Auth::user()->id); 
         }
         return redirect()->route('login'); 
     }
