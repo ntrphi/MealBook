@@ -29,11 +29,9 @@ class AdminController extends Controller
     }
     public function getUserPage(Request $request)
     {
-        $user_id = $request->id;
-        return view('admin.user_mypage', ['user_id'=>$user_id]);
+        // $user_id = $request->id;
+        $user = Auth::user();
+        return view('admin.user_mypage', ['user'=>$user]);
     }
-    public function getUpdateRecipe(Request $request){
-        $id = $request->id;
-        return view('admin.cookingRecipes.edit');
-    }
+
 }

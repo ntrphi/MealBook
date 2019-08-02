@@ -6,17 +6,13 @@
 <link rel="stylesheet" href="admin/bower_components/Ionicons/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="admin/dist/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="admin/dist/css/skins/_all-skins.min.css">
+
+<link rel="stylesheet" href="admin/dist/css/skins/skin-red.min.css">
 <!-- Morris chart -->
-<link rel="stylesheet" href="admin/bower_components/morris.js/morris.css">
+<!-- <link rel="stylesheet" href="admin/bower_components/morris.js/morris.css"> -->
 <!-- jvectormap -->
-<link rel="stylesheet" href="admin/bower_components/jvectormap/jquery-jvectormap.css">
-<!-- Date Picker -->
-<link rel="stylesheet" href="admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-<!-- Daterange picker -->
-<link rel="stylesheet" href="admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+<!-- <link rel="stylesheet" href="admin/bower_components/jvectormap/jquery-jvectormap.css"> -->
+
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <!-- DataTables CSS -->
