@@ -57,7 +57,7 @@
                             <td>{{ $recipe->created_at }}</td>
                             <td>
                                 @if(Auth::user()->id == $recipe->author_id)
-                                <a href="admin/recipes/update/{{$recipe->id}}" class="btn btn-info btn-sm">
+                                <a href="admin/cooking-recipes/update/{{$recipe->id}}" class="btn btn-info btn-sm">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
                                 </a>
                                 @endif
@@ -104,9 +104,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable({
-            'iDisplayLength': '50',
+            'iDisplayLength': '10',
             "order": [
-                [0, "desc"]
+                [0, "asc"]
             ]
         });
         @if(Auth::user()->role == '1')
@@ -121,7 +121,7 @@
                 status = 1;
             } else status = 0;
             $.ajax({
-                    url: 'admin/recipe/updateStatus',
+                    url: 'admin/cooking-recipes/updateStatus',
                     type: 'Put',
                     data: {
                         "id": id,

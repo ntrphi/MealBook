@@ -13,4 +13,11 @@ class CookingRecipeController extends Controller
         //return $listRecipes;
         return view('page.cookingRecipes');
     }
+    public function getDelete(Request $request)
+    {
+        $id = $request->id;
+        CookingRecipe::find($id)->delete();
+        if($request->is('admin/*'))
+        return redirect()->route('manageCookingRecipes');
+    }
 }

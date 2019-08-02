@@ -23,5 +23,8 @@
 <link href="admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 <!-- DataTables Responsive CSS -->
 <link href="admin/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+<!-- select2 -->
+<link rel="stylesheet" href="admin/bower_components/select2/dist/css/select2.min.css">
+
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

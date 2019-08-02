@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::put('updateStatus', 'PostController@updateStatus');
         Route::put('updateHot', 'PostController@updateHot');
         Route::post('add', 'PostController@postAdd');
-        Route::get('update/{id}', 'PostController@getUpdate');
+        Route::get('update/{id}', 'AdminController@getUpdateRecipe');
         Route::post('update/{id}', 'PostController@postUpdate');
         Route::get('delete/{id}', 'CookingRecipeController@getDelete');
     });

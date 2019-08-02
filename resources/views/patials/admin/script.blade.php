@@ -35,3 +35,5 @@
 <script src="admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="admin/dist/js/demo.js"></script>
+<!-- select2 -->
+<script src="admin/bower_components/select2/dist/js/select2.min.js"></script>
