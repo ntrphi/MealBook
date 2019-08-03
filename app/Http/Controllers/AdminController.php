@@ -13,6 +13,7 @@ class AdminController extends Controller
 {
     public function getDashboard()
     {
+        dd(1);
         $recipe_count = CookingRecipe::count();
         $mealbook_count = MealBook::count();
         $dishtype_count = DishType::count();

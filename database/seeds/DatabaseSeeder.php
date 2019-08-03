@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([RolesTableSeeder::class,DishTypesTableSeeder::class,PointsTableSeeder::class]);
+         $this->call([RolesTableSeeder::class,DishTypesTableSeeder::class,PointsTableSeeder::class,IngredientTableSeeder::class]);
     
          factory(App\User::class, 5)->create()
             ->each(function($item){

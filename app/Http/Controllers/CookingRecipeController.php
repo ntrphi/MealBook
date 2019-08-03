@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
+use App\Http\Requests\CookingRequest;
 use Illuminate\Http\Request;
 use App\CookingRecipe;
 use App\DishType;
@@ -11,24 +12,83 @@ use App\DishType;
 
 class CookingRecipeController extends Controller
 {
-    public function getCookingRecipeList()
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
+        
         $listRecipes = CookingRecipe::all();
         //return $listRecipes;
         return view('page.cookingRecipes');
     }
-    public function getById($id)
+  /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $dishType = DishType::all();
+
+        return view('frontend.cooking.add',compact('dishType'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CookingRequest $request)
+    {
+        $fileName = null;
+        if (request()->hasFile('avatar')) {
+            $file = request()->file('avatar');
+            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+            $file->move('./avatar/', $fileName);    
+        }
+     // dd($request->user()->id);
+        CookingRecipe::create([
+            'dish_type_id' =>$request->dish_type_id,
+            'author_id' => $request->user()->id,
+            'name'=>$request->name,
+            'avatar'=> $fileName,
+            'ingredient'=> $request->ingredient,
+            'recipe'=>$request->recipe
+        ]);
+
+        return redirect()->route('index')->with('success',"You question has been submitted");
+    }
+
+   /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         return  CookingRecipe::find($id);
     }
-    public function getDelete(Request $request)
+
+    public function destroy($id)
     {
         $id = $request->id;
         CookingRecipe::find($id)->delete();
         if ($request->is('admin/*'))
             return redirect()->route('manageCookingRecipes');
     }
-    public function getUpdateRecipe(Request $request)
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request)
     {
         $id = $request->id;
         $cooking_recipe = $this->getById($id);
@@ -43,7 +103,8 @@ class CookingRecipeController extends Controller
         }
     }
 
-    public function postUpdateRecipe(Request $request)
+
+    public function update(Request $request)
     {
         $id = $request->id;
         $cooking_recipe = $this->getById($id);

@@ -20,9 +20,10 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
+
     	$rules = [
     		'email' => 'required | email',
-    		'password' => 'required | min: 8'
+    		'password' => 'required | min: 4'
     	];
 
     	$msg = [
@@ -40,13 +41,10 @@ class LoginController extends Controller
         } else {
         	$email = $request->input('email');
         	$password = $request->input('password');
-        	
         	if( Auth::attempt(['email' => $email, 'password' => $password], $request->input('remember') ) ){
-
         		return redirect()->route('dashboard');
-
         	} else {
-
+		
         		$msg = new MessageBag(['errlogin'=> 'Sai thông tin đăng nhập.']);
         		return redirect()->back()->withErrors($msg);
         	}
