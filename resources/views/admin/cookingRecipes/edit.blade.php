@@ -33,8 +33,8 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <form role="form" method="POST" action="{{route('cookingStore')}}" >
-                            @csrf
-                            <!-- text input -->
+                            {{ csrf_field() }}                   
+                        <!-- text input -->
                             <div class="form-group">
                             <input type="hidden" name="id" id="" value="{{$recipe->id}}">
                                 <label>Name</label>

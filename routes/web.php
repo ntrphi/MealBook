@@ -40,11 +40,11 @@ Route::get('mypage/user/{id}', 'AdminController@getUserPage' )->middleware('auth
 Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     Route::get('/home','AdminController@getDashboard' )->name('dashboard');
     Route::prefix('cooking-recipes')->group(function () {
-        Route::get('/', 'AdminController@index')->name('manageCookingRecipes');
+        Route::get('/', 'AdminController@getListCookingRecipes')->name('manageCookingRecipes');
         Route::get('add', 'PostController@getAdd');
         Route::put('updateStatus', 'PostController@updateStatus');
         Route::put('updateHot', 'PostController@updateHot');
-        Route::get('index', 'CookingRecipeController@index')->name('manageCookingRecipes');
+        Route::get('index', 'CookingRecipeController@index');
         Route::get('update/{id} ', 'CookingRecipeController@edit')->name('cookingEdit');
         Route::post('update', 'CookingRecipeController@update')->name('cookingStore');
         Route::get('delete/{id}', 'CookingRecipeController@destroy');

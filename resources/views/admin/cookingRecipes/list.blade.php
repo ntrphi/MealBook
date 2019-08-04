@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($listRecipes as $recipe)
+                        @foreach($recipesList as $recipe)
                         <tr class="odd gradeX">
                             <td>{{ $recipe->id }}</td>
                             <td>

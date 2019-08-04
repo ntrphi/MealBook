@@ -81,12 +81,11 @@ class CookingRecipeController extends Controller
       return view('page.blog-cooking',compact('cooking','recent'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         $id = $request->id;
         CookingRecipe::find($id)->delete();
-        if ($request->is('admin/*'))
-            return redirect()->route('manageCookingRecipes');
+        return redirect()->route('manageCookingRecipes');
     }
 
     /**
