@@ -26,20 +26,16 @@ class FrontEndController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function contact()
     {
-        //
+        return view('page.contact');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function chef()
     {
-        //
+        $chef = User::all();
+        return view('page.chef',compact('chef'));
     }
 
     /**
@@ -59,9 +55,9 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

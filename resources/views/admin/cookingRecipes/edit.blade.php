@@ -32,10 +32,11 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form" method="POST" action="admin/cooking-recipes/update/{{$recipe->id}}" >
+                        <form role="form" method="POST" action="{{route('cookingStore')}}" >
                             @csrf
                             <!-- text input -->
                             <div class="form-group">
+                            <input type="hidden" name="id" id="" value="{{$recipe->id}}">
                                 <label>Name</label>
                             <input type="text" class="form-control" placeholder="Enter name" name="name" value="{{$recipe->name}}">
                             </div>
@@ -46,7 +47,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Recipe</label>
-                                <textarea class="ckeditor form-control" rows="3" placeholder="Place some text here" name="recipe">{{$recipe->recipe}}</textarea>
+                                <!-- ckeditor -->
+                                <textarea class=" form-control" rows="3" placeholder="Place some text here" name="recipe">{{$recipe->recipe}}</textarea>
                             </div>
 
                             <div class="form-group">

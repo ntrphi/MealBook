@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($recipesList as $recipe)
+                        @foreach($listRecipes as $recipe)
                         <tr class="odd gradeX">
                             <td>{{ $recipe->id }}</td>
                             <td>
@@ -57,7 +57,7 @@
                             <td>{{ $recipe->created_at }}</td>
                             <td>
                                 @if(Auth::user()->id == $recipe->author_id)
-                                <a href="admin/cooking-recipes/update/{{$recipe->id}}" class="btn btn-info btn-sm">
+                                <a href="{{route('cookingEdit',$recipe->id)}}" class="btn btn-info btn-sm">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
                                 </a>
                                 @endif

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Providers;
-
+use App\CookingRecipe;
+use App\Post;
+use App\Policies\CookingPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        CookingRecipe::class => CookingPolicy::class,
     ];
 
     /**

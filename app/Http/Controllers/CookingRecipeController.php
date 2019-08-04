@@ -22,7 +22,7 @@ class CookingRecipeController extends Controller
         
         $listRecipes = CookingRecipe::all();
         //return $listRecipes;
-        return view('page.cookingRecipes');
+        return view('admin.cookingRecipes.list',compact('listRecipes'));
     }
   /**
      * Show the form for creating a new resource.
@@ -88,15 +88,11 @@ class CookingRecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit( $id)
     {
-        $id = $request->id;
-        $cooking_recipe = $this->getById($id);
-        $dish_types = $this->getAllDishTypes();
-        if ($cooking_recipe == '') {
-            return redirect()->route('manageCookingRecipes');
-        }
-        if ($cooking_recipe->author_id == Auth::user()->id) {
+        $cooking_recipe = CookingRecipe::find($id);
+        $dish_types = DishType::all();
+      if($this->authorize('update',$cooking_recipe)){
             return view('admin.cookingRecipes.edit', ['recipe' => $cooking_recipe, 'dish_types' => $dish_types]);
         } else {
             return redirect()->route('manageCookingRecipes');
@@ -107,8 +103,8 @@ class CookingRecipeController extends Controller
     public function update(Request $request)
     {
         $id = $request->id;
-        $cooking_recipe = $this->getById($id);
-        $cooking_recipe->name = $request->input('name');
+        $cooking_recipe = CookingRecipe::find($id);
+        $cooking_recipe->name = $request->name;
         $cooking_recipe->ingredient = $request->input('ingredient');
         $cooking_recipe->recipe = $request->input('recipe');
         $cooking_recipe->dish_type_id = $request->input('dish_type_id');

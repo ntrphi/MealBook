@@ -15,12 +15,16 @@ use Illuminate\Routing\RouteUrlGenerator;
 
 Route::get('/','FrontEndController@index')->name('index');
 Route::get('/listRecipe', 'CookingRecipeController@index');
+Route::get('/contact','FrontEndController@contact')->name('contact');
+Route::get('/chef','FrontEndController@chef')->name('chef');
 Route::get('/postAll','PostController@index')->name('postAll');
+Route::get('/show/{id}','PostController@show')->name('showPost');
 Route::get('/postAdd','PostController@create')->name('postAdd');
 Route::post('/postStore','PostController@store')->name('postStore');
 Route::get('/cooking','CookingRecipeController@create')->name('cookingAdd');
 Route::post('/cookingStore','CookingRecipeController@store')->name('cookingStore');
 
+Route::post('/posts/{post}/comment','CommentController@postComment');
 
 
 Route::get('login', 'LoginController@getLogin');
@@ -38,8 +42,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::get('add', 'PostController@getAdd');
         Route::put('updateStatus', 'PostController@updateStatus');
         Route::put('updateHot', 'PostController@updateHot');
-        Route::get('update/{id}', 'CookingRecipeController@edit');
-        Route::post('update/{id}', 'CookingRecipeController@update');
+        Route::get('index', 'CookingRecipeController@index')->name('manageCookingRecipes');
+        Route::get('update/{id} ', 'CookingRecipeController@edit')->name('cookingEdit');
+        Route::post('update', 'CookingRecipeController@update')->name('cookingStore');
         Route::get('delete/{id}', 'CookingRecipeController@destroy');
     });
 });

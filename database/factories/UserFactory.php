@@ -21,8 +21,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'tel' => rand(100,1000),
+        'image'=>"http://lorempixel.com/350/408/people",
         'role_id' => App\Role::pluck('id')->random(),
         'remember_token' => Str::random(10),
-        
+       
     ];
 });
