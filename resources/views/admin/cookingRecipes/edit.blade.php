@@ -32,12 +32,12 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form" method="POST" action="{{route('cookingStore')}}" >
+                        <form role="form" method="POST" action="{{route('cookingStore')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}                   
                         <!-- text input -->
                             <div class="form-group">
                             <input type="hidden" name="id" id="" value="{{$recipe->id}}">
-                                <label>Name</label>
+                            <label>Name</label>
                             <input type="text" class="form-control" placeholder="Enter name" name="name" value="{{$recipe->name}}">
                             </div>
                             <!-- textarea -->
@@ -58,6 +58,10 @@
                                 <option @if ($type->id==$recipe->dish_type_id)selected="selected" @endif value="{{$type->id}}">{{$type->name}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Avatar</label>
+                                <input type="file" class="form-control" name="avatar" id="">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-lg btn-success">Save</button>
