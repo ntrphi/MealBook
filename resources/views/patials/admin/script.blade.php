@@ -43,5 +43,19 @@
   <script src="js/jquery.ajaxchimp.min.js"></script>
   <script src="js/mail-script.js"></script>
   <script src="js/main.js"></script>
+  <script src='vendors/javascript-winwheel-2.8.0/Winwheel.min.js'></script>
 <!-- select2 -->
+
+<script>
+$(document).ready(function(){
+  $(".monAnWrap").hover(
+  function () {
+    $(this).find('.popUp-monAn').slideDown('medium');
+  }, 
+  function () {
+    $(this).find('.popUp-monAn').slideUp('medium');
+  }
+);  
+});
+</script>
 {{-- <script src="admin/bower_components/select2/dist/js/select2.min.js"></script> --}}

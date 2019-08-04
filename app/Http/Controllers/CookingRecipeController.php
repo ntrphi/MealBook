@@ -21,8 +21,13 @@ class CookingRecipeController extends Controller
     {
         
         $listRecipes = CookingRecipe::all();
+        $recent = CookingRecipe::latest()->paginate(5);
         //return $listRecipes;
+        if(\Request::is('manageCookingRecipes')){
         return view('admin.cookingRecipes.list',compact('listRecipes'));
+        }else{
+            return view('page.cooking',compact('listRecipes','recent'));
+        }
     }
   /**
      * Show the form for creating a new resource.
@@ -71,7 +76,9 @@ class CookingRecipeController extends Controller
      */
     public function show($id)
     {
-        return  CookingRecipe::find($id);
+      $cooking =  CookingRecipe::find($id);
+      $recent = CookingRecipe::latest()->paginate(5);
+      return view('page.blog-cooking',compact('cooking','recent'));
     }
 
     public function destroy($id)

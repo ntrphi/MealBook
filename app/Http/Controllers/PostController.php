@@ -16,8 +16,8 @@ class PostController extends Controller
     public function index()
     {
         $item = Post::latest()->paginate(10);
-    
-        return view('frontend.post.index',compact('item'));
+        $recent = Post::paginate(5);
+        return view('frontend.post.index',compact('item','recent'));
     }
 
     /**

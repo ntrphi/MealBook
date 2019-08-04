@@ -49,7 +49,7 @@
 	$name = 'post';
 	$firstURLSegment = 'posts';
 	@endphp
-@elseif($model instanceof App\CookingRecipe)
+@elseif($cooking instanceof App\CookingRecipe)
 	@php
 	$name = 'cooking';
 	$firstURLSegment = 'cookings';

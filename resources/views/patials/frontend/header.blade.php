@@ -21,9 +21,9 @@
             <ul class="nav navbar-nav menu_nav justify-content-end">
             
               <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li> 
-              <li class="nav-item"><a class="nav-link" href="about.html">Mâm Cơm</a></li> 
+              <li class="nav-item"><a class="nav-link" href="">Mâm Cơm</a></li> 
               <li class="nav-item"><a class="nav-link" href="{{route('postAll')}}">Tin Tức</a>
-              <li class="nav-item"><a class="nav-link" href="chef.html">Món Ăn</a>
+              <li class="nav-item"><a class="nav-link" href="{{route('cookingAll')}}">Món Ăn</a>
 
               <li class="nav-item ">
                 <a href="{{route('chef')}}" class="nav-link" role="button">Đầu Bếp</a>

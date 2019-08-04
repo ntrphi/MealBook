@@ -1,12 +1,11 @@
 @extends('layout.frontend_layout')
 @section('content')
 
+<section class="hero-banner mt-5">
+    <div class="hero-wrapper container">
 
-    <!-- main content -->
-    <section class="hero-banner">
-    <div class="hero-wrapper">
-      <div class="hero-left">
-        <h1 class="hero-title">Mam com ngay he</h1>
+      <div class="hero-left col-md-6 col-12">
+        <h1 class="hero-title">Mâm cơm ngày hè</h1>
         <div class="d-sm-flex flex-wrap">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime sint doloremque fugit ipsam et voluptates, quidem deserunt laudantium labore a tempora iste amet quibusdam aliquid non dolor blanditiis veniam corporis!</p>          
         </div>
@@ -17,7 +16,7 @@
           
           <span>8K <span><i class="fa fa-eye"></i></span></span>
         </div>
-        <ul class="hero-info d-flex mt-4">
+        <ul class="hero-info d-flex mt-5">
           <li>
             <a href="">
               <h4>Like</h4>
@@ -35,14 +34,384 @@
           </li>
         </ul>
       </div>
-      <div class="hero-right">
-        <img class="img-fluid" src="images/mam com 1.jpg" alt="">
+
+      <div class="hero-right col-md-6 col-12">
+        <!-- for mam 4 mon -->
+          <div class="mamComHome" style="display: none">
+            <div class="mamComHome-4-content">
+              
+                <div class="row monAnWrap">
+                  <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="images/cua_rim.jpg" alt="">
+                  </div>
+                  <div class="popUp-monAn popUp1">
+                      <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                    <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                    <div class="container-fluid">
+
+                      <h5 class="congThucTitle">Cong thuc :</h5>
+                      <p>
+                        <span>+ </span>
+                        <span>Cua</span>
+                        <span class="ml-5">1 con</span>
+                      </p>
+                      <a class="xemThemBtn" href="">
+                        Xem chi tiet
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class=" row monAnWrap">
+                <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="images/trung.jpg" alt="">
+                </div>
+                <div class="popUp-monAn popUp2">
+                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                  <div class="container-fluid">
+
+                    <h5 class="congThucTitle">Cong thuc :</h5>
+                    <p>
+                      <span>+ </span>
+                      <span>Cua</span>
+                      <span class="ml-5">1 con</span>
+                    </p>
+                    <a class="xemThemBtn" href="">
+                      Xem chi tiet
+                    </a>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row monAnWrap">
+                <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="images/bach tuoc.jpg" alt="">
+                </div>
+                <div class="popUp-monAn popUp3">
+                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                  <div class="container-fluid">
+
+                    <h5 class="congThucTitle">Cong thuc :</h5>
+                    <p>
+                      <span>+ </span>
+                      <span>Cua</span>
+                      <span class="ml-5">1 con</span>
+                    </p>
+                    <a class="xemThemBtn" href="">
+                      Xem chi tiet
+                    </a>
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="row monAnWrap">
+                <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="images/canh.jpg" alt="">
+                </div>
+                <div class="popUp-monAn popUp4">
+                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                  <div class="container-fluid">
+
+                    <h5 class="congThucTitle">Cong thuc :</h5>
+                    <p>
+                      <span>+ </span>
+                      <span>Cua</span>
+                      <span class="ml-5">1 con</span>
+                    </p>
+                    <a class="xemThemBtn" href="">
+                      Xem chi tiet
+                    </a>
+                  </div>
+                </div>
+                </div>
+
+              
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+                
+                
+                
+            </div>
+          </div>
+
+          <!-- for mam 5 mon -->
+          <div class="mamComHome" style="display: none">
+            <div class="mamComHome-5-content">
+                <div class="row monAnWrap monAnStt1">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="images/cua_rim.jpg" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp1">
+                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>Cua</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="row monAnWrap monAnStt2">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="images/cua_rim.jpg" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp2">
+                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>Cua</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="row monAnWrap monAnStt3">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="images/cua_rim.jpg" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp3">
+                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>Cua</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="row monAnWrap monAnStt4">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="images/cua_rim.jpg" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp4">
+                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>Cua</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                <div class="row monAnWrap monAnStt5">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="images/cua_rim.jpg" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp5">
+                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>Cua</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                
+
+              <!-- nuoc cham   -->
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+                
+                
+                
+            </div>
+          </div>
+
+          <!-- for mam 6 mon -->
+          <div class="mamComHome">
+              <div class="mamComHome-6-content">
+                  <div class="row monAnWrap monAnStt1">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp1">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row monAnWrap monAnStt2">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp2">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row monAnWrap monAnStt3">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp3">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row monAnWrap monAnStt4">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp4">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row monAnWrap monAnStt5">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp5">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row monAnWrap monAnStt6">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="images/cua_rim.jpg" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp6">
+                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
+                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>Cua</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                  
+  
+                <!-- nuoc cham   -->
+                  <div class="nuocCham">
+                    <img src="images/nuoc cham.jpg" alt="">
+                  </div>
+                  
+                  
+                  
+              </div>
+            </div>
+
       </div>
-      <ul class="social-icons d-none d-lg-block">
+
+
+      <!-- ============= -->
+      
+      <!-- <ul class="social-icons d-none d-lg-block">
         <li><a href="#"><i class="ti-facebook"></i></a></li>
         <li><a href="#"><i class="ti-twitter"></i></a></li>
         <li><a href="#"><i class="ti-instagram"></i></a></li>
-      </ul>
+      </ul> -->
     </div>
   </section>
   <!--================Hero Banner Section end =================-->
@@ -76,6 +445,7 @@
           </div>
       </div>
       </div>
+
       <div class="comment-list">
           <div class="single-comment justify-content-between d-flex">
               <div class="user justify-content-between d-flex">
@@ -104,6 +474,7 @@
               </div>
           </div>
       </div>
+
       <div class="comment-list">
           <div class="single-comment justify-content-between d-flex">
               <div class="user justify-content-between d-flex">
@@ -132,8 +503,8 @@
               </div>
           </div>
       </div>
-  </div>
-  </section>
+    </div>
+</section>
   
 
   
@@ -142,7 +513,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-xl-6 mb-5 mb-md-0 pb-5 pb-md-0">
-          <div class="images-styleBox">
+          <div class="img-styleBox">
             <div class="styleBox-border">
               <img class="styleBox-img1 img-fluid" src="images/home/about-img1.png" alt="">
             </div>
@@ -166,16 +537,18 @@
   <!--================Featured Section Start =================-->
   <section class="section-margin mb-lg-100">
     <div class="container">
+
       <div class="section-intro mb-75px mb-35px">
-        <h1 class="intro-title">Mam com noi bat</h1>
+        <h1 class="intro-title">Mâm cơm nổi bật</h1>
         <!-- <h2>Fresh taste and great price</h2> -->
       </div>
+
       <div class="owl-carousel owl-theme featured-carousel">
         <div class="featured-item">
           <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
           <div class="item-body">
             <a href="#">
-              <h3>Chan ga nuong</h3>
+              <h3>Chân gà nướng</h3>
             </a>
             <p>
               <p>Cong thuc:</p>
@@ -193,73 +566,56 @@
             </div>
           </div>
         </div>
+
         <div class="featured-item">
-          <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
-          <div class="item-body">
-            <a href="#">
-              <h3>Chan ga nuong</h3>
-            </a>
-            <p>
-              <p>Cong thuc:</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
-            </p>
-            <div class="d-flex justify-content-between">
-              <ul class="rating-star">
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-              </ul>
-              <h3 class="price-tag">4.7</h3>
+            <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
+            <div class="item-body">
+              <a href="#">
+                <h3>Chân gà nướng</h3>
+              </a>
+              <p>
+                <p>Cong thuc:</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
+              </p>
+              <div class="d-flex justify-content-between">
+                <ul class="rating-star">
+                  <li><i class="ti-star"></i></li>
+                  <li><i class="ti-star"></i></li>
+                  <li><i class="ti-star"></i></li>
+                  <li><i class="ti-star"></i></li>
+                  <li><i class="ti-star"></i></li>
+                </ul>
+                <h3 class="price-tag">4.7</h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="featured-item">
-          <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
-          <a class="item-body">
-            <a href="#">
-              <h3>Chan ga nuong</h3>
-            </a>
-            <p>
-              <p>Cong thuc:</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
-            </p>
-            <div class="d-flex justify-content-between">
-              <ul class="rating-star">
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-              </ul>
-              <h3 class="price-tag">4.7</h3>
+
+          <div class="featured-item">
+              <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
+              <div class="item-body">
+                <a href="#">
+                  <h3>Chân gà nướng</h3>
+                </a>
+                <p>
+                  <p>Cong thuc:</p>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
+                </p>
+                <div class="d-flex justify-content-between">
+                  <ul class="rating-star">
+                    <li><i class="ti-star"></i></li>
+                    <li><i class="ti-star"></i></li>
+                    <li><i class="ti-star"></i></li>
+                    <li><i class="ti-star"></i></li>
+                    <li><i class="ti-star"></i></li>
+                  </ul>
+                  <h3 class="price-tag">4.7</h3>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="featured-item">
-          <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
-          <div class="item-body">
-            <a href="#">
-              <h3>Chan ga nuong</h3>
-            </a>
-            <p>
-              <p>Cong thuc:</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
-            </p>
-            <div class="d-flex justify-content-between">
-              <ul class="rating-star">
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-              </ul>
-              <h3 class="price-tag">4.7</h3>
-            </div>
-          </div>
-        </div>
-       
+
+
       </div>
+
     </div>
 
   </section>
@@ -289,7 +645,7 @@
   <section class="section-margin">
     <div class="container">
       <div class="section-intro mb-75px">
-        <h4 class="intro-title">Mon ngon trong tuan</h4>
+        <h4 class="intro-title">Món ngon trong tuần</h4>
       </div>
       <div class="row">
         <div class="col-lg-6">
@@ -298,7 +654,7 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
                 <a href="">
-                  <h4>Chan ga xa ot</h4>
+                  <h4>Chân gà chiên giòn</h4>
                 </a>
                 <h3 class="price-tag food-score">4.2</h3>
               </div>
@@ -312,7 +668,7 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
                 <a href="">
-                  <h4>Chan ga xa ot</h4>
+                  <h4>Chân gà chiên giòn</h4>
                 </a>
                 <h3 class="price-tag food-score">4.2</h3>
               </div>
@@ -326,7 +682,7 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
                 <a href="">
-                  <h4>Chan ga xa ot</h4>
+                  <h4>Chân gà chiên giòn</h4>
                 </a>
                 <h3 class="price-tag food-score">4.2</h3>
               </div>
@@ -340,7 +696,7 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
                 <a href="">
-                  <h4>Chan ga xa ot</h4>
+                  <h4>Chân gà chiên giòn</h4>
                 </a>
                 <h3 class="price-tag food-score">4.2</h3>
               </div>
@@ -524,3 +880,16 @@
     </div>
   </section>
 @endsection
+
+<script>
+$(document).ready(function(){
+  $(".monAnWrap").hover(
+  function () {
+    $(this).find('.popUp-monAn').slideDown('medium');
+  }, 
+  function () {
+    $(this).find('.popUp-monAn').slideUp('medium');
+  }
+);
+});
+</script>

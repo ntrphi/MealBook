@@ -23,8 +23,10 @@ Route::get('/postAdd','PostController@create')->name('postAdd');
 Route::post('/postStore','PostController@store')->name('postStore');
 Route::get('/cooking','CookingRecipeController@create')->name('cookingAdd');
 Route::post('/cookingStore','CookingRecipeController@store')->name('cookingStore');
-
+Route::get('/cookingAll','CookingRecipeController@index')->name('cookingAll');
+Route::get('/showCooking/{id}','CookingRecipeController@show')->name('showCooking');
 Route::post('/posts/{post}/comment','CommentController@postComment');
+Route::post('/cookings/{cooking}/comment','CommentController@cookingComment');
 
 
 Route::get('login', 'LoginController@getLogin');
