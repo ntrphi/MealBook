@@ -1,0 +1,98 @@
+/* .main-logo{
+    min-width: 30%;
+} */
+.logo_h{
+    width: 30%;
+}
+.hero-left{
+    padding-top: 5%;
+}
+.mb-35px{
+    margin-bottom: 35px;
+}
+
+.featured-item{
+    background: unset;
+}
+.rounded-100{
+    border-radius: 100%;
+}
+.counting-status>span{
+    display: inline;
+    padding: 0 10px;
+}
+.hero-info{
+    border-top: 1px solid #c7c5c5;
+    border-bottom: 1px solid #c7c5c5;
+}
+.hero-info>li{
+    border: 0;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+.hero-info>li:hover{
+    background: wheat;
+}
+/* thanh search */
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 5px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 220px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    }
+
+/* comment home */
+.comments-area-home{
+    margin-top: unset;
+    border: 0;
+}
+
+
+@media (min-width: 1420px){
+    .hero-info {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+@media (min-width: 992px){
+    .section-margin {
+        margin: 30px 0;
+    }
+}
