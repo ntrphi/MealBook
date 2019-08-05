@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
-use App\Http\Requests\CookingRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\CookingRecipe;
 use App\DishType;
-
+use Illuminate\Support\MessageBag;
+use Validator;
 
 class CookingRecipeController extends Controller
 {
@@ -47,25 +48,46 @@ class CookingRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CookingRequest $request)
+    public function store(Request $request)
     {
-        $fileName = null;
-        if (request()->hasFile('avatar')) {
-            $file = request()->file('avatar');
-            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('./avatar/', $fileName);
-        }
-        // dd($request->user()->id);
-        CookingRecipe::create([
-            'dish_type_id' => $request->dish_type_id,
-            'author_id' => $request->user()->id,
-            'name' => $request->name,
-            'avatar' => $fileName,
-            'ingredient' => $request->ingredient,
-            'recipe' => $request->recipe
-        ]);
+     
+        $rules = [
+    		'name' => 'required | min:4|unique:cooking_recipes',
+            'avatar' => 'required | image',           
+            'ingredient' => 'required | min:4',
+            'recipe'=>'required|min:4',
+    	];
 
-        return redirect()->route('index')->with('success', "You question has been submitted");
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+		    'min' => ':attribute quá ngắn mời nhập dài hơn.',
+            'avatar.image' => ':attribute không đúng định dạng',
+		    'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+		];
+	
+    	$validator = Validator::make($request->all(), $rules , $msg);       
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+            $fileName = null;
+            if (request()->hasFile('avatar')) {
+                $file = request()->file('avatar');
+                $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move('./images/', $fileName);
+            }
+           
+            CookingRecipe::create([
+                'dish_type_id' => $request->dish_type_id,
+                'author_id' => Auth::user()->id,
+                'name' => $request->name,
+                'avatar' => $fileName,
+                'ingredient' => $request->ingredient,
+                'recipe' => $request->recipe
+            ]);
+            return redirect()->route('index')->with('success', "You question has been submitted");
+        }
     }
 
     /**

@@ -32,7 +32,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form" method="POST" action="{{route('cookingStore')}}" enctype="multipart/form-data">
+                        <form role="form" method="POST" action="{{route('managerCookingStore')}}" enctype="multipart/form-data">
                             {{ csrf_field() }}                   
                         <!-- text input -->
                             <div class="form-group">

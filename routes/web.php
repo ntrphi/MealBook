@@ -46,7 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::put('updateHot', 'PostController@updateHot');
         Route::get('index', 'CookingRecipeController@index');
         Route::get('update/{id} ', 'CookingRecipeController@edit')->name('cookingEdit');
-        Route::post('update', 'CookingRecipeController@update')->name('cookingStore');
+        Route::post('update', 'CookingRecipeController@update')->name('managerCookingStore');
         Route::get('delete/{id}', 'CookingRecipeController@destroy');
     });
 });

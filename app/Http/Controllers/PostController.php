@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidateRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\MessageBag;
+use Validator;
 use App\Post;
+use Auth;
 class PostController extends Controller
 {
     /**
@@ -36,25 +38,46 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidateRequest $request)
-    { 
+    public function store(Request $request)
+    {   
+        $rules = [
+    		'title' => 'required | min:4|unique:posts',
+    		'image' => 'required | image',
+    		'content' => 'required | min:4'
+    	];
+
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+		    'min' => ':attribute quá ngắn mời nhập dài hơn.',
+            'image.image' => ':attribute không đúng định dạng',
+		    'title.unique' => ':attribute đã có, mời ghi nội dung khác',
+		];
+	
+    	$validator = Validator::make($request->all(), $rules , $msg);       
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
         // $imageName = time().'.'.request()->image->getClientOriginalExtension();
         // request()->image->move(public_path('images'), $imageName);
-         $fileName = null;
-        if (request()->hasFile('image')) {
-            $file = request()->file('image');
-            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('./images/', $fileName);    
-        }
-      
-        Post::create([
-            'user_id' => $request->user()->id,
-            'title'=>$request->title,
-            'image'=> $fileName,
-            'content'=> $request->content
-        ]);
+            $fileName = null;
 
-        return redirect()->route('index')->with('success',"You question has been submitted");
+            if (request()->hasFile('image')) {
+                $file = request()->file('image');
+                $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move('./images/', $fileName);    
+            }
+            Post::create([
+                'user_id' => Auth::user()->id,
+                'title'=>$request->title,
+                'image'=> $fileName,
+                'content'=> $request->content
+            ]);
+            return redirect()->route('index')->with('success',"You question has been submitted");
+        
+        
+        }
     }
 
     /**

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class CookingRecipe extends Model
 {
     protected $fillable = [
-        'name','avatar','ingredient','recipe',
+        'name','avatar','ingredient','recipe',  'dish_type_id', 'author_id',
     ];
-    
+
     public function user(){
         return $this->belongsTo(User::class,'author_id');
     }

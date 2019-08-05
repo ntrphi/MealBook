@@ -40,6 +40,7 @@
         </div>
       </nav>
     </div>
+    @if(Auth::check())
     <form action="{{route('postAdd')}}" method="get">
                 <button type="submit" class="btn btn-danger">Đăng Bài</button>
                 </form>
@@ -47,6 +48,7 @@
                 <form action="{{route('cookingAdd')}}" method="get">
                 <button type="submit" class="btn btn-submit">Đăng Món Ăn</button>
                 </form>
+    @endif
   </header>
          	
 @auth
