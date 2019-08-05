@@ -26,13 +26,17 @@ class AdminController extends Controller
     public function getListCookingRecipes()
     {
         $recipesList = CookingRecipe::all();
-        return view('admin.cookingRecipes.list',['recipesList'=>$recipesList]);
+        return view('admin.cookingRecipes.list', ['recipesList' => $recipesList]);
     }
     public function getUserPage(Request $request)
     {
         // $user_id = $request->id;
         $user = Auth::user();
-        return view('admin.user_mypage', ['user'=>$user]);
+        return view('admin.user_mypage', ['user' => $user]);
     }
-
+    public function getUserList()
+    {
+        $users = User::paginate(10);
+        return view('admin.user.list', ['user' => $users]);
+    }
 }

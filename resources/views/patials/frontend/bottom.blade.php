@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="fontawesome-free-5.9.0-web/css/fontawesome.min.css">
-    <link rel="stylesheet" href="bt4/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">

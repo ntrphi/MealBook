@@ -49,4 +49,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::post('update', 'CookingRecipeController@update')->name('managerCookingStore');
         Route::get('delete/{id}', 'CookingRecipeController@destroy');
     });
+    Route::prefix('user')->group(function () {
+        Route::get('/', 'AdminController@getUserList')->name('list-author');
+        Route::get('data', 'UserController@dataTable')->name('data-author');
+        Route::post('add', 'UserController@postAdd');
+        Route::delete('delete', 'UserController@delete');
+    });
 });

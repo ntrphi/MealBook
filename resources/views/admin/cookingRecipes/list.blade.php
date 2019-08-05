@@ -87,7 +87,7 @@
             </div>
             <div class="modal-body">
                 <form id="form-delete">
-                    {{ csrf_field() }}''
+                    {{ csrf_field() }}
                     <input type="hidden" name="id" id="del-id">
                     <p>Bạn có chắc muốn xóa món ăn với id = <strong id="del-id"></strong> này?</p>
                     <div class="modal-footer">
