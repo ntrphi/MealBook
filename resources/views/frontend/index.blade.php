@@ -37,7 +37,7 @@
 
       <div class="hero-right col-md-6 col-12">
         <!-- for mam 4 mon -->
-          <div class="mamComHome" style="display: none">
+          <!-- <div class="mamComHome" style="display: none">
             <div class="mamComHome-4-content">
               
                 <div class="row monAnWrap">
@@ -139,9 +139,9 @@
                 
                 
             </div>
-          </div>
+          </div> -->
 
-          <!-- for mam 5 mon -->
+<!-- for mam 5 mon 
           <div class="mamComHome" style="display: none">
             <div class="mamComHome-5-content">
                 <div class="row monAnWrap monAnStt1">
@@ -251,7 +251,7 @@
                 </div>
                 
 
-              <!-- nuoc cham   -->
+               nuoc cham   
                 <div class="nuocCham">
                   <img src="images/nuoc cham.jpg" alt="">
                 </div>
@@ -259,33 +259,36 @@
                 
                 
             </div>
-          </div>
+          </div> -->
 
           <!-- for mam 6 mon -->
           <div class="mamComHome">
               <div class="mamComHome-6-content">
+              @foreach($cooking as $cookings)
                   <div class="row monAnWrap monAnStt1">
                       <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
+                        <img src="{{$cookings->avatar}}" alt="">
                       </div>
                       <div class="popUp-monAn popUp1">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                          <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                        <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                      
                         <div class="container-fluid">
     
                           <h5 class="congThucTitle">Cong thuc :</h5>
                           <p>
                             <span>+ </span>
-                            <span>Cua</span>
+                            <span>{{$cookings->ingredient}}</span>
                             <span class="ml-5">1 con</span>
                           </p>
-                          <a class="xemThemBtn" href="">
+                          <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                             Xem chi tiet
                           </a>
                         </div>
                       </div>
                   </div>
-                  <div class="row monAnWrap monAnStt2">
+                @endforeach
+                  <!-- <div class="row monAnWrap monAnStt2">
                       <div class="monAnDiv-5 mx-auto my-auto">
                         <img src="images/cua_rim.jpg" alt="">
                       </div>
@@ -331,7 +334,7 @@
                       <div class="monAnDiv-5 mx-auto my-auto">
                         <img src="images/cua_rim.jpg" alt="">
                       </div>
-                      <div class="popUp-monAn popUp4">
+                      <div class="popUp-monAn popUp4login">
                           <img class="img-fluid" src="images/cua_rim.jpg" alt="">
                         <h3 class="text-center mt-2">Cua rim chua ngot</h3>
                         <div class="container-fluid">
@@ -389,7 +392,7 @@
                           </a>
                         </div>
                       </div>
-                  </div>
+                  </div> -->
                   
   
                 <!-- nuoc cham   -->
@@ -417,6 +420,8 @@
   <!--================Hero Banner Section end =================-->
 <section class="container">
     <div class="comments-area comments-area-home">
+    @foreach($cooking as $item)
+      @foreach($item->comment as $comments)
       <div class="comment-list">
         <div class="single-comment justify-content-between d-flex">
           <div class="user justify-content-between d-flex">
@@ -425,15 +430,15 @@
               </div>
               <div class="desc">
                   <p class="comment">
-                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser 
+                    {{$comments->title}}
                   </p>
 
                   <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                       <h5>
-                        <a href="#">Emilly Blunt</a>
+                        <a href="#">{{$comments->user->name}}</a>
                       </h5>
-                      <p class="date">December 4, 2017 at 3:12 pm </p>
+                      <p class="date">{{$comments->created_at}}</p>
                     </div>
 
                     <div class="reply-btn">
@@ -445,64 +450,8 @@
           </div>
       </div>
       </div>
-
-      <div class="comment-list">
-          <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                  <div class="thumb">
-                      <img src="images/blog/c2.png" alt="">
-                  </div>
-                  <div class="desc">
-                      <p class="comment">
-                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser 
-                      </p>
-
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                          <h5>
-                            <a href="#">Emilly Blunt</a>
-                          </h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                        </div>
-
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="comment-list">
-          <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                  <div class="thumb">
-                      <img src="images/blog/c3.png" alt="">
-                  </div>
-                  <div class="desc">
-                      <p class="comment">
-                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser 
-                      </p>
-
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                          <h5>
-                            <a href="#">Emilly Blunt</a>
-                          </h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                        </div>
-
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-      </div>
+      @endforeach
+      @endforeach
     </div>
 </section>
   
@@ -544,75 +493,22 @@
       </div>
 
       <div class="owl-carousel owl-theme featured-carousel">
+      
         <div class="featured-item">
-          <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
+          <img class="card-img rounded-100" src="" alt="">
           <div class="item-body">
             <a href="#">
-              <h3>Chân gà nướng</h3>
+              <h3></h3>
             </a>
             <p>
-              <p>Cong thuc:</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
+              <p>Cong thuc :</p>
+              <p></p>
             </p>
             <div class="d-flex justify-content-between">
-              <ul class="rating-star">
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-                <li><i class="ti-star"></i></li>
-              </ul>
               <h3 class="price-tag">4.7</h3>
             </div>
           </div>
         </div>
-
-        <div class="featured-item">
-            <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
-            <div class="item-body">
-              <a href="#">
-                <h3>Chân gà nướng</h3>
-              </a>
-              <p>
-                <p>Cong thuc:</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
-              </p>
-              <div class="d-flex justify-content-between">
-                <ul class="rating-star">
-                  <li><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                </ul>
-                <h3 class="price-tag">4.7</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="featured-item">
-              <img class="card-img rounded-100" src="images/home/featured1.png" alt="">
-              <div class="item-body">
-                <a href="#">
-                  <h3>Chân gà nướng</h3>
-                </a>
-                <p>
-                  <p>Cong thuc:</p>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto repudiandae, excepturi perspiciatis quam itaque at assumenda explicabo non odit, cupiditate recusandae voluptatibus nulla aut ratione asperiores harum magnam mollitia eos.</p>
-                </p>
-                <div class="d-flex justify-content-between">
-                  <ul class="rating-star">
-                    <li><i class="ti-star"></i></li>
-                    <li><i class="ti-star"></i></li>
-                    <li><i class="ti-star"></i></li>
-                    <li><i class="ti-star"></i></li>
-                    <li><i class="ti-star"></i></li>
-                  </ul>
-                  <h3 class="price-tag">4.7</h3>
-                </div>
-              </div>
-            </div>
-
 
       </div>
 
@@ -648,63 +544,22 @@
         <h4 class="intro-title">Món ngon trong tuần</h4>
       </div>
       <div class="row">
+      @foreach ($cookingWeek as $item)
         <div class="col-lg-6">
           <div class="media align-items-center food-card">
-            <img class="mr-3 mr-sm-4" src="images/home/food1.png" alt="">
+            <img class="mr-3 mr-sm-4" src="{{$item->avatar}}" alt="">
             <div class="media-body">
               <div class="d-flex justify-content-between ">
                 <a href="">
-                  <h4>Chân gà chiên giòn</h4>
+                  <h4>{{$item->name}}</h4>
                 </a>
-                <h3 class="price-tag food-score">4.2</h3>
+              
               </div>
-              <p>Whales and darkness moving form cattle</p>
+              <p>{{$item->dishType->name}}</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="media align-items-center food-card">
-            <img class="mr-3 mr-sm-4" src="images/home/food1.png" alt="">
-            <div class="media-body">
-              <div class="d-flex justify-content-between ">
-                <a href="">
-                  <h4>Chân gà chiên giòn</h4>
-                </a>
-                <h3 class="price-tag food-score">4.2</h3>
-              </div>
-              <p>Whales and darkness moving form cattle</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="media align-items-center food-card">
-            <img class="mr-3 mr-sm-4" src="images/home/food1.png" alt="">
-            <div class="media-body">
-              <div class="d-flex justify-content-between ">
-                <a href="">
-                  <h4>Chân gà chiên giòn</h4>
-                </a>
-                <h3 class="price-tag food-score">4.2</h3>
-              </div>
-              <p>Whales and darkness moving form cattle</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="media align-items-center food-card">
-            <img class="mr-3 mr-sm-4" src="images/home/food1.png" alt="">
-            <div class="media-body">
-              <div class="d-flex justify-content-between ">
-                <a href="">
-                  <h4>Chân gà chiên giòn</h4>
-                </a>
-                <h3 class="price-tag food-score">4.2</h3>
-              </div>
-              <p>Whales and darkness moving form cattle</p>
-            </div>
-          </div>
-        </div>
-
+        @endforeach
       </div>
     </div>
   </section>
@@ -730,12 +585,13 @@
       </div>
 
       <div class="row">
+      @foreach ($user as $users)
         <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
           <div class="chef-card">
-            <img class="card-img rounded-0" src="images/home/chef-1.png" alt="">
+            <img class="card-img rounded-0" src="{{$users->image}}" alt="">
             <div class="chef-footer">
-              <h4>Daniesl Laran</h4>
-              <p>Executive Chef</p>
+              <h4>{{$users->name}}</h4>
+              <p>{{$users->role->name}}</p>
             </div>
 
             <div class="chef-overlay">
@@ -746,7 +602,7 @@
             </div>
           </div>
         </div>
-
+  @endforeach
       </div>
     </div>
   </section>
@@ -830,52 +686,22 @@
       </div>
 
       <div class="row">
+      @foreach ($post as $posts)
         <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
           <div class="card-blog">
-            <img class="card-img rounded-0" src="images/blog/blog1.png" alt="">
+            <img class="card-img rounded-0" src="{{$posts->image}}" alt="">
             <div class="blog-body">
               <ul class="blog-info">
-                <li><a href="#">Admin post</a></li>
-                <li><a href="#">Jan 10, 2019</a></li>
+                <li><a href="#">{{$posts->user->name}}</a></li>
+                <li><a href="#">{{$posts->created_at}}</a></li>
               </ul>
               <a href="#">
-                <h3>Huge cavity in antarctic glacie signals rapid</h3>
+                <h3>{{$posts->title}}</h3>
               </a>
             </div>
           </div>
         </div>
-
-        <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="card-blog">
-            <img class="card-img rounded-0" src="images/blog/blog2.png" alt="">
-            <div class="blog-body">
-              <ul class="blog-info">
-                <li><a href="#">Admin post</a></li>
-                <li><a href="#">Jan 10, 2019</a></li>
-              </ul>
-              <a href="#">
-                <h3>Researcher unearths age
-                    in the desert</h3>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
-          <div class="card-blog">
-            <img class="card-img rounded-0" src="images/blog/blog3.png" alt="">
-            <div class="blog-body">
-              <ul class="blog-info">
-                <li><a href="#">Admin post</a></li>
-                <li><a href="#">Jan 10, 2019</a></li>
-              </ul>
-              <a href="#">
-                <h3>High-protein rice brings
-                    value, nutrition</h3>
-              </a>
-            </div>
-          </div>
-        </div>
+      @endforeach
       </div>
     </div>
   </section>

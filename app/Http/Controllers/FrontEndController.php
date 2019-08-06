@@ -18,7 +18,11 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $cooking = CookingRecipe::latest()->paginate(6);
+        $user = User::paginate(3);
+        $cookingWeek = CookingRecipe::paginate(4);
+        $post = Post::latest()->paginate(3);
+        return view('frontend.index',compact('cooking','cookingWeek','user','post'));
     }
 
     /**
