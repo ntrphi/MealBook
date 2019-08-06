@@ -19,6 +19,9 @@ class MealBook extends Model
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);
     }
-  
+    public function mealBookDishes()
+    {
+        return $this->belongsToMany('App\CookingRecipe','meal_book_dishes','meal_book_id','dish_id');
+    }
   
 }
