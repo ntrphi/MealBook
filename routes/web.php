@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Routing\RouteUrlGenerator;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +53,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     });
     Route::prefix('user')->group(function () {
         Route::get('/', 'AdminController@getUserList')->name('list-author');
-        Route::get('data', 'UserController@dataTable')->name('data-author');
         Route::post('add', 'UserController@postAdd');
-        Route::delete('delete', 'UserController@delete');
+        Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
+        Route::get('delete/{id}', 'UserController@delete')->name('user.delete');
+        Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
+
     });
 });

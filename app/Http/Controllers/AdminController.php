@@ -36,7 +36,7 @@ class AdminController extends Controller
     }
     public function getUserList()
     {
-        $users = User::paginate(10);
+        $users = User::withTrashed()->paginate(10);
         return view('admin.user.list', ['users' => $users]);
     }
 }
