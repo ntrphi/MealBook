@@ -59,4 +59,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
 
     });
+    Route::prefix('dish-type')->group(function () {
+        Route::get('/', 'AdminController@getDishTypeList')->name('list-dishtype');
+        // Route::post('add', 'UserController@postAdd');
+        // Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
+        Route::get('delete/{id}', 'DishtypeController@delete')->name('dishtype.delete');
+        // Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
+
+    });
 });

@@ -22,8 +22,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                <li class="active"><a href="{{route('dashboard')}}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                <li><a href="{{route('userpage', Auth::user()->id)}}"><i class="fa fa-user"></i> Profile</a></li>
                 </ul>
             </li>
         </ul>

@@ -39,4 +39,9 @@ class AdminController extends Controller
         $users = User::withTrashed()->paginate(10);
         return view('admin.user.list', ['users' => $users]);
     }
+    public function getDishTypeList()
+    {
+        $dishtypes = DishType::paginate(10);
+        return view('admin.dishtypes.list', ['dishtypes'=>$dishtypes]);
+    }
 }
