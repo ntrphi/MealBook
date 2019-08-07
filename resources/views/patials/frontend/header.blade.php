@@ -41,6 +41,7 @@
       </nav>
     </div>
     @if(Auth::check())
+    <div class="d-flex">
     <form action="{{route('postAdd')}}" method="get">
                 <button type="submit" class="btn btn-danger">Đăng Bài</button>
                 </form>
@@ -48,6 +49,10 @@
                 <form action="{{route('cookingAdd')}}" method="get">
                 <button type="submit" class="btn btn-submit">Đăng Món Ăn</button>
                 </form>
+                <form action="{{route('mealbookAdd')}}" method="get">
+                <button type="submit" class="btn btn-submit">Đăng Mâm Cơm</button>
+                </form>
+    </div>
     @endif
   </header>
          	

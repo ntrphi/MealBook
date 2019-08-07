@@ -19,6 +19,7 @@ class FrontEndController extends Controller
     public function index()
     {
         $cooking = CookingRecipe::latest()->paginate(6);
+     
         $user = User::paginate(3);
         $cookingWeek = CookingRecipe::paginate(4);
         $post = Post::latest()->paginate(3);

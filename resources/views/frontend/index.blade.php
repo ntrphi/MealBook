@@ -546,7 +546,7 @@
       <div class="row">
       @foreach ($cookingWeek as $item)
         <div class="col-lg-6">
-          <div class="media align-items-center food-card">
+          <div class="align-items-center food-card">
             <img class="mr-3 mr-sm-4" src="{{$item->avatar}}" alt="">
             <div class="media-body">
               <div class="d-flex justify-content-between ">
@@ -692,10 +692,10 @@
             <img class="card-img rounded-0" src="{{$posts->image}}" alt="">
             <div class="blog-body">
               <ul class="blog-info">
-                <li><a href="#">{{$posts->user->name}}</a></li>
+                <li><a href="">{{$posts->user->name}}</a></li>
                 <li><a href="#">{{$posts->created_at}}</a></li>
               </ul>
-              <a href="#">
+              <a href="{{route('showPost',$posts->id)}}">
                 <h3>{{$posts->title}}</h3>
               </a>
             </div>

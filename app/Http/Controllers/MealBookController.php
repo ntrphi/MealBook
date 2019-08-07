@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MealBook;
+use App\CookingRecipe;
 use Auth;
 
 class MealBookController extends Controller
 {
-    public function addNew()
+    public function create()
     {
-        return view('frontend.mealbook.add');
+        $cooking = CookingRecipe::all();
+        return view('frontend.mealbook.add',compact('cooking'));
     }
     public function saveadd(Request $request)
     {
+        $dishes = $_POST['cookingrecipes'];
+        dd($dishes,$request);
         $user_id=1;
         $name= $request->input('name');
         // nhận 1 mảng ID của món ăn

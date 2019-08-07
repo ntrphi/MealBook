@@ -28,7 +28,7 @@ Route::get('/cookingAll','CookingRecipeController@index')->name('cookingAll');
 Route::get('/showCooking/{id}','CookingRecipeController@show')->name('showCooking');
 Route::post('/posts/{post}/comment','CommentController@postComment');
 Route::post('/cookings/{cooking}/comment','CommentController@cookingComment');
-Route::get('/mealbook-add', 'MealBookController@addNew');
+Route::get('/mealbook-add', 'MealBookController@create')->name('mealbookAdd');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
 
 Route::get('login', 'LoginController@getLogin');

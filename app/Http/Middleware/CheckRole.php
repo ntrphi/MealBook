@@ -22,6 +22,6 @@ class CheckRole
             } elseif (Auth::user()->role->name == 'Member')
             return redirect()->route('userpage', Auth::user()->id); 
         }
-        return redirect()->route('login'); 
+        return redirect()->route('index'); 
     }
 }
