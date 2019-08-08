@@ -117,6 +117,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- bấm vào nút này sẽ nhận các ảnh món ăn đã kéo vào và hiện lên trong hộp thoại add --}}
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#show-add">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD NEW
                 </button>
@@ -168,7 +169,7 @@
                     <h4 class="modal-title">Thêm món ăn</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="form-add" action="admin/user/add" method="POST" enctype="multipart/form-data">
+                    <form id="form-add" action="mealbook-add-save" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="role_id" value="3">
                         <div class="form-group">
@@ -176,10 +177,7 @@
                             <input type="text" class="form-control" id="authorname" name="name">
                         </div>
                         <div class="check-list">
-                            <div class="form-group">
-                                <label for="recipient-name" class="control-label">Món ăn</label>
-                                <input type="checkbox" value="1" name="cookingRecipe[]">
-                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">Avatar</label>
@@ -201,17 +199,17 @@
         $('button[data-toggle="modal"]').click(function(){
             // lấy ra 1 mảng các ảnh món ăn
             var arr = $('.monAnWrap img');
-
             $content="";
-            for (let index = 0; index < arr.length; index++) {
-                $content+= `<div class="form-group">
-                                ${arr[index]}
-                                <input type="checkbox" value="${arr[index].attributes["data-id"]}" name="cookingRecipe[]">
+            // mỗi món ăn trong mảng đc add vào form. có thể ttheem class để css.
+            for (var index = 0; index < arr.length; index++) {
+                $content+= `<div class="form-group">`
+                                + `<img src="` + arr[index].currentSrc + `" width="50px"; height="50px">`
+                                + `<input type="checkbox" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
                             </div>`;
+                
             }
-            console.log($content);
-            console.log($('.check-list'));
-            $('.check-list').innerHTML=$content;
+            
+            $('.check-list').append($content);
         })
     })
 </script>
