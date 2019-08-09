@@ -28,7 +28,7 @@ class CookingRecipeController extends Controller
         if (\Request::is('manageCookingRecipes')) {
             return view('admin.cookingRecipes.list', compact('listRecipes'));
         } else {
-            return view('page.cooking', compact('listRecipes', 'recent'));
+            return view('page.cooking', compact('recent'));
         }
     }
     /**

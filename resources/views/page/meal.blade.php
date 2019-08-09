@@ -177,16 +177,18 @@
 
                       <aside class="single_sidebar_widget popular_post_widget">
                           <h3 class="widget_title">Recent Post</h3>
-                      
+                          @foreach ($recent as $item)
                           <div class="media post_item">
-                              <img src="" alt="post">
+                              <img src="{{$item->avatar}}" alt="post">
                               <div class="media-body">
-                                  <a href="">
-                                      <h3></h3>
+                              <a href="{{route('showCooking',$item->id)}}">
+                                      <h3>{{$item->name}}</h3>
                                   </a>
-                                  <p></p>
+                                  <p>{{$item->created_at}}</p>
                               </div>
                           </div>
+               @endforeach
+                      
          
                       
                       </aside>

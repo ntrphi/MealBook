@@ -95,21 +95,29 @@
                         <div class="row">
                           <div class="col-12">@csrf
                         <input type="hidden" name="id" value="{{$cooking->id}}">
-                            <div class="form-group">
+                        <div class="form-group">
                                 <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>
+                                @if( $errors->has('content') )
+                                <p class="text-warning">{{ $errors->first('content')}}</p>
+                                @endif
                             </div>
                           </div>
                           <div class="col-sm-12">
                             <div class="form-group">
                               <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
+                              @if( $errors->has('title') )
+                                <p class="text-warning">{{ $errors->first('title')}}</p>
+                                @endif
                             </div>
                           </div>
 
                           </div>
                         </div>
+                        @if(Auth::user())
                         <div class="form-group">
                           <button type="submit" class="button button-contactForm">Send Message</button>
                         </div>
+                        @endif
                       </form>
 									</div>
 							</div>
@@ -133,16 +141,15 @@
                           <h3 class="widget_title">Recent Post</h3>
                           @foreach ($recent as $item)
                           <div class="media post_item">
-                              <img src="{{$item->image}}" alt="post" width="150" height="100" >
+                              <img src="{{$item->avatar}}" alt="post">
                               <div class="media-body">
-                                  <a href="{{$item->id}}">
-                                      <h3>{{$item->title}}</h3>
+                              <a href="{{route('showCooking',$item->id)}}">
+                                      <h3>{{$item->name}}</h3>
                                   </a>
                                   <p>{{$item->created_at}}</p>
                               </div>
                           </div>
-                @endforeach
-                     
+               @endforeach
                       </aside>
                       <!-- <aside class="single_sidebar_widget tag_cloud_widget">
                           <h4 class="widget_title">Tag Clouds</h4>

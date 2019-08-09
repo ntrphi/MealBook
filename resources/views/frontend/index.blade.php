@@ -228,23 +228,123 @@
       </div>
 
       <div class="owl-carousel owl-theme featured-carousel">
-      
+      @foreach ($mealHot as $mealbook)
         <div class="featured-item">
-          <img class="card-img rounded-100" src="" alt="">
+        @if($mealbook->mealBookDishes->count() == 4)
+         <div class="mamComHome" > 
+            <div class="mamComHome-4-content">
+            @foreach ($mealbook->mealBookDishes as $cookings)
+            
+                <div class="row monAnWrap">
+                  <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="{{$cookings->avatar}}" alt="">
+                  </div>
+                  <div class="popUp-monAn popUp1">
+                      <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                    <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                    <div class="container-fluid">
+
+                      <h5 class="congThucTitle">Cong thuc :</h5>
+                      <p>
+                        <span>+ </span>
+                        <span>{{$cookings->ingredient}}</span>
+                        <span class="ml-5">1 con</span>
+                      </p>
+                      <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                        Xem chi tiet
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+            </div>
+          </div> 
+
+            <!-- for mam 5 mon  -->
+          @elseif($mealbook->mealBookDishes->count() == 5)
+                    <div class="mamComHome" >
+                        <div class="mamComHome-5-content">
+                     @foreach ($mealbook->mealBookDishes as $cookings)
+                            <div class="row monAnWrap monAnStt1">
+                                <div class="monAnDiv-5 mx-auto my-auto">
+                                <img src="{{$cookings->avatar}}" alt="">
+                                </div>
+                                <div class="popUp-monAn popUp1">
+                                    <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                                <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                                <div class="container-fluid">
+            
+                                    <h5 class="congThucTitle">Cong thuc :</h5>
+                                    <p>
+                                    <span>+ </span>
+                                    <span>{{$cookings->ingredient}}</span>
+                                    <span class="ml-5">1 con</span>
+                                    </p>
+                                    <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                                    Xem chi tiet
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
+                  @endforeach
+                            <div class="nuocCham">
+                            <img src="images/nuoc cham.jpg" alt="">
+                            </div>
+                        </div>
+                    </div> 
+
+          <!-- for mam 6 mon -->
+        @elseif($mealbook->mealBookDishes->count() == 6)
+          <div class="mamComHome">
+              <div class="mamComHome-6-content">
+              @foreach ($mealbook->mealBookDishes as $cookings)
+           
+                  <div class="row monAnWrap monAnStt1">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="{{$cookings->avatar}}" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp1">
+                          <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                        <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                        <div class="container-fluid">
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>{{$cookings->ingredient}}</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="nuocCham">
+                            <img src="images/nuoc cham.jpg" alt="">
+                            </div>
+                  @endforeach
+                      </div>
+                  </div>
+       @endif
           <div class="item-body">
             <a href="#">
-              <h3></h3>
+              <h3>{{$mealbook->name}}</h3>
             </a>
             <p>
-              <p>Cong thuc :</p>
-              <p></p>
+              <p>Các Món Trong Mâm :</p>
+              @foreach ($mealbook->mealBookDishes as $cookings)
+              <p>{{$cookings->name}}</p>
+              @endforeach
             </p>
             <div class="d-flex justify-content-between">
-              <h3 class="price-tag">4.7</h3>
+            
             </div>
           </div>
         </div>
-
+  @endforeach
       </div>
 
     </div>

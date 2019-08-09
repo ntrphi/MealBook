@@ -38,7 +38,17 @@
                 </div>
             </div>
           </div> 
-
+          @if($mealbook instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($meal instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
             <!-- for mam 5 mon  -->
           @elseif($mealbook->mealBookDishes->count() == 5)
                     <div class="mamComHome" >
@@ -112,6 +122,13 @@
 					</div>
 						<div class="blog_details">
 						<h2>{{$mealbook->name}}</h2>
+            <p>Các Món Trong Mâm :</p>
+              @foreach ($mealbook->mealBookDishes as $cookings)
+              <h5>Tên Món : {{$cookings->name}}</h5> 
+              <li><a href="#"><i class="ti-user"></i> {{$cookings->user->name}}</a></li>
+              <p>{{$cookings->ingredient}}</p>
+              <p>{{$cookings->recipe}}</p>
+              @endforeach
                           <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#"><i class="ti-user"></i> {{$mealbook->getAuthor->name}}</a></li>
                             <li><a href="#"><i class="ti-comments"></i>{{$mealbook->comment->count()}} Comment</a></li>
@@ -145,18 +162,7 @@
                       </div>
                     </div>
                   </div>
-  @if($mealbook instanceof App\MealBook)
-	@php
-	$name = 'mealbook';
-	$firstURLSegment = 'mealbooks';
-	@endphp
-@elseif($meal instanceof App\CookingRecipe)
-	@php
-	$name = 'cooking';
-	$firstURLSegment = 'cookings';
-	@endphp
-@endif
-									<div class="comments-area">
+                  <div class="comments-area">
 											<h4>{{$mealbook->comment->count()}}</h4>
 											<div class="comment-list">
                       @foreach($mealbook->comment as $comments)
@@ -198,42 +204,47 @@
                         <input type="hidden" name="id" value="{{$mealbook->id}}">
                             <div class="form-group">
                                 <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>
+                                @if( $errors->has('content') )
+                                <p class="text-warning">{{ $errors->first('content')}}</p>
+                                @endif
                             </div>
                           </div>
                           <div class="col-sm-12">
                             <div class="form-group">
                               <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
+                              @if( $errors->has('title') )
+                                <p class="text-warning">{{ $errors->first('title')}}</p>
+                                @endif
                             </div>
                           </div>
 
                           </div>
                         </div>
+                        @if(Auth::user())
                         <div class="form-group">
                           <button type="submit" class="button button-contactForm">Send Message</button>
                         </div>
+                        @endif
                       </form>
-									</div>
-							</div>
-							<div class="col-lg-4">
-                <div class="blog_right_sidebar">
-                      <aside class="single_sidebar_widget search_widget">
-                          <form action="#">
-                            <div class="form-group">
-                              <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search Keyword">
-                                <div class="input-group-append">
-                                  <button class="btn" type="button"><i class="ti-search"></i></button>
-                                </div>
-                              </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
-                          </form>
                       </aside>
 
-      
-                  </div>
+									</div>
 							</div>
 					</div>
+          <aside class="col-lg-4 single_sidebar_widget popular_post_widget">
+                          <h3 class="widget_title">Recent Post</h3>
+                          @foreach ($recent as $item)
+                          <div class="media post_item">
+                              <img src="{{$item->avatar}}" alt="post">
+                              <div class="media-body">
+                              <a href="{{route('showCooking',$item->id)}}">
+                                      <h3>{{$item->name}}</h3>
+                                  </a>
+                                  <p>{{$item->created_at}}</p>
+                              </div>
+                          </div>
+               @endforeach
+                      </aside>
 			</div>
 	</section>
 

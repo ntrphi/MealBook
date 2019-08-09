@@ -11,12 +11,14 @@ class MealBookController extends Controller
 {
     public function index(){
         $meal = MealBook::latest()->paginate(5);
-        return view('page.meal',compact('meal'));
+        $recent = CookingRecipe::paginate(5);
+        return view('page.meal',compact('meal','recent'));
     }
 
     public function show($id){
         $mealbook = MealBook::find($id);
-        return view('page.blog-meal',compact('mealbook'));
+        $recent = CookingRecipe::paginate(5);
+        return view('page.blog-meal',compact('mealbook','recent'));
     }
     public function create()
     {
