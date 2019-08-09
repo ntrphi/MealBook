@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\CookingRecipe;
 use App\DishType;
+use App\Ingredient;
 use Illuminate\Support\MessageBag;
 use Validator;
 
@@ -38,6 +39,7 @@ class CookingRecipeController extends Controller
     public function create()
     {
         $dishType = DishType::all();
+       // $sampleData = Ingredient::all();
 
         return view('frontend.cooking.add', compact('dishType'));
     }
@@ -48,6 +50,12 @@ class CookingRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function autocomplete(Request $request){
+        $data = Ingredient::select("name")->where("name","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
+        
+    }
+     
     public function store(Request $request)
     {
      

@@ -21,7 +21,7 @@ class MealBook extends Model
     }
     public function mealBookDishes()
     {
-        return $this->belongsToMany('App\CookingRecipe','meal_book_dishes','meal_book_id','dish_id');
+        return $this->belongsToMany('App\CookingRecipe','meal_book_dishes','meal_book_id','cooking_recipe_id');
     }
   
 }

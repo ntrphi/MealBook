@@ -16,8 +16,6 @@ class MealBookController extends Controller
     }
     public function saveadd(Request $request)
     {
-        $dishes = $_POST['cookingrecipes'];
-        $user_id=1;
         $name= $request->input('name');
         // nhận 1 mảng ID của món ăn
         $dishes = $_POST['cookingrecipes'];
@@ -25,11 +23,11 @@ class MealBookController extends Controller
         $meal_book = new MealBook;
 
         $meal_book->name=$name;
-        $meal_book->user_id=$user_id;
+        $meal_book->user_id=$request->role_id;
         $meal_book->save();
         // lưu mealbook_id và dish_id trên bảng trung gian
         $meal_book->mealBookDishes()->sync($dishes);
         // return về trang nào đấy
-        //return view();
+        return redirect()->route('index');
     }
 }

@@ -30,6 +30,7 @@ Route::post('/posts/{post}/comment','CommentController@postComment');
 Route::post('/cookings/{cooking}/comment','CommentController@cookingComment');
 Route::get('/mealbook-add', 'MealBookController@create')->name('mealbookAdd');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
+Route::get('/autocomplete','CookingRecipeController@autocomplete')->name('autocomplete');
 
 Route::get('login', 'LoginController@getLogin');
 
