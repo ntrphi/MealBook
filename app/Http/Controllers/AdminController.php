@@ -44,4 +44,9 @@ class AdminController extends Controller
         $dishtypes = DishType::paginate(10);
         return view('admin.dishtypes.list', ['dishtypes'=>$dishtypes]);
     }
+    public function getMealBookList()
+    {
+        $mealBookList = MealBook::paginate(10);
+        return;
+    }
 }
