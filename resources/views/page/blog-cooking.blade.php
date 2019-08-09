@@ -69,7 +69,7 @@
                                   <p class="comment">
                                    {{$comments->title}}
                                   </p>
-
+  <p> {{$comments->content}}</p>
                                   <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                       <h5>
@@ -101,7 +101,7 @@
                           </div>
                           <div class="col-sm-12">
                             <div class="form-group">
-                              <input class="form-control" name="title" id="name" type="text" placeholder="Name" {{old('title')}}>
+                              <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
                             </div>
                           </div>
 

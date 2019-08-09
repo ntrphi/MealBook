@@ -9,6 +9,15 @@ use Auth;
 
 class MealBookController extends Controller
 {
+    public function index(){
+        $meal = MealBook::latest()->paginate(5);
+        return view('page.meal',compact('meal'));
+    }
+
+    public function show($id){
+        $mealbook = MealBook::find($id);
+        return view('page.blog-meal',compact('mealbook'));
+    }
     public function create()
     {
         $cooking = CookingRecipe::all();

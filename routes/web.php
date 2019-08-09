@@ -28,7 +28,10 @@ Route::get('/cookingAll','CookingRecipeController@index')->name('cookingAll');
 Route::get('/showCooking/{id}','CookingRecipeController@show')->name('showCooking');
 Route::post('/posts/{post}/comment','CommentController@postComment');
 Route::post('/cookings/{cooking}/comment','CommentController@cookingComment');
+Route::post('/mealbooks/{mealbook}/comment','CommentController@mealbookComment');
+Route::get('/mealAll','MealBookController@index')->name('mealAll');
 Route::get('/mealbook-add', 'MealBookController@create')->name('mealbookAdd');
+Route::get('/mealbookShow/{id}','MealBookController@show')->name('showMeal');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
 Route::get('/autocomplete','CookingRecipeController@autocomplete')->name('autocomplete');
 

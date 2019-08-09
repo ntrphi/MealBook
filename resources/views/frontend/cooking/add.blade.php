@@ -47,7 +47,7 @@
                                     <span class="text-dark " id="log">ga</span>
                                     <span class="ml-auto position-relative text-dark">
                                         <span class="soLuongNguyenLieu">...</span>
-                                        <!-- <input class="nhapSoLuong" type="text" > -->
+                                        <input class="nhapSoLuong" type="text" >
                                     </span>
                                 </p>
                                 @if( $errors->has('ingredient') )
@@ -157,9 +157,7 @@ $(document).ready(function () {
     //   }
     // } );
 
-    $('ul.typehead').on('click', function(){
-        alert('FGFGFG');
-});
+
 // some js code
 
 

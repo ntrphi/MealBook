@@ -11,7 +11,7 @@ class MealBook extends Model
     ];
 
     public function getAuthor(){
-        return $this->belongsTo(User::class,'author_id');
+        return $this->belongsTo(User::class,'user_id');
     }
     public function  comment(){
         return $this->morphMany(Comment::class,'commentable');
