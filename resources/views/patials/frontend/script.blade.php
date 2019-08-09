@@ -1,4 +1,5 @@
 <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+<script src="https://use.fontawesome.com/b4b924cc49.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
@@ -8,7 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="js/mail-script.js"></script>
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+
 <script>
+
 $(document).ready(function(){
     $(".monAnWrap").hover(
     function () {
@@ -48,7 +53,6 @@ $(document).ready(function(){
             $(this).empty();
             $(this).append($(ui.helper).clone());
             $(this).find('img').removeAttr("style");
-            
             
         }
     

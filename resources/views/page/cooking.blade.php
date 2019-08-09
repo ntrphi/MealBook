@@ -6,7 +6,7 @@
           <div class="row">
               <div class="col-lg-8 mb-5 mb-lg-0">
                   <div class="blog_left_sidebar">
-                  @foreach($listRecipes as $cooking)
+                  @foreach($recent as $cooking)
                   
                       <article class="blog_item">
                         <div class="blog_item_img">
@@ -21,6 +21,7 @@
                             <a class="d-inline-block" href="{{route('showCooking',$cooking->id)}}">
                                 <h2>{{$cooking->name}}</h2>
                             </a>
+                            <span>{{$cooking->dishType->name}}</span>
                             <p>{{$cooking->ingredient}}</p>
                             <p>{{$cooking->recipe}}</p>
 
@@ -30,10 +31,7 @@
                             </ul>
                         </div>
                       </article>
-                      
                   @endforeach
-                     
-
                       <nav class="blog-pagination justify-content-center d-flex">
                           <ul class="pagination">
                               <li class="page-item">
@@ -44,10 +42,7 @@
                                   </a>
                               </li>
                               <li class="page-item">
-                                  <a href="#" class="page-link">1</a>
-                              </li>
-                              <li class="page-item active">
-                                  <a href="#" class="page-link">2</a>
+                                  <a href="#" class="page-link">{{$recent->links()}}</a>
                               </li>
                               <li class="page-item">
                                   <a href="#" class="page-link" aria-label="Next">
@@ -84,7 +79,7 @@
                           <div class="media post_item">
                               <img src="{{$item->avatar}}" alt="post">
                               <div class="media-body">
-                                  <a href="">
+                              <a href="{{route('showCooking',$item->id)}}">
                                       <h3>{{$item->name}}</h3>
                                   </a>
                                   <p>{{$item->created_at}}</p>

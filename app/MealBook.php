@@ -11,7 +11,7 @@ class MealBook extends Model
     ];
 
     public function getAuthor(){
-        return $this->belongsTo(User::class,'author_id');
+        return $this->belongsTo(User::class,'user_id');
     }
     public function  comment(){
         return $this->morphMany(Comment::class,'commentable');
@@ -21,7 +21,7 @@ class MealBook extends Model
     }
     public function mealBookDishes()
     {
-        return $this->belongsToMany('App\CookingRecipe','meal_book_dishes','meal_book_id','dish_id');
+        return $this->belongsToMany('App\CookingRecipe','meal_book_dishes','meal_book_id','cooking_recipe_id');
     }
   
 }

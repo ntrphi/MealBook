@@ -13,21 +13,25 @@
                         <div class="row monAnWrap monAnStt1">
                             <div class="monAnDiv-5 mx-auto my-auto" name="cookingrecipes[]">
                             </div>
+                            <input type="checkbox" class="checkMeal4" style="display:none">
                         </div>
 
                         <div class=" row monAnWrap monAnStt2">
                             <div class="monAnDiv-5 mx-auto my-auto" name="cookingrecipes[]">
                             </div>
+                            <input type="checkbox" class="checkMeal4" style="display:none">
                         </div>
 
                         <div class="row monAnWrap monAnStt3">
                             <div class="monAnDiv-5 mx-auto my-auto" name="cookingrecipes[]">
                             </div>
+                            <input type="checkbox" class="checkMeal4" style="display:none">
                         </div>
 
                         <div class="row monAnWrap monAnStt4">
                             <div class="monAnDiv-5 mx-auto my-auto" name="cookingrecipes[]">
                             </div>
+                            <input type="checkbox" class="checkMeal4" style="display:none">
                         </div>
                         <div class="nuocCham">
                             <img src="/image/nuoc cham.jpg" alt="">
@@ -118,7 +122,7 @@
                     </div>
                 </div>
                 {{-- bấm vào nút này sẽ nhận các ảnh món ăn đã kéo vào và hiện lên trong hộp thoại add --}}
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#show-add">
+                <button type="button" class="btn btn-success btn-meal" data-toggle="modal" data-target="#show-add" >
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD NEW
                 </button>
             </div>
@@ -140,7 +144,7 @@
                 @foreach ($cooking as $item)
                 <div class="row monAnBoxWrap">
                     <div class="monAnBox">
-                        <img src="{{$item->avatar}}" alt="" data-id="{{$item->id}}">
+                        <img src="{{$item->avatar}}" alt="" data-id="{{$item->id}}" data-name="{{$item->name}}">
                     </div>
                     <div class="popUp-monAn">
                         <h3 class="text-center mt-3">Cua rim</h3>
@@ -171,18 +175,15 @@
                 <div class="modal-body">
                     <form id="form-add" action="mealbook-add-save" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="hidden" name="role_id" value="3">
+                        <input type="hidden" name="role_id" value="{{Auth::user()->id}}">
                         <div class="form-group">
-                            <label for="recipient-name" class="control-label">Tên</label>
+                            <label for="recipient-name" class="control-label">Tên Món Ăn</label>
                             <input type="text" class="form-control" id="authorname" name="name">
                         </div>
                         <div class="check-list">
 
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">Avatar</label>
-                            <input type="file" class="form-control" id="avatar" name="avatar">
-                        </div>
+                   
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Thêm</button>
@@ -204,13 +205,15 @@
             for (var index = 0; index < arr.length; index++) {
                 $content+= `<div class="form-group">`
                                 + `<img src="` + arr[index].currentSrc + `" width="50px"; height="50px">`
-                                + `<input type="checkbox" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
+                                + `<span>`+arr[index].dataset.name+`</span>`
+                                + `<input type="hidden" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
                             </div>`;
                 
             }
             
             $('.check-list').append($content);
-        })
+        });
+    
     })
 </script>
 

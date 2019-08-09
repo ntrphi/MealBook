@@ -5,7 +5,7 @@
     <div class="hero-wrapper container">
 
       <div class="hero-left col-md-6 col-12">
-        <h1 class="hero-title">Mâm cơm ngày hè</h1>
+        <h1 class="hero-title">{{$meal->name}}</h1>
         <div class="d-sm-flex flex-wrap">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime sint doloremque fugit ipsam et voluptates, quidem deserunt laudantium labore a tempora iste amet quibusdam aliquid non dolor blanditiis veniam corporis!</p>          
         </div>
@@ -37,22 +37,23 @@
 
       <div class="hero-right col-md-6 col-12">
         <!-- for mam 4 mon -->
-          <!-- <div class="mamComHome" style="display: none">
+      @if($meal->mealBookDishes->count() == 4)
+       <div class="mamComHome">
             <div class="mamComHome-4-content">
-              
+            @foreach($meal->mealBookDishes as $cookings)
                 <div class="row monAnWrap">
                   <div class="monAnDiv-4 mx-auto my-auto">
-                    <img src="images/cua_rim.jpg" alt="">
+                    <img src="{{$cookings->avatar}}" alt="">
                   </div>
                   <div class="popUp-monAn popUp1">
-                      <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                    <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                      <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                    <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                     <div class="container-fluid">
 
                       <h5 class="congThucTitle">Cong thuc :</h5>
                       <p>
                         <span>+ </span>
-                        <span>Cua</span>
+                        <span>{{$cookings->ingredient}}</span>
                         <span class="ml-5">1 con</span>
                       </p>
                       <a class="xemThemBtn" href="">
@@ -61,77 +62,7 @@
                     </div>
                   </div>
                 </div>
-
-
-
-                <div class=" row monAnWrap">
-                <div class="monAnDiv-4 mx-auto my-auto">
-                    <img src="images/trung.jpg" alt="">
-                </div>
-                <div class="popUp-monAn popUp2">
-                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                  <div class="container-fluid">
-
-                    <h5 class="congThucTitle">Cong thuc :</h5>
-                    <p>
-                      <span>+ </span>
-                      <span>Cua</span>
-                      <span class="ml-5">1 con</span>
-                    </p>
-                    <a class="xemThemBtn" href="">
-                      Xem chi tiet
-                    </a>
-                  </div>
-                </div>
-                </div>
-
-                <div class="row monAnWrap">
-                <div class="monAnDiv-4 mx-auto my-auto">
-                    <img src="images/bach tuoc.jpg" alt="">
-                </div>
-                <div class="popUp-monAn popUp3">
-                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                  <div class="container-fluid">
-
-                    <h5 class="congThucTitle">Cong thuc :</h5>
-                    <p>
-                      <span>+ </span>
-                      <span>Cua</span>
-                      <span class="ml-5">1 con</span>
-                    </p>
-                    <a class="xemThemBtn" href="">
-                      Xem chi tiet
-                    </a>
-                  </div>
-                </div>
-                </div>
-
-
-                <div class="row monAnWrap">
-                <div class="monAnDiv-4 mx-auto my-auto">
-                    <img src="images/canh.jpg" alt="">
-                </div>
-                <div class="popUp-monAn popUp4">
-                    <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                  <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                  <div class="container-fluid">
-
-                    <h5 class="congThucTitle">Cong thuc :</h5>
-                    <p>
-                      <span>+ </span>
-                      <span>Cua</span>
-                      <span class="ml-5">1 con</span>
-                    </p>
-                    <a class="xemThemBtn" href="">
-                      Xem chi tiet
-                    </a>
-                  </div>
-                </div>
-                </div>
-
-              
+  @endforeach
                 <div class="nuocCham">
                   <img src="images/nuoc cham.jpg" alt="">
                 </div>
@@ -139,24 +70,25 @@
                 
                 
             </div>
-          </div> -->
-
-<!-- for mam 5 mon 
-          <div class="mamComHome" style="display: none">
+          </div> 
+      @elseif($meal->mealBookDishes->count() == 5)
+<!-- for mam 5 mon  -->
+          <div class="mamComHome">
             <div class="mamComHome-5-content">
+            @foreach($meal->mealBookDishes as $cookings)
                 <div class="row monAnWrap monAnStt1">
                     <div class="monAnDiv-5 mx-auto my-auto">
-                      <img src="images/cua_rim.jpg" alt="">
+                      <img src="{{$cookings->avatar}}" alt="">
                     </div>
                     <div class="popUp-monAn popUp1">
-                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
+                        <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                      <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                       <div class="container-fluid">
   
                         <h5 class="congThucTitle">Cong thuc :</h5>
                         <p>
                           <span>+ </span>
-                          <span>Cua</span>
+                          <span>{{$cookings->ingredient}}</span>
                           <span class="ml-5">1 con</span>
                         </p>
                         <a class="xemThemBtn" href="">
@@ -165,106 +97,20 @@
                       </div>
                     </div>
                 </div>
-                <div class="row monAnWrap monAnStt2">
-                    <div class="monAnDiv-5 mx-auto my-auto">
-                      <img src="images/cua_rim.jpg" alt="">
-                    </div>
-                    <div class="popUp-monAn popUp2">
-                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                      <div class="container-fluid">
-  
-                        <h5 class="congThucTitle">Cong thuc :</h5>
-                        <p>
-                          <span>+ </span>
-                          <span>Cua</span>
-                          <span class="ml-5">1 con</span>
-                        </p>
-                        <a class="xemThemBtn" href="">
-                          Xem chi tiet
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                <div class="row monAnWrap monAnStt3">
-                    <div class="monAnDiv-5 mx-auto my-auto">
-                      <img src="images/cua_rim.jpg" alt="">
-                    </div>
-                    <div class="popUp-monAn popUp3">
-                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                      <div class="container-fluid">
-  
-                        <h5 class="congThucTitle">Cong thuc :</h5>
-                        <p>
-                          <span>+ </span>
-                          <span>Cua</span>
-                          <span class="ml-5">1 con</span>
-                        </p>
-                        <a class="xemThemBtn" href="">
-                          Xem chi tiet
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                <div class="row monAnWrap monAnStt4">
-                    <div class="monAnDiv-5 mx-auto my-auto">
-                      <img src="images/cua_rim.jpg" alt="">
-                    </div>
-                    <div class="popUp-monAn popUp4">
-                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                      <div class="container-fluid">
-  
-                        <h5 class="congThucTitle">Cong thuc :</h5>
-                        <p>
-                          <span>+ </span>
-                          <span>Cua</span>
-                          <span class="ml-5">1 con</span>
-                        </p>
-                        <a class="xemThemBtn" href="">
-                          Xem chi tiet
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                <div class="row monAnWrap monAnStt5">
-                    <div class="monAnDiv-5 mx-auto my-auto">
-                      <img src="images/cua_rim.jpg" alt="">
-                    </div>
-                    <div class="popUp-monAn popUp5">
-                        <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                      <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                      <div class="container-fluid">
-  
-                        <h5 class="congThucTitle">Cong thuc :</h5>
-                        <p>
-                          <span>+ </span>
-                          <span>Cua</span>
-                          <span class="ml-5">1 con</span>
-                        </p>
-                        <a class="xemThemBtn" href="">
-                          Xem chi tiet
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                
-
-               nuoc cham   
+            @endforeach
                 <div class="nuocCham">
                   <img src="images/nuoc cham.jpg" alt="">
                 </div>
-                
-                
-                
-            </div>
-          </div> -->
 
+            </div>
+          </div>
+          
+        @elseif($mealbook->mealBookDishes->count() == 6)
           <!-- for mam 6 mon -->
           <div class="mamComHome">
               <div class="mamComHome-6-content">
-              @foreach($cooking as $cookings)
+              
+              @foreach($meal->mealBookDishes as $cookings)
                   <div class="row monAnWrap monAnStt1">
                       <div class="monAnDiv-5 mx-auto my-auto">
                         <img src="{{$cookings->avatar}}" alt="">
@@ -288,123 +134,14 @@
                       </div>
                   </div>
                 @endforeach
-                  <!-- <div class="row monAnWrap monAnStt2">
-                      <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
-                      </div>
-                      <div class="popUp-monAn popUp2">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                        <div class="container-fluid">
-    
-                          <h5 class="congThucTitle">Cong thuc :</h5>
-                          <p>
-                            <span>+ </span>
-                            <span>Cua</span>
-                            <span class="ml-5">1 con</span>
-                          </p>
-                          <a class="xemThemBtn" href="">
-                            Xem chi tiet
-                          </a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="row monAnWrap monAnStt3">
-                      <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
-                      </div>
-                      <div class="popUp-monAn popUp3">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                        <div class="container-fluid">
-    
-                          <h5 class="congThucTitle">Cong thuc :</h5>
-                          <p>
-                            <span>+ </span>
-                            <span>Cua</span>
-                            <span class="ml-5">1 con</span>
-                          </p>
-                          <a class="xemThemBtn" href="">
-                            Xem chi tiet
-                          </a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="row monAnWrap monAnStt4">
-                      <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
-                      </div>
-                      <div class="popUp-monAn popUp4login">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                        <div class="container-fluid">
-    
-                          <h5 class="congThucTitle">Cong thuc :</h5>
-                          <p>
-                            <span>+ </span>
-                            <span>Cua</span>
-                            <span class="ml-5">1 con</span>
-                          </p>
-                          <a class="xemThemBtn" href="">
-                            Xem chi tiet
-                          </a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="row monAnWrap monAnStt5">
-                      <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
-                      </div>
-                      <div class="popUp-monAn popUp5">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                        <div class="container-fluid">
-    
-                          <h5 class="congThucTitle">Cong thuc :</h5>
-                          <p>
-                            <span>+ </span>
-                            <span>Cua</span>
-                            <span class="ml-5">1 con</span>
-                          </p>
-                          <a class="xemThemBtn" href="">
-                            Xem chi tiet
-                          </a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="row monAnWrap monAnStt6">
-                      <div class="monAnDiv-5 mx-auto my-auto">
-                        <img src="images/cua_rim.jpg" alt="">
-                      </div>
-                      <div class="popUp-monAn popUp6">
-                          <img class="img-fluid" src="images/cua_rim.jpg" alt="">
-                        <h3 class="text-center mt-2">Cua rim chua ngot</h3>
-                        <div class="container-fluid">
-    
-                          <h5 class="congThucTitle">Cong thuc :</h5>
-                          <p>
-                            <span>+ </span>
-                            <span>Cua</span>
-                            <span class="ml-5">1 con</span>
-                          </p>
-                          <a class="xemThemBtn" href="">
-                            Xem chi tiet
-                          </a>
-                        </div>
-                      </div>
-                  </div> -->
-                  
-  
+
                 <!-- nuoc cham   -->
                   <div class="nuocCham">
                     <img src="images/nuoc cham.jpg" alt="">
                   </div>
-                  
-                  
-                  
               </div>
             </div>
-
+  @endif
       </div>
 
 
@@ -420,8 +157,7 @@
   <!--================Hero Banner Section end =================-->
 <section class="container">
     <div class="comments-area comments-area-home">
-    @foreach($cooking as $item)
-      @foreach($item->comment as $comments)
+      @foreach($meal->comment as $comments)
       <div class="comment-list">
         <div class="single-comment justify-content-between d-flex">
           <div class="user justify-content-between d-flex">
@@ -432,7 +168,7 @@
                   <p class="comment">
                     {{$comments->title}}
                   </p>
-
+                  <p> {{$comments->content}}</p>
                   <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                       <h5>
@@ -450,7 +186,6 @@
           </div>
       </div>
       </div>
-      @endforeach
       @endforeach
     </div>
 </section>
@@ -493,23 +228,123 @@
       </div>
 
       <div class="owl-carousel owl-theme featured-carousel">
-      
+      @foreach ($mealHot as $mealbook)
         <div class="featured-item">
-          <img class="card-img rounded-100" src="" alt="">
+        @if($mealbook->mealBookDishes->count() == 4)
+         <div class="mamComHome" > 
+            <div class="mamComHome-4-content">
+            @foreach ($mealbook->mealBookDishes as $cookings)
+            
+                <div class="row monAnWrap">
+                  <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="{{$cookings->avatar}}" alt="">
+                  </div>
+                  <div class="popUp-monAn popUp1">
+                      <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                    <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                    <div class="container-fluid">
+
+                      <h5 class="congThucTitle">Cong thuc :</h5>
+                      <p>
+                        <span>+ </span>
+                        <span>{{$cookings->ingredient}}</span>
+                        <span class="ml-5">1 con</span>
+                      </p>
+                      <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                        Xem chi tiet
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+            </div>
+          </div> 
+
+            <!-- for mam 5 mon  -->
+          @elseif($mealbook->mealBookDishes->count() == 5)
+                    <div class="mamComHome" >
+                        <div class="mamComHome-5-content">
+                     @foreach ($mealbook->mealBookDishes as $cookings)
+                            <div class="row monAnWrap monAnStt1">
+                                <div class="monAnDiv-5 mx-auto my-auto">
+                                <img src="{{$cookings->avatar}}" alt="">
+                                </div>
+                                <div class="popUp-monAn popUp1">
+                                    <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                                <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                                <div class="container-fluid">
+            
+                                    <h5 class="congThucTitle">Cong thuc :</h5>
+                                    <p>
+                                    <span>+ </span>
+                                    <span>{{$cookings->ingredient}}</span>
+                                    <span class="ml-5">1 con</span>
+                                    </p>
+                                    <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                                    Xem chi tiet
+                                    </a>
+                                </div>
+                                </div>
+                            </div>
+                  @endforeach
+                            <div class="nuocCham">
+                            <img src="images/nuoc cham.jpg" alt="">
+                            </div>
+                        </div>
+                    </div> 
+
+          <!-- for mam 6 mon -->
+        @elseif($mealbook->mealBookDishes->count() == 6)
+          <div class="mamComHome">
+              <div class="mamComHome-6-content">
+              @foreach ($mealbook->mealBookDishes as $cookings)
+           
+                  <div class="row monAnWrap monAnStt1">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="{{$cookings->avatar}}" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp1">
+                          <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                        <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                        <div class="container-fluid">
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>{{$cookings->ingredient}}</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="nuocCham">
+                            <img src="images/nuoc cham.jpg" alt="">
+                            </div>
+                  @endforeach
+                      </div>
+                  </div>
+       @endif
           <div class="item-body">
             <a href="#">
-              <h3></h3>
+              <h3>{{$mealbook->name}}</h3>
             </a>
             <p>
-              <p>Cong thuc :</p>
-              <p></p>
+              <p>Các Món Trong Mâm :</p>
+              @foreach ($mealbook->mealBookDishes as $cookings)
+              <p>{{$cookings->name}}</p>
+              @endforeach
             </p>
             <div class="d-flex justify-content-between">
-              <h3 class="price-tag">4.7</h3>
+            
             </div>
           </div>
         </div>
-
+  @endforeach
       </div>
 
     </div>
