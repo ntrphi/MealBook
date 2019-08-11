@@ -30,8 +30,8 @@ class AdminController extends Controller
     }
     public function getUserPage(Request $request)
     {
-        // $user_id = $request->id;
-        $user = Auth::user();
+        $user_id = $request->id;
+        $user = User::find($user_id);
         return view('admin.user_mypage', ['user' => $user]);
     }
     public function getUserList()
