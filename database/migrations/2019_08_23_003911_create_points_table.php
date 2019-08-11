@@ -15,8 +15,13 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('value');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('point');
+            $table->unsignedInteger('pointable_id')->nullable();
+            $table->string('pointable_type')->nullable();
+            $table->softDeletes();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }
 

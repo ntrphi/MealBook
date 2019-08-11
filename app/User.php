@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function  point()
+    {
+        return $this->hasMany(Point::class);
+    }
 }

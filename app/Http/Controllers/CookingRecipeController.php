@@ -24,11 +24,12 @@ class CookingRecipeController extends Controller
 
         $listRecipes = CookingRecipe::all();
         $recent = CookingRecipe::latest()->paginate(5);
+        $first = CookingRecipe::first();
         //return $listRecipes;
         if (\Request::is('manageCookingRecipes')) {
             return view('admin.cookingRecipes.list', compact('listRecipes'));
         } else {
-            return view('page.cooking', compact('recent'));
+            return view('page.cooking', compact('recent','first'));
         }
     }
     /**
@@ -90,7 +91,7 @@ class CookingRecipeController extends Controller
                 'dish_type_id' => $request->dish_type_id,
                 'author_id' => Auth::user()->id,
                 'name' => $request->name,
-                'avatar' => $fileName,
+                'avatar' => './images/'.$fileName,
                 'ingredient' => $request->ingredient,
                 'recipe' => $request->recipe
             ]);
@@ -143,15 +144,14 @@ class CookingRecipeController extends Controller
         if ($request->hasFile('avatar')) {
             $file = request()->file('avatar');
             $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('./avatar/', $fileName);
-            $fileName = './avatar/'.$fileName;
+            $file->move('./images/', $fileName);
         }
         $cooking_recipe = CookingRecipe::find($id);
         $cooking_recipe->name = $request->name;
         $cooking_recipe->ingredient = $request->input('ingredient');
         $cooking_recipe->recipe = $request->input('recipe');
         if ($fileName) {
-            $cooking_recipe->avatar = $fileName;
+            $cooking_recipe->avatar = './images/'.$fileName;
         }
 
         $cooking_recipe->dish_type_id = $request->input('dish_type_id');

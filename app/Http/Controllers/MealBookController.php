@@ -10,9 +10,10 @@ use Auth;
 class MealBookController extends Controller
 {
     public function index(){
+        $first = MealBook::first();
         $meal = MealBook::latest()->paginate(5);
         $recent = CookingRecipe::paginate(5);
-        return view('page.meal',compact('meal','recent'));
+        return view('page.meal',compact('meal','recent','first'));
     }
 
     public function show($id){

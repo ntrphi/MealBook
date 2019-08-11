@@ -1,6 +1,16 @@
 @extends('layout.frontend_layout')
 @section('content')
-
+@if($first instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($first instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
 <section class="blog_area section-margin">
       <div class="container">
           <div class="row">
@@ -120,8 +130,29 @@
                             <a class="d-inline-block" href="{{route('showMeal',$mealbook->id)}}">
                                 <h2>{{$mealbook->name}}</h2>
                             </a>
+                    <div class="d-flex vote-controls">
+                        <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
+                        onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                        <i class="fa fa-heart"></i>
+                        <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                            @csrf
+                            @if($mealbook->isPoint())
+                            @method('DELETE');
+                            @endif
+                            <input type="hidden" name="id" value="{{$mealbook->id}}">
+                            <input type="hidden" name="point" value="1">
+                        </form>	
+                      </a>
+                      <p>
+                      @if($mealbook->point()->sum('point') > 0)
+                      <span>{{$mealbook->point()->sum('point')}}</span>
+                      @else
+                      <span>0</span>
+                      @endif 
+                      </p>
+                    </div>
                             <p>{{$mealbook->getAuthor->name}}</p>
-                            <p></p>
+                          
 
                             <ul class="blog-info-link">
                               <li><a href="#"><i class="ti-user"></i> </a></li>

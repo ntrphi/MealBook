@@ -16,8 +16,5 @@ class Comment extends Model
     public function mealBook(){
         return $this->morphTo();
     }
-    
-    public function point(){
-        return $this->belongsTo(Point::class);
-    }
+
 }

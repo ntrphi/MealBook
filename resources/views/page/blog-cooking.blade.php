@@ -1,5 +1,16 @@
 @extends('layout.frontend_layout')
 @section('content')
+@if($cooking instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($cooking instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
 <section class="blog_area single-post-area section-margin">
 			<div class="container">
 					<div class="row">
@@ -21,7 +32,25 @@
                   </div>
                   <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
-                      <p class="like-info"><span class="align-middle"><i class="ti-heart"></i></span></p>
+                      <p class="like-info"><span class="align-middle">     <div class="d-flex vote-controls">
+                         <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
+                            <i class="fa fa-heart"></i>
+                                <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                            @csrf
+                            @if($cooking->isPoint())
+                            @method('DELETE');
+                            @endif
+                            <input type="hidden" name="id" value="{{$cooking->id}}">
+                            <input type="hidden" name="point" value="1">
+                        </form>	
+                        </a>
+                        @if($cooking->point()->sum('point') > 0)
+                        <span>{{$cooking->point()->sum('point')}}</span>
+                        @else
+                        <span>0</span>
+                        @endif
+                    </div></span></p>
                       <div class="col-sm-4 text-center my-2 my-sm-0">
                         <p class="comment-count"><span class="align-middle"><i class="ti-comment"></i></span> {{$cooking->comment->count()}} Comments</p>
                       </div>
@@ -44,17 +73,6 @@
                       </div>
                     </div>
                   </div>
-  @if($cooking instanceof App\Post)
-	@php
-	$name = 'post';
-	$firstURLSegment = 'posts';
-	@endphp
-@elseif($cooking instanceof App\CookingRecipe)
-	@php
-	$name = 'cooking';
-	$firstURLSegment = 'cookings';
-	@endphp
-@endif
 									<div class="comments-area">
 											<h4>{{$cooking->comment->count()}}</h4>
 											<div class="comment-list">

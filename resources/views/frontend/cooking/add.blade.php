@@ -10,18 +10,18 @@
                     <img src="" alt="">
                   </div>
                   <div class="overlay-uploadIMG text-center mt-3">
-                    <input type="file" style="opacity: 0" class="form-control-file" name="" onchange="displayIMG(this)" accept="images/*">
+                    <input type="file" style="opacity: 0" class="form-control-file" name="avatar" onchange="displayIMG(this)" accept="images/*">
+                  
+                    <span><i class="fas fa-camera"></i></span>
+                    <p>Tải ảnh món ăn lên...</p>
                     @if( $errors->has('avatar') )
                         <p class="text-warning">{{ $errors->first('avatar')}}</p>
                     @endif
-                    <span><i class="fas fa-camera"></i></span>
-                    <p>Tải ảnh món ăn lên...</p>
-
                   </div>
                 </div>
                 <div class="form-group mt-5">
                     <label class="text-dark font-weight-bold off-outline" for="my-input">Tên món ăn</label>
-                    <input class="form-control border-gray" type="text" name="" placeholder="Nhập tên món ăn của bạn..." value="{{old('title')}}">
+                    <input class="form-control border-gray" type="text" name="name" placeholder="Nhập tên món ăn của bạn..." value="{{old('title')}}">
                     @if( $errors->has('name') )
                   <p class="text-warning">{{ $errors->first('name')}}</p>
               @endif
@@ -38,18 +38,18 @@
               </div>
                 <div class="form-group">
                     <label class="text-dark font-weight-bold off-outline" for="my-input">Nguyên liệu & công thức</label>
-                    <input class="typeahead form-control border-gray " id="nhapNguyenLieuInput" type="text" placeholder="Nhập nguyên liệu tại đây...">
+                    <input class="typeahead form-control border-gray " name="ingredient" id="nhapNguyenLieuInput" type="text" placeholder="Nhập nguyên liệu tại đây...">
                     <div class="row mx-auto mt-4 mb-4 nguyenLieuCongThucContent">
                        <div class="col-md-5 border-right">
                             <h6 class="pt-3">Nguyên liệu</h6>
                             <div class="nguyenLieuDiv">
-                                <p>
+                                <!-- <p>
                                     <span class="text-dark " id="log">ga</span>
                                     <span class="ml-auto position-relative text-dark">
                                         <span class="soLuongNguyenLieu">...</span>
                                         <input class="nhapSoLuong" type="text" >
                                     </span>
-                                </p>
+                                </p> -->
                                 @if( $errors->has('ingredient') )
                                   <p class="text-warning">{{ $errors->first('ingredient')}}</p>
                               @endif
@@ -58,7 +58,7 @@
                        <div class="col-md-7">
                            <h6 class="pt-3">Cách làm</h6>
                            <div class="congThucDiv">
-                            <textarea name="" id="" cols="30" rows="10" name="recipe" placeholder="Nhập công thực tại đây..."></textarea>
+                            <textarea  id="" cols="30" rows="10" name="recipe" placeholder="Nhập công thực tại đây..."></textarea>
                             @if( $errors->has('recipe') )
                               <p class="text-warning">{{ $errors->first('recipe')}}</p>
                           @endif
@@ -89,6 +89,22 @@
 
  <script>
 
+function displayIMG(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.afterUploadingIMG>img')
+                    .attr('src', e.target.result)
+                    .width('100%');
+                $('.afterUploadingIMG').css('box-shadow','0px 0px 10px 3px rgba(0,0,0,0.75)');
+                    
+                    
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
  
 $(document).ready(function () {
     // validate du lieu so luong nhap vao
@@ -116,6 +132,9 @@ $(document).ready(function () {
             // $(this).css({'opacity' : '0', 'width' : '0px'});
         })
     });
+
+
+
 
     var path = "{{ route('autocomplete') }}";
     $('input.typeahead').typeahead({
@@ -159,24 +178,6 @@ $(document).ready(function () {
 
 
 // some js code
-
-
-function displayIMG(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.afterUploadingIMG>img')
-                    .attr('src', e.target.result)
-                    .width('100%');
-                $('.afterUploadingIMG').css('box-shadow','0px 0px 10px 3px rgba(0,0,0,0.75)');
-                    
-                    
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
 
 
 

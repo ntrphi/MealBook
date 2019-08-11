@@ -16,6 +16,14 @@ class MealBook extends Model
     public function  comment(){
         return $this->morphMany(Comment::class,'commentable');
     }
+    public function  point(){
+        return $this->morphOne(Point::class,'pointable');
+    }
+    public function isPoint(){
+        return $this->point()->where('user_id',auth()->id())->count()>0;
+    }
+
+
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);
     }

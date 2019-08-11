@@ -1,5 +1,16 @@
 @extends('layout.frontend_layout')
 @section('content')
+@if($mealbook instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($mealbook instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
 <section class="blog_area single-post-area section-margin">
     <div class="container">
 		<div class="row">
@@ -38,17 +49,7 @@
                 </div>
             </div>
           </div> 
-          @if($mealbook instanceof App\MealBook)
-	@php
-	$name = 'mealbook';
-	$firstURLSegment = 'mealbooks';
-	@endphp
-@elseif($meal instanceof App\CookingRecipe)
-	@php
-	$name = 'cooking';
-	$firstURLSegment = 'cookings';
-	@endphp
-@endif
+
             <!-- for mam 5 mon  -->
           @elseif($mealbook->mealBookDishes->count() == 5)
                     <div class="mamComHome" >
@@ -139,7 +140,27 @@
                   </div>
                   <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
-                      <p class="like-info"><span class="align-middle"><i class="ti-heart"></i></span></p>
+                      <p class="like-info">      <div class="d-flex vote-controls">
+                        <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
+                        onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                        <i class="fa fa-heart"></i>
+                        <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                            @csrf
+                            @if($mealbook->isPoint())
+                            @method('DELETE');
+                            @endif
+                            <input type="hidden" name="id" value="{{$mealbook->id}}">
+                            <input type="hidden" name="point" value="1">
+                        </form>	
+                      </a>
+                      <p>
+                      @if($mealbook->point()->sum('point') > 0)
+                      <span>{{$mealbook->point()->sum('point')}}</span>
+                      @else
+                      <span>0</span>
+                      @endif 
+                      </p>
+                    </div></p>
                       <div class="col-sm-4 text-center my-2 my-sm-0">
                         <p class="comment-count"><span class="align-middle"><i class="ti-comment"></i></span> {{$mealbook->comment->count()}} Comments</p>
                       </div>

@@ -35,6 +35,12 @@ Route::get('/mealbookShow/{id}','MealBookController@show')->name('showMeal');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
 Route::get('/autocomplete','CookingRecipeController@autocomplete')->name('autocomplete');
 
+Route::post('/mealbooks/{name}/point','PointController@mealbookPoint');
+Route::delete('/mealbooks/{name}/point','PointController@destroyMealbookPoint');
+Route::post('/cookings/{name}/point','PointController@cookingPoint');
+Route::delete('/cookings/{name}/point','PointController@destroyCookingPoint');
+
+
 Route::get('login', 'LoginController@getLogin');
 
 Route::get('/login', function () {

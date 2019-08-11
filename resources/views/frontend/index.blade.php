@@ -105,7 +105,7 @@
             </div>
           </div>
           
-        @elseif($mealbook->mealBookDishes->count() == 6)
+        @elseif($meal->mealBookDishes->count() == 6)
           <!-- for mam 6 mon -->
           <div class="mamComHome">
               <div class="mamComHome-6-content">
