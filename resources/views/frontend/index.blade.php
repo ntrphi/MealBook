@@ -1,6 +1,6 @@
 @extends('layout.frontend_layout')
 @section('content')
-
+<h1>AAAA</h1>
 <section class="hero-banner mt-5">
     <div class="hero-wrapper container">
 
