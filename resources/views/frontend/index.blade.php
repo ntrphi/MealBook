@@ -1,6 +1,16 @@
 @extends('layout.frontend_layout')
 @section('content')
-
+@if($meal instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($meal instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
 <section class="hero-banner mt-5">
     <div class="hero-wrapper container">
 
@@ -11,10 +21,8 @@
         </div>
         <div class="counting-status">
           <span>2K <span><i class="fa fa-thumbs-up"></i></span></span>
-          
           <span>189 <span><i class="fa fa-comment"></i></span></span>
-          
-          <span>8K <span><i class="fa fa-eye"></i></span></span>
+      
         </div>
         <ul class="hero-info d-flex mt-5">
           <li>
@@ -329,16 +337,36 @@
                       </div>
                   </div>
        @endif
+       
+       <div href="#" class="blog_item_date">
+                              <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                                <i class="fa fa-thumbs-up"></i>
+                                @if(Auth::check())
+                                <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                                    @csrf
+                                    @if($mealbook->isPoint())
+                                    @method('DELETE');
+                                    @endif
+                                    <input type="hidden" name="id" value="{{$mealbook->id}}">
+                                    <input type="hidden" name="point" value="1">
+                                </form>	
+                                @endif
+                              </a>
+                              <p>
+                              @if($mealbook->point()->sum('point') > 0)
+                              <span>{{$mealbook->point()->sum('point')}}</span>
+                              @else
+                              <span>0</span>
+                              @endif 
+                              </p>
+                          </div>
           <div class="item-body">
             <a href="#">
               <h3>{{$mealbook->name}}</h3>
             </a>
             <p>
-              <p>Các Món Trong Mâm :</p>
-              @foreach ($mealbook->mealBookDishes as $cookings)
-              <p>{{$cookings->name}}</p>
-              @endforeach
-            </p>
+           
             <div class="d-flex justify-content-between">
             
             </div>

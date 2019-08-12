@@ -25,7 +25,7 @@
                             
                              <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
-                                  <i class="fa fa-heart"></i>
+                                <i class="fa fa-thumbs-up"></i>
                                 <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                                         @csrf
                                         @if($cooking->isPoint())

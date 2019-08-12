@@ -21,17 +21,14 @@
                             <a class="d-inline-block" href="{{route('showPost',$posts->id)}}">
                                 <h2>{{$posts->title}}</h2>
                             </a>
-                            <p>{{$posts->content}}</p>
+                            <p>{{strip_tags(html_entity_decode($posts->content))}}</p>
                             <ul class="blog-info-link">
                               <li><a href="#"><i class="ti-user"></i> {{$posts->user->name}}</a></li>
                               <li><a href="#"><i class="ti-comments"></i> {{$posts->comment->count()}}</a></li>
                             </ul>
                         </div>
                       </article>
-                      
                   @endforeach
-                     
-
                       <nav class="blog-pagination justify-content-center d-flex">
                           <ul class="pagination">
                               <li class="page-item">
@@ -74,24 +71,27 @@
                           </form>
                       </aside>
 
-                  
+                      <aside class="single_sidebar_widget post_category_widget">
 
                       <aside class="single_sidebar_widget popular_post_widget">
-                          <h3 class="widget_title">Các Bài Liên Quan</h3>
-                          @foreach ($recent as $postRecent)
+                          <h3 class="widget_title">Recent Post</h3>
+                          @foreach ($recent as $item)
                           <div class="media post_item">
-                              <img src="{{$postRecent->image}}" alt="post">
+                              <img src="{{$item->image}}" alt="post">
                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                      <h3>{{$postRecent->title}}</h3>
+                              <a href="{{route('showPost',$item->id)}}">
+                                      <h3>{{$item->title}}</h3>
                                   </a>
-                                  <p>{{$postRecent->created_at}}</p>
+                                  <p>{{$item->created_at}}</p>
                               </div>
                           </div>
-                          @endforeach
+               @endforeach
+                       </aside>
+
                       </aside>
                   </div>
               </div>
+             
           </div>
       </div>
   </section>

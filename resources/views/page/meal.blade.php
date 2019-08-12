@@ -121,25 +121,27 @@
                   </div>
        @endif
                           <div href="#" class="blog_item_date">
-                          <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
-                        onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
-                        <i class="fa fa-heart"></i>
-                        <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                            @csrf
-                            @if($mealbook->isPoint())
-                            @method('DELETE');
-                            @endif
-                            <input type="hidden" name="id" value="{{$mealbook->id}}">
-                            <input type="hidden" name="point" value="1">
-                        </form>	
-                      </a>
-                      <p>
-                      @if($mealbook->point()->sum('point') > 0)
-                      <span>{{$mealbook->point()->sum('point')}}</span>
-                      @else
-                      <span>0</span>
-                      @endif 
-                      </p>
+                              <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                                <i class="fa fa-thumbs-up"></i>
+                                @if(Auth::check())
+                                <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                                    @csrf
+                                    @if($mealbook->isPoint())
+                                    @method('DELETE');
+                                    @endif
+                                    <input type="hidden" name="id" value="{{$mealbook->id}}">
+                                    <input type="hidden" name="point" value="1">
+                                </form>	
+                                @endif
+                              </a>
+                              <p>
+                              @if($mealbook->point()->sum('point') > 0)
+                              <span>{{$mealbook->point()->sum('point')}}</span>
+                              @else
+                              <span>0</span>
+                              @endif 
+                              </p>
                           </div>
                         </div>
                         
@@ -216,10 +218,7 @@
                               </div>
                           </div>
                @endforeach
-                      
-         
-                      
-                      </aside>
+                       </aside>
 
                       </aside>
                   </div>
