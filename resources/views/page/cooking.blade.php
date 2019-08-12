@@ -103,7 +103,7 @@
                       <aside class="single_sidebar_widget post_category_widget">
 
                       <aside class="single_sidebar_widget popular_post_widget">
-                          <h3 class="widget_title">Recent Post</h3>
+                          <h3 class="widget_title">Các món liên quan</h3>
                           @foreach ($recent as $item)
                           <div class="media post_item">
                               <img src="{{$item->avatar}}" alt="post">

@@ -15,7 +15,7 @@
                             <li><a href="#"><i class="ti-comments"></i>{{$post->comment->count()}}</a></li>
                             </ul>
 													<p class="excert">
-                          {{$post->content}}
+                          {{strip_tags((html_entity_decode($post->content)))}}
                          </p>
 											</div>
                   </div>

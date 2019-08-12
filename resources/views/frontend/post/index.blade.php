@@ -77,7 +77,7 @@
                   
 
                       <aside class="single_sidebar_widget popular_post_widget">
-                          <h3 class="widget_title">Recent Post</h3>
+                          <h3 class="widget_title">Các Bài Liên Quan</h3>
                           @foreach ($recent as $postRecent)
                           <div class="media post_item">
                               <img src="{{$postRecent->image}}" alt="post">

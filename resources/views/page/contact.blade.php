@@ -3,20 +3,20 @@
 <section class="hero-banner hero-banner-sm">
     <div class="hero-wrapper">
       <div class="hero-left">
-        <h1 class="hero-title">Contact Us</h1>
-        <p>From  set together our divided own saw divided the form god <br class="d-none d-xl-block"> seas moveth you will fifth under replenish end</p>
+        <h1 class="hero-title">Liên Hệ Với Chúng Tôi</h1>
+        <p>Liên Hệ Với Chúng Tôi Để Có Hưỡng Dẫn Món Ăn Ngon <br class="d-none d-xl-block"> Và Cách Chọn Và Bảo Quản Thực Ăn Tốt Nhất </p>
         <ul class="hero-info d-none d-md-block">
           <li>
             <img src="images/banner/fas-service-icon.png" alt="">
-            <h4>Fast Service</h4>
+            <h4>Nhanh Chóng</h4>
           </li>
           <li>
             <img src="images/banner/fresh-food-icon.png" alt="">
-            <h4>Fresh Food</h4>
+            <h4>Thực Phẩm Sạch</h4>
           </li>
           <li>
             <img src="images/banner/support-icon.png" alt="">
-            <h4>24/7 Support</h4>
+            <h4>Hỗ Trợ 24/7</h4>
           </li>
         </ul>
       </div>
@@ -27,11 +27,7 @@
           </div>
         </div>
       </div>
-      <ul class="social-icons d-none d-lg-block">
-        <li><a href="#"><i class="ti-facebook"></i></a></li>
-        <li><a href="#"><i class="ti-twitter"></i></a></li>
-        <li><a href="#"><i class="ti-instagram"></i></a></li>
-      </ul>
+    
     </div>
   </section>
   <!--================Hero Banner Section end =================-->
@@ -71,7 +67,7 @@
 
       <div class="row">
         <div class="col-12">
-          <h2 class="contact-title">Get in Touch</h2>
+          <h2 class="contact-title">Ghóp Ý Nội Dung Cho Website Với Form Bên Dưới</h2>
         </div>
         <div class="col-lg-8">
           <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
@@ -109,22 +105,22 @@
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-home"></i></span>
             <div class="media-body">
-              <h3>Buttonwood, California.</h3>
-              <p>Rosemead, CA 91770</p>
+              <h3>Hà Nội, Việt Nam</h3>
+              <p>219 Đinh Công Thượng</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
             <div class="media-body">
-              <h3><a href="tel:454545654">00 (440) 9865 562</a></h3>
-              <p>Mon to Fri 9am to 6pm</p>
+              <h3><a href="tel:454545654">84 832 0921</a></h3>
+              <p>Mở cửa từ 6pm - 8pm từ thứ 2 đến thứ 3</p>
             </div>
           </div>
           <div class="media contact-info">
             <span class="contact-info__icon"><i class="ti-email"></i></span>
             <div class="media-body">
-              <h3><a href="mailto:support@colorlib.com">support@colorlib.com</a></h3>
-              <p>Send us your query anytime!</p>
+              <h3><a href="mailto:support@colorlib.com">mealbook@mealbook.com.vn</a></h3>
+              <p>Gửi chúng tôi mọi nơi</p>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -17,6 +17,7 @@ class Post extends Model
         return $this->morphMany(Comment::class,'commentable');
         
     }
+
 
    
 }

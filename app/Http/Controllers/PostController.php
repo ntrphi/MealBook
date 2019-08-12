@@ -19,7 +19,11 @@ class PostController extends Controller
     {
         $item = Post::latest()->paginate(10);
         $recent = Post::paginate(5);
+        if (\Request::is('postAll')) {
         return view('frontend.post.index',compact('item','recent'));
+        }else{
+            return view('admin.post.list',compact('item'));
+        }
     }
 
     /**
@@ -40,7 +44,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {   
-        dd($request);
+     
         $rules = [
     		'title' => 'required | min:4|unique:posts',
     		'image' => 'required | image',
@@ -102,7 +106,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+       $post = Post::find($id);
+       return view('admin.post.edit',compact('post'));
     }
 
     /**
@@ -112,9 +117,23 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+   
+
+        if (request()->hasFile('image')) {
+            $file = request()->file('image');
+            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+            $file->move('./images/', $fileName);    
+        }
+        $post = Post::find($request->id);
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->image = './images/'.$fileName;
+        $post->content =  $request->content;
+        $post->save();
+    
+        return redirect()->route('list-post');
     }
 
     /**
@@ -125,6 +144,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+     
+        Post::find($id)->delete();
+        return redirect()->route('list-post');
     }
 }

@@ -428,7 +428,10 @@
               <h4>{{$users->name}}</h4>
               <p>Đóng Ghóp: <span>{{$users->mealCount()}} Mâm Cơm</span>
                             <span>{{$users->cookingCount()}} Món Ăn</span></p>
-                  <p>Tổng Like : {{$users->isPoint()}}</p>
+                  <p>Tổng Like : @foreach($users->isPoint() as $point)
+                                      {{$point->sum}}
+                                  @endforeach
+                  </p>
            
             </div>
 

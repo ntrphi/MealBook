@@ -74,7 +74,7 @@ class User extends Authenticatable
     }
 
     public function isPoint(){
-     return $this->point()->where('user_id',$this->id)->sum('point');
-   
+     //return $this->point()->where('user_id',$this->id)->sum('point');
+    return $this->point()->groupBy('user_id')->selectRaw('sum(point) as sum,user_id')->orderBy('sum','DESC')->where('user_id',$this->id)->get(); 
     }
 }

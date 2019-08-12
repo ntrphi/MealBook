@@ -8,6 +8,7 @@ use App\CookingRecipe;
 use App\User;
 use App\DishType;
 use App\MealBook;
+use App\Post;
 
 class AdminController extends Controller
 {
@@ -17,11 +18,13 @@ class AdminController extends Controller
         $recipe_count = CookingRecipe::count();
         $mealbook_count = MealBook::count();
         $dishtype_count = DishType::count();
+        $post_count = Post::count();
+
         $user_count = User::whereHas('role', function ($query) {
             $query->where('name', 'like', 'Member');
         })->count();
         $current_user = Auth::user();
-        return view('admin.index', ['current_user' => $current_user, 'recipe_count' => $recipe_count, 'mealbook_count' => $mealbook_count, 'dishtype_count' => $dishtype_count, 'user_count' => $user_count]);
+        return view('admin.index', compact('recipe_count','mealbook_count','dishtype_count','post_count','user_count'));
     }
     public function getListCookingRecipes()
     {

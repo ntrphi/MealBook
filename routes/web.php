@@ -77,4 +77,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         // Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
 
     });
+    Route::prefix('posts')->group(function () {
+        Route::get('/list-post','PostController@index')->name('list-post');
+        Route::get('delete/{id}', 'PostController@destroy');
+        Route::get('postEdit/{id}','PostController@edit')->name('postEdit');
+        Route::post('update','PostController@update')->name('managerPost');
+
+    });
 });
