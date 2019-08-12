@@ -22,7 +22,9 @@ class MealBook extends Model
     public function isPoint(){
         return $this->point()->where('user_id',auth()->id())->count()>0;
     }
-
+    public function pointSum(){
+        return $this->point()->where('user_id',$this->id)->sum('point');
+    }
 
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);

@@ -120,18 +120,8 @@
                       </div>
                   </div>
        @endif
-                          <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                          </a>
-                        </div>
-                        
-                        <div class="blog_details">
-                            <a class="d-inline-block" href="{{route('showMeal',$mealbook->id)}}">
-                                <h2>{{$mealbook->name}}</h2>
-                            </a>
-                    <div class="d-flex vote-controls">
-                        <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
+                          <div href="#" class="blog_item_date">
+                          <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
                         onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
                         <i class="fa fa-heart"></i>
                         <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
@@ -150,7 +140,14 @@
                       <span>0</span>
                       @endif 
                       </p>
-                    </div>
+                          </div>
+                        </div>
+                        
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="{{route('showMeal',$mealbook->id)}}">
+                                <h2>{{$mealbook->name}}</h2>
+                            </a>
+               
                             <p>{{$mealbook->getAuthor->name}}</p>
                           
 

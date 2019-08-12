@@ -40,6 +40,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {   
+        dd($request);
         $rules = [
     		'title' => 'required | min:4|unique:posts',
     		'image' => 'required | image',
@@ -59,8 +60,7 @@ class PostController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         } else {
-        // $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        // request()->image->move(public_path('images'), $imageName);
+
             $fileName = null;
 
             if (request()->hasFile('image')) {
@@ -71,7 +71,7 @@ class PostController extends Controller
             Post::create([
                 'user_id' => Auth::user()->id,
                 'title'=>$request->title,
-                'image'=> $fileName,
+                'image'=> './images/'.$fileName,
                 'content'=> $request->content
             ]);
             return redirect()->route('index')->with('success',"You question has been submitted");

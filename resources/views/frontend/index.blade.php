@@ -415,7 +415,7 @@
   <section class="section-margin">
     <div class="container">
       <div class="section-intro mb-75px">
-        <h4 class="intro-title">Top member</h4>
+        <h4 class="intro-title">Top member </h4>
         <!-- <h2>Talent & experience member</h2> -->
       </div>
 
@@ -426,7 +426,10 @@
             <img class="card-img rounded-0" src="{{$users->image}}" alt="">
             <div class="chef-footer">
               <h4>{{$users->name}}</h4>
-              <p>{{$users->role->name}}</p>
+              <p>Đóng Ghóp: <span>{{$users->mealCount()}} Mâm Cơm</span>
+                            <span>{{$users->cookingCount()}} Món Ăn</span></p>
+                  <p>Tổng Like : {{$users->isPoint()}}</p>
+           
             </div>
 
             <div class="chef-overlay">

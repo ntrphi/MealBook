@@ -10,7 +10,7 @@
 <script src="js/mail-script.js"></script>
 <script src="js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-
+<script src="/ckeditor/ckeditor.js"></script>  
 
 <script>
 

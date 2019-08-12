@@ -21,29 +21,30 @@
                       <article class="blog_item">
                         <div class="blog_item_img">
                           <img class="card-img rounded-0" src="{{$cooking->avatar}}" alt="">
-                          <a href="#" class="blog_item_date">
-                            <h3>15</h3>
-                            <p>Jan</p>
-                          </a>
+                          <div href="#" class="blog_item_date">
+                            
+                             <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
+                                  <i class="fa fa-heart"></i>
+                                <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                                        @csrf
+                                        @if($cooking->isPoint())
+                                        @method('DELETE');
+                                        @endif
+                                        <input type="hidden" name="id" value="{{$cooking->id}}">
+                                        <input type="hidden" name="point" value="1">
+                                </form>	
+                             </a>
+                                    <p>     @if($cooking->point()->sum('point') > 0)
+                                <span>{{$cooking->point()->sum('point')}}</span>
+                                @else
+                                <span>0</span>
+                                @endif</p>
+                          </div>
                         </div>
                     <div class="d-flex vote-controls">
-                         <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}"
-                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
-                            <i class="fa fa-heart"></i>
-                                <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                            @csrf
-                            @if($cooking->isPoint())
-                            @method('DELETE');
-                            @endif
-                            <input type="hidden" name="id" value="{{$cooking->id}}">
-                            <input type="hidden" name="point" value="1">
-                        </form>	
-                        </a>
-                        @if($cooking->point()->sum('point') > 0)
-                        <span>{{$cooking->point()->sum('point')}}</span>
-                        @else
-                        <span>0</span>
-                        @endif
+                       
+                   
                     </div>
                         <div class="blog_details">
                             <a class="d-inline-block" href="{{route('showCooking',$cooking->id)}}">

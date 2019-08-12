@@ -1,30 +1,62 @@
 @extends('layout.frontend_layout')
 @section('content')
-<form action="{{route('postStore')}}" method="post" enctype="multipart/form-data">
-@csrf
+<div class="container addMonAnWrap mt-5">
+        <h2 class="text-center mb-4">Tạo Tin Tức Của Bạn</h2>
+        <div class="col-md-9 mx-auto mb-5 addMonAnField">
+    <form action="{{route('postStore')}}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group uploadIMGWrap pt-3">
+                  <div class="afterUploadingIMG">
+                    <img src="" alt="">
+                  </div>
+                  <div class="overlay-uploadIMG text-center mt-3">
+                    <input type="file" style="opacity: 0" class="form-control-file" name="image" onchange="displayIMG(this)" accept="images/*">
+                  
+                    <span><i class="fas fa-camera"></i></span>
+                    <p>Tải ảnh lên...</p>
+                    @if( $errors->has('image') )
+                  <p class="text-warning">{{ $errors->first('image')}}</p>
+                  @endif
+                  </div>
+                </div>
+          <div class="form-group">
+          <label class="text-dark font-weight-bold off-outline" for="my-input">Title</label>
+              <input type="text" name="title" class="form-control border-gray"  placeholder="Title">
+              @if( $errors->has('title') )
+                  <p class="text-warning">{{ $errors->first('title')}}</p>
+              @endif
+            </div>
+            <div class="form-check">
+            <label class="text-dark font-weight-bold off-outline" for="my-input">Nội Dung</label>
+              <textarea name="content"  id="editor1"  class="form-control border-gray"></textarea>
+              @if( $errors->has('content') )
+                  <p class="text-warning">{{ $errors->first('content')}}</p>
+                  @endif
+            </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Title</label>
-    <input type="text" name="title"  placeholder="Title">
-    @if( $errors->has('title') )
-				<p class="text-warning">{{ $errors->first('title')}}</p>
-			
-    @endif
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Image</label>
-    <input type="file" name="image">
-    @if( $errors->has('image') )
-				<p class="text-warning">{{ $errors->first('image')}}</p>
-				@endif
-  </div>
-  <div class="form-check">
-  <label for="Description"></label>
-    <textarea rows="" cols="" name="content"></textarea>
-  	@if( $errors->has('content') )
-				<p class="text-warning">{{ $errors->first('content')}}</p>
-				@endif
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+function displayIMG(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.afterUploadingIMG>img')
+                    .attr('src', e.target.result)
+                    .width('100%');
+                $('.afterUploadingIMG').css('box-shadow','0px 0px 10px 3px rgba(0,0,0,0.75)');
+                    
+                    
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    CKEDITOR.replace( 'editor1' );  
+</script>
 @endsection

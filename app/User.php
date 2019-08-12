@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -48,9 +48,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(MealBook::class);
     }
+    public function mealCount(){
+       
+        return $this->mealBook()->where('user_id',$this->id)->count();
+    }
     public function  cookingRecipe()
     {
         return $this->hasMany(CookingRecipe::class, 'author_id');
+    }
+    public function cookingCount(){
+       
+        return $this->cookingRecipe()->where('author_id',$this->id)->count();
     }
     public function  post()
     {
@@ -63,5 +71,10 @@ class User extends Authenticatable
     public function  point()
     {
         return $this->hasMany(Point::class);
+    }
+
+    public function isPoint(){
+     return $this->point()->where('user_id',$this->id)->sum('point');
+   
     }
 }
