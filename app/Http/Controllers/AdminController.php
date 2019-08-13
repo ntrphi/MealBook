@@ -28,7 +28,7 @@ class AdminController extends Controller
     }
     public function getListCookingRecipes()
     {
-        $recipesList = CookingRecipe::all();
+        $recipesList = CookingRecipe::withTrashed()->get();
         return view('admin.cookingRecipes.list', ['recipesList' => $recipesList]);
     }
     public function getUserPage(Request $request)

@@ -29,7 +29,7 @@ class CookingRecipeController extends Controller
         if (\Request::is('manageCookingRecipes')) {
             return view('admin.cookingRecipes.list', compact('listRecipes'));
         } else {
-            return view('page.cooking', compact('recent','first'));
+            return view('page.cooking', compact('recent', 'first'));
         }
     }
     /**
@@ -40,7 +40,7 @@ class CookingRecipeController extends Controller
     public function create()
     {
         $dishType = DishType::all();
-       // $sampleData = Ingredient::all();
+        // $sampleData = Ingredient::all();
 
         return view('frontend.cooking.add', compact('dishType'));
     }
@@ -51,34 +51,34 @@ class CookingRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function autocomplete(Request $request){
-        $data = Ingredient::select("name")->where("name","LIKE","%{$request->input('query')}%")->get();
+    public function autocomplete(Request $request)
+    {
+        $data = Ingredient::select("name")->where("name", "LIKE", "%{$request->input('query')}%")->get();
         return response()->json($data);
-        
     }
-     
+
     public function store(Request $request)
     {
-     
-        $rules = [
-    		'name' => 'required | min:4|unique:cooking_recipes',
-            'avatar' => 'required | image',           
-            'ingredient' => 'required | min:4',
-            'recipe'=>'required|min:4',
-    	];
 
-    	$msg = [
-		    'required' => ':attribute không được bỏ trống.',
-		    'min' => ':attribute quá ngắn mời nhập dài hơn.',
+        $rules = [
+            'name' => 'required | min:4|unique:cooking_recipes',
+            'avatar' => 'required | image',
+            'ingredient' => 'required | min:4',
+            'recipe' => 'required|min:4',
+        ];
+
+        $msg = [
+            'required' => ':attribute không được bỏ trống.',
+            'min' => ':attribute quá ngắn mời nhập dài hơn.',
             'avatar.image' => ':attribute không đúng định dạng',
-		    'name.unique' => ':attribute đã có, mời ghi nội dung khác',
-		];
-	
-    	$validator = Validator::make($request->all(), $rules , $msg);       
-    	if ($validator->fails()) {
+            'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $msg);
+        if ($validator->fails()) {
             return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         } else {
             $fileName = null;
             if (request()->hasFile('avatar')) {
@@ -86,12 +86,12 @@ class CookingRecipeController extends Controller
                 $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
                 $file->move('./images/', $fileName);
             }
-           
+
             CookingRecipe::create([
                 'dish_type_id' => $request->dish_type_id,
                 'author_id' => Auth::user()->id,
                 'name' => $request->name,
-                'avatar' => './images/'.$fileName,
+                'avatar' => './images/' . $fileName,
                 'ingredient' => $request->ingredient,
                 'recipe' => $request->recipe
             ]);
@@ -115,7 +115,16 @@ class CookingRecipeController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-        CookingRecipe::find($id)->delete();
+
+        $ck = CookingRecipe::withTrashed()->find($id);
+        if ($ck->trashed()) {
+            $ck->mealBookDishes()->detach();
+            $ck->forceDelete();
+        }
+        // $ck->mealBookDishes()->detach();
+        else {
+            $ck->delete();
+        }
         return redirect()->route('manageCookingRecipes');
     }
 
@@ -136,7 +145,6 @@ class CookingRecipeController extends Controller
         }
     }
 
-
     public function update(Request $request)
     {
         $id = $request->id;
@@ -151,7 +159,7 @@ class CookingRecipeController extends Controller
         $cooking_recipe->ingredient = $request->input('ingredient');
         $cooking_recipe->recipe = $request->input('recipe');
         if ($fileName) {
-            $cooking_recipe->avatar = './images/'.$fileName;
+            $cooking_recipe->avatar = './images/' . $fileName;
         }
 
         $cooking_recipe->dish_type_id = $request->input('dish_type_id');

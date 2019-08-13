@@ -53,9 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     Route::get('/home','AdminController@getDashboard' )->name('dashboard');
     Route::prefix('cooking-recipes')->group(function () {
         Route::get('/', 'AdminController@getListCookingRecipes')->name('manageCookingRecipes');
-        Route::get('add', 'PostController@getAdd');
-        Route::put('updateStatus', 'PostController@updateStatus');
-        Route::put('updateHot', 'PostController@updateHot');
+        Route::post('cookigRestore', 'CookingRecipeController@cookigRestore')->name('cookingRestore');
         Route::get('index', 'CookingRecipeController@index');
         Route::get('update/{id} ', 'CookingRecipeController@edit')->name('cookingEdit');
         Route::post('update', 'CookingRecipeController@update')->name('managerCookingStore');
@@ -71,10 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     });
     Route::prefix('dish-type')->group(function () {
         Route::get('/', 'AdminController@getDishTypeList')->name('list-dishtype');
-        // Route::post('add', 'UserController@postAdd');
+        Route::post('add', 'DishtypeController@add');
         // Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
         Route::get('delete/{id}', 'DishtypeController@delete')->name('dishtype.delete');
-        // Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
 
     });
     Route::prefix('posts')->group(function () {
