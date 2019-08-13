@@ -13,4 +13,12 @@ class DishtypeController extends Controller
         $dishtype->delete();
         return redirect()->route('list-dishtype');
     }
+    public function add(Request $request)
+    {
+        $dishtype_name = $request->name;
+        $dishtype = new DishType;
+        $dishtype->name = $dishtype_name;
+        $dishtype->save();
+        return redirect()->route('list-dishtype');
+    }
 }
