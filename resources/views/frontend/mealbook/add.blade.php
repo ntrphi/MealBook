@@ -144,7 +144,7 @@
                 @foreach ($cooking as $item)
                 <div class="row monAnBoxWrap">
                     <div class="monAnBox">
-                        <img src="{{$item->avatar}}" alt="" data-id="{{$item->id}}" data-name="{{$item->name}}">
+                        <img src="{{$item->avatar}}" class="img-round" alt="" data-id="{{$item->id}}" data-name="{{$item->name}}">
                     </div>
                     <div class="popUp-monAn">
                         <h3 class="text-center mt-3">Cua rim</h3>
@@ -195,27 +195,7 @@
     </div>
     </div>
 </section>
-<script>
-    $(document).ready(function(){
-        $('button[data-toggle="modal"]').click(function(){
-            // lấy ra 1 mảng các ảnh món ăn
-            var arr = $('.monAnWrap img');
-            $content="";
-            // mỗi món ăn trong mảng đc add vào form. có thể ttheem class để css.
-            for (var index = 0; index < arr.length; index++) {
-                $content+= `<div class="form-group">`
-                                + `<img src="` + arr[index].currentSrc + `" width="50px"; height="50px">`
-                                + `<span>`+arr[index].dataset.name+`</span>`
-                                + `<input type="hidden" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
-                            </div>`;
-                
-            }
-            
-            $('.check-list').append($content);
-        });
-    
-    })
-</script>
+
 
 
 

@@ -25,7 +25,7 @@
       
         </div>
         <ul class="hero-info d-flex mt-5">
-          <li>
+          <li class="ml-0">
             <a href="">
               <h4>Like</h4>
             </a>

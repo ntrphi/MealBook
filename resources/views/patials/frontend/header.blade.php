@@ -41,30 +41,19 @@
       </nav>
     </div>
     @if(Auth::check())
-    <div class="d-flex">
-    <form action="{{route('postAdd')}}" method="get">
-                <button type="submit" class="btn btn-danger">Đăng Bài</button>
-                </form>
-             
-                <form action="{{route('cookingAdd')}}" method="get">
-                <button type="submit" class="btn btn-submit">Đăng Món Ăn</button>
-                </form>
-                <form action="{{route('mealbookAdd')}}" method="get">
-                <button type="submit" class="btn btn-submit">Đăng Mâm Cơm</button>
-                </form>
+    <div class="container my-3">
+      <div class="row">
+        <form class="ml-auto mx-2" action="{{route('postAdd')}}" method="get">
+          <button type="submit" class="btn btn-danger">Đăng Bài</button>
+        </form>
+
+        <form class="mx-2" action="{{route('cookingAdd')}}" method="get">
+          <button type="submit" class="btn btn-submit">Đăng Món Ăn</button>
+        </form>
+        <form class="mx-2 mr-5" action="{{route('mealbookAdd')}}" method="get">
+          <button type="submit" class="btn btn-submit">Đăng Mâm Cơm</button>
+        </form>
+      </div>
     </div>
     @endif
   </header>
-         	
-@auth
-<div>
-    AUTHAUTH
-</div>
-@endauth
-
-@guest
-<div>
-    Not not not
-</div>
-@endguest
-    </div>
