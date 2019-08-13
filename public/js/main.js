@@ -60,10 +60,10 @@ $(function() {
             navText : ["<div class='left-arrow'><i class='ti-angle-left'></i></div>","<div class='right-arrow'><i class='ti-angle-right'></i></div>"],
             responsive: {
                 768: {
-                    items: 2
+                    items: 1
                 },
                 1100: {
-                    items: 3
+                    items: 2
                 }
             }
         })

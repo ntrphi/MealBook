@@ -268,6 +268,7 @@
                 <div class="nuocCham">
                   <img src="images/nuoc cham.jpg" alt="">
                 </div>
+                
             </div>
           </div> 
 
@@ -330,10 +331,11 @@
                         </div>
                       </div>
                      </div>
-                     <div class="nuocCham">
-                            <img src="images/nuoc cham.jpg" alt="">
-                            </div>
+                     
                   @endforeach
+                  <div class="nuocCham">
+                        <img src="images/nuoc cham.jpg" alt="">
+                      </div>
                       </div>
                   </div>
        @endif
@@ -410,10 +412,10 @@
       @foreach ($cookingWeek as $item)
         <div class="col-lg-6">
           <div class="align-items-center food-card">
-            <img class="mr-3 mr-sm-4" src="{{$item->avatar}}" alt="">
+            <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
             <div class="media-body">
               <div class="d-flex justify-content-between ">
-                <a href="">
+                <a class="d-block mt-3" href="">
                   <h4>{{$item->name}}</h4>
                 </a>
               
