@@ -485,8 +485,14 @@
 .owl-item{
     padding-top: 15px;
 }
+.confirm-img-box{
+    border: 1px solid grey;
+    border-radius: 10px;
+    overflow: hidden;
+}
 .confirm-img-box>img{
-    max-width: 100%;
+    max-width: 135%;
+    margin-left: -20%;
 }
 
 

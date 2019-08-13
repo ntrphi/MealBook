@@ -72,11 +72,11 @@ $(document).ready(function(){
             // mỗi món ăn trong mảng đc add vào form. có thể ttheem class để css.
             for (var index = 0; index < arr.length; index++) {
                 $content+= `<div class="form-group">`
-                                +`<div class="row">
+                                +`<div class="row container">
                                     <div class="confirm-img-box col-md-5">
                                         <img src="` + arr[index].currentSrc + `">
                                     </div>
-                                    <span class="col-md-7 font-weight-bold">`+arr[index].dataset.name+`</span>
+                                    <span class="col-md-7 font-weight-bold text-dark">`+arr[index].dataset.name+`</span>
                                  </div>`
                                 + `<input type="hidden" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
                             </div>`;

@@ -123,7 +123,7 @@
                 </div>
                 {{-- bấm vào nút này sẽ nhận các ảnh món ăn đã kéo vào và hiện lên trong hộp thoại add --}}
                 <div class="container">
-                    <button type="button" class="btn btn-success btn-meal d-block mx-auto mt-4 " data-toggle="modal" data-target="#show-add" >
+                    <button type="button" class="btn btn-success btn-meal d-block mx-auto mt-4 " data-toggle="modal" data-target="#show-add">
                         <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD NEW
                     </button>
                 </div>
@@ -170,9 +170,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Thêm món ăn</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Thêm mâm cơm</h4>
                 </div>
                 <div class="modal-body">
                     <form id="form-add" action="mealbook-add-save" method="POST" enctype="multipart/form-data">
@@ -185,7 +184,7 @@
                         <div class="check-list">
 
                         </div>
-                   
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Thêm</button>
