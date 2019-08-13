@@ -485,7 +485,9 @@
 .owl-item{
     padding-top: 15px;
 }
-
+.confirm-img-box>img{
+    max-width: 100%;
+}
 
 
 

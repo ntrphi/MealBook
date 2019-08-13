@@ -122,9 +122,11 @@
                     </div>
                 </div>
                 {{-- bấm vào nút này sẽ nhận các ảnh món ăn đã kéo vào và hiện lên trong hộp thoại add --}}
-                <button type="button" class="btn btn-success btn-meal" data-toggle="modal" data-target="#show-add" >
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD NEW
-                </button>
+                <div class="container">
+                    <button type="button" class="btn btn-success btn-meal d-block mx-auto mt-4 " data-toggle="modal" data-target="#show-add" >
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD NEW
+                    </button>
+                </div>
             </div>
 
         </form>
@@ -177,7 +179,7 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="role_id" value="{{Auth::user()->id}}">
                         <div class="form-group">
-                            <label for="recipient-name" class="control-label">Tên Món Ăn</label>
+                            <label for="recipient-name" class="control-label">Tên Mâm Cơm</label>
                             <input type="text" class="form-control" id="authorname" name="name">
                         </div>
                         <div class="check-list">
