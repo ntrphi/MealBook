@@ -26,7 +26,7 @@
                 <p class="text-warning">{{ $errors->first('name')}}</p>
                 @endif
             </div>
-            <div class="form-group mt-5">
+            <div class="form-group mt-2">
                 <select name="dish_type_id">
                     @foreach($dishType as $item)
                     <option value="<?php echo $item->id;  ?>"><?php echo $item->name;  ?></option>
