@@ -253,10 +253,11 @@ $firstURLSegment = 'cookings';
           </div>
         </div>
       </div>
-      <aside class=" single_sidebar_widget_mealbook col-lg-4 popular_post_widget">
+      <div class="col-lg-4">
+      <aside class=" single_sidebar_widget_mealbook popular_post_widget">
         <h3 class="widget_title">Recent Post</h3>
         @foreach ($recent as $item)
-        <div class="media post_item">
+        <div class="media post_item mb-3">
           <img src="{{$item->avatar}}" alt="post">
           <div class="media-body">
             <a href="{{route('showCooking',$item->id)}}">
@@ -267,6 +268,7 @@ $firstURLSegment = 'cookings';
         </div>
         @endforeach
       </aside>
+      </div>
     </div>
 </section>
 
