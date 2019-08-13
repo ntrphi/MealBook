@@ -1,11 +1,12 @@
 <?php
 
 namespace App;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class CookingRecipe extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name','avatar','ingredient','recipe',  'dish_type_id', 'author_id',
     ];

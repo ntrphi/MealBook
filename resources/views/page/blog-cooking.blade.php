@@ -21,13 +21,15 @@
 													</div>
 											<div class="blog_details">
 													<h2>{{$cooking->name}}</h2>
+                          @foreach ($cooking->ingredientDetail as $detail)
+                        <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
+                        @endforeach
                           <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#"><i class="ti-user"></i> {{$cooking->user->name}}</a></li>
                             <li><a href="#"><i class="ti-comments"></i>{{$cooking->comment->count()}} Comment</a></li>
                             </ul>
-													<p class="excert">
-                          {{$cooking->ingredient}}
-                         </p>
+											
+                    
 											</div>
                   </div>
                   <div class="navigation-top">
