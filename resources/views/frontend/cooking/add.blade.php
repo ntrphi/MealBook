@@ -1,7 +1,7 @@
 @extends('layout.frontend_layout')
 @section('content')
 <div class="container addMonAnWrap mt-5">
-    <h2 class="text-center mb-4">Tao mon an cua rieng ban</h2>
+    <h2 class="text-center mb-4">Tạo món ăn của riêng bạn</h2>
     <div class="col-md-9 mx-auto mb-5 addMonAnField">
         <form action="{{route('cookingStore')}}" class="col-md-10 mx-auto pb-5" method="post" enctype="multipart/form-data">
             @csrf

@@ -1,20 +1,20 @@
 @extends('layout.frontend_layout')
 @section('content')
 <section class="hero-banner hero-banner-sm">
-    <div class="hero-wrapper">
+    <div class="hero-wrapper container-1175">
       <div class="hero-left">
         <h1 class="hero-title">Liên Hệ Với Chúng Tôi</h1>
         <p>Liên Hệ Với Chúng Tôi Để Có Hưỡng Dẫn Món Ăn Ngon <br class="d-none d-xl-block"> Và Cách Chọn Và Bảo Quản Thực Ăn Tốt Nhất </p>
         <ul class="hero-info d-none d-md-block">
-          <li>
+          <li class="pt-3">
             <img src="images/banner/fas-service-icon.png" alt="">
             <h4>Nhanh Chóng</h4>
           </li>
-          <li>
+          <li class="pt-3">
             <img src="images/banner/fresh-food-icon.png" alt="">
             <h4>Thực Phẩm Sạch</h4>
           </li>
-          <li>
+          <li class="pt-3">
             <img src="images/banner/support-icon.png" alt="">
             <h4>Hỗ Trợ 24/7</h4>
           </li>
