@@ -43,7 +43,16 @@
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Ingredient</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." name="ingredient">{{$recipe->ingredient}}</textarea>
+                                
+                                @foreach($recipe->ingredientDetail as $detail)
+                                <div class="form-group">
+                                        <input type="hidden" name="idDetail[]" value="{{$detail->id}}" >
+                                        <input type="text" name="ingredient[]" value="{{$detail->ingredient}}" class="cooking-ingredient-manager">
+                                        <input type="text" name="amount[]" value="{{$detail->amount}}" class="amount-ingredient-manager">
+                                        </div>
+                                @endforeach
+                            
+                                <!-- <textarea class="form-control" rows="3" placeholder="Enter ..." name="ingredient">{{$recipe->ingredient}}</textarea> -->
                             </div>
                             <div class="form-group">
                                 <label>Recipe</label>

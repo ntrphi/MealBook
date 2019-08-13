@@ -95,7 +95,6 @@
             'width': '100px'
         });
         $(inputSoLuong).focusout(function() {
-
             $(this).parent().find('.soLuongNguyenLieu').text($(this).val());
             $(this).css({
                 'opacity': '0',
@@ -103,26 +102,19 @@
             });
         });
     }
-
     function displayIMG(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function(e) {
                 $('.afterUploadingIMG>img')
                     .attr('src', e.target.result)
                     .width('100%');
                 $('.afterUploadingIMG').css('box-shadow', '0px 0px 10px 3px rgba(0,0,0,0.75)');
-
-
             };
-
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     $(document).ready(function() {
-
         $('.formNguyenLieu').change(function() {
             $('ul.typeahead>li>a').click(function() {
                 console.log('123');
@@ -130,9 +122,10 @@
                 $('.nguyenLieuDiv').append(`
             <p>
                 <span class="text-dark " >${monAn}</span>
+                <input type="hidden" name="ingredient[]" value="${monAn}">
                 <span class="ml-auto position-relative text-dark">
                 <span class="soLuongNguyenLieu" onclick="toggleNhapSoLieu(this)">...</span>
-                <input class="nhapSoLuong" type="number" >
+                <input class="nhapSoLuong" type="text" name="amount[]">
                 </span>
             </p>
             `);
@@ -140,10 +133,7 @@
                     $(this).val('');
                 });
             });
-
-
         });
-
         var path = "{{ route('autocomplete') }}";
         $('input.typeahead').typeahead({
             source: function(query, process) {
@@ -151,20 +141,10 @@
                     query: query
                 }, function(data) {
                     return process(data);
-
                 });
             }
         });
-
-
-
         // some js code
-
-
-
-
-
-
     });
 </script>
 @endsection

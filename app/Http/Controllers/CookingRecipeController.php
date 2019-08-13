@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\CookingRecipe;
 use App\DishType;
 use App\Ingredient;
+use App\IngredientDetail;
 use Illuminate\Support\MessageBag;
 use Validator;
 
@@ -29,7 +30,7 @@ class CookingRecipeController extends Controller
         if (\Request::is('manageCookingRecipes')) {
             return view('admin.cookingRecipes.list', compact('listRecipes'));
         } else {
-            return view('page.cooking', compact('recent', 'first'));
+            return view('page.cooking', compact('recent','first'));
         }
     }
     /**
@@ -40,7 +41,7 @@ class CookingRecipeController extends Controller
     public function create()
     {
         $dishType = DishType::all();
-        // $sampleData = Ingredient::all();
+       // $sampleData = Ingredient::all();
 
         return view('frontend.cooking.add', compact('dishType'));
     }
@@ -51,52 +52,77 @@ class CookingRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function autocomplete(Request $request)
-    {
-        $data = Ingredient::select("name")->where("name", "LIKE", "%{$request->input('query')}%")->get();
+    public function autocomplete(Request $request){
+        $data = Ingredient::select("name")->where("name","LIKE","%{$request->input('query')}%")->get();
         return response()->json($data);
+        
     }
-
+     
     public function store(Request $request)
     {
 
-        $rules = [
-            'name' => 'required | min:4|unique:cooking_recipes',
-            'avatar' => 'required | image',
-            'ingredient' => 'required | min:4',
-            'recipe' => 'required|min:4',
-        ];
-
-        $msg = [
-            'required' => ':attribute không được bỏ trống.',
-            'min' => ':attribute quá ngắn mời nhập dài hơn.',
-            'avatar.image' => ':attribute không đúng định dạng',
-            'name.unique' => ':attribute đã có, mời ghi nội dung khác',
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $msg);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $fileName = null;
+        $ingredient = $_POST['ingredient'];
+        $amount = $_POST['amount'];
+      
+        $fileName = null;
             if (request()->hasFile('avatar')) {
                 $file = request()->file('avatar');
                 $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
                 $file->move('./images/', $fileName);
             }
+            $cooking = new CookingRecipe;
+            $cooking->name = $request->name;
+            $cooking->dish_type_id = $request->dish_type_id;
+            $cooking->author_id = Auth::user()->id;
+            $cooking->avatar = './images/'.$fileName;
+            $cooking->recipe = $request->recipe;
+            $cooking->save();
+            
+            for($i=0;$i<count($ingredient);$i++){
+                $ingredients = $ingredient[$i];
+                $amounts = $amount[$i];
+                $cooking->ingredientDetail()->create(['ingredient'=>$ingredients,'amount'=>$amounts]);
+            }
+        
+            return redirect()->route('cookingAll');
+     
+        // $rules = [
+    	// 	'name' => 'required | min:4|unique:cooking_recipes',
+        //     'avatar' => 'required | image',           
+        //     'ingredient' => 'required | min:4',
+        //     'recipe'=>'required|min:4',
+    	// ];
 
-            CookingRecipe::create([
-                'dish_type_id' => $request->dish_type_id,
-                'author_id' => Auth::user()->id,
-                'name' => $request->name,
-                'avatar' => './images/' . $fileName,
-                'ingredient' => $request->ingredient,
-                'recipe' => $request->recipe
-            ]);
-            return redirect()->route('index')->with('success', "You question has been submitted");
-        }
+    	// $msg = [
+		//     'required' => ':attribute không được bỏ trống.',
+		//     'min' => ':attribute quá ngắn mời nhập dài hơn.',
+        //     'avatar.image' => ':attribute không đúng định dạng',
+		//     'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+		// ];
+	
+    	// $validator = Validator::make($request->all(), $rules , $msg);       
+    	// if ($validator->fails()) {
+        //     return redirect()->back()
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // } else {
+        //     $fileName = null;
+        //     if (request()->hasFile('avatar')) {
+        //         $file = request()->file('avatar');
+        //         $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+        //         $file->move('./images/', $fileName);
+        //     }
+           
+        //     CookingRecipe::create([
+        //         'dish_type_id' => $request->dish_type_id,
+        //         'author_id' => Auth::user()->id,
+        //         'name' => $request->name,
+        //         'avatar' => './images/'.$fileName,
+        //         'ingredient' => $request->ingredient,
+        //         'recipe' => $request->recipe
+        //     ]);
+        //     return redirect()->route('index')->with('success', "You question has been submitted");
+        // }
     }
 
     /**
@@ -115,16 +141,7 @@ class CookingRecipeController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
-
-        $ck = CookingRecipe::withTrashed()->find($id);
-        if ($ck->trashed()) {
-            $ck->mealBookDishes()->detach();
-            $ck->forceDelete();
-        }
-        // $ck->mealBookDishes()->detach();
-        else {
-            $ck->delete();
-        }
+        CookingRecipe::find($id)->delete();
         return redirect()->route('manageCookingRecipes');
     }
 
@@ -145,26 +162,57 @@ class CookingRecipeController extends Controller
         }
     }
 
+
     public function update(Request $request)
     {
-        $id = $request->id;
+        $ingredient = $_POST['ingredient'];
+        $amount = $_POST['amount'];
+        $idDetail = $_POST['idDetail'];
         $fileName = null;
-        if ($request->hasFile('avatar')) {
-            $file = request()->file('avatar');
-            $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-            $file->move('./images/', $fileName);
-        }
-        $cooking_recipe = CookingRecipe::find($id);
-        $cooking_recipe->name = $request->name;
-        $cooking_recipe->ingredient = $request->input('ingredient');
-        $cooking_recipe->recipe = $request->input('recipe');
-        if ($fileName) {
-            $cooking_recipe->avatar = './images/' . $fileName;
-        }
+            if (request()->hasFile('avatar')) {
+                $file = request()->file('avatar');
+                $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+                $file->move('./images/', $fileName);
+            }
+            $cooking = CookingRecipe::find($request->id);
+            $cooking->name = $request->name;
+            $cooking->dish_type_id = $request->dish_type_id;
+            $cooking->author_id = Auth::user()->id;
+            $cooking->avatar = './images/'.$fileName;
+            $cooking->recipe = $request->recipe;
+            $cooking->save();
+          
+         
+            for($i=0;$i<count($idDetail);$i++){
+                
+                $detail = IngredientDetail::find($idDetail[$i]);
+                $detail->ingredient = $ingredient[$i];
+                $detail->amount = $amount[$i];
+                $detail->save();
+                
+                //$cooking->ingredientDetail()->update(['ingredient'=>$ingredient[$i],'amount'=>$amount[$i]]);
+            }
+         
+        
+            return redirect()->route('manageCookingRecipes');
+    //     $id = $request->id;
+    //     $fileName = null;
+    //     if ($request->hasFile('avatar')) {
+    //         $file = request()->file('avatar');
+    //         $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
+    //         $file->move('./images/', $fileName);
+    //     }
+    //     $cooking_recipe = CookingRecipe::find($id);
+    //     $cooking_recipe->name = $request->name;
+    //     $cooking_recipe->ingredient = $request->input('ingredient');
+    //     $cooking_recipe->recipe = $request->input('recipe');
+    //     if ($fileName) {
+    //         $cooking_recipe->avatar = './images/'.$fileName;
+    //     }
 
-        $cooking_recipe->dish_type_id = $request->input('dish_type_id');
-        $cooking_recipe->save();
-        return redirect()->route('manageCookingRecipes');
+    //     $cooking_recipe->dish_type_id = $request->input('dish_type_id');
+    //     $cooking_recipe->save();
+    //     return redirect()->route('manageCookingRecipes');
     }
     public function getAllDishTypes()
     {

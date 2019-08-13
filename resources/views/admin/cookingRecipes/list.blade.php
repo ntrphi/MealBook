@@ -28,7 +28,7 @@
                             <th>Author</th>
                             <th>Avatar</th>
                             <th>Ingredients</th>
-                            <th>Status</th>
+                            <th>Public</th>
                             <th>Created At</th>
                             <th>Edit/Delete</th>
                         </tr>
@@ -48,36 +48,24 @@
                             </td>
 
                             <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
-                            <td class="text-center">{{ $recipe->ingredient }}</td>
-                            @if ($recipe->trashed())
-                            <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true">Solf
-                                    deleted</i></td>
+                            <td class="text-center">@foreach ($recipe->ingredientDetail as $detail)
+                        <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
+                        @endforeach
+                        </td>
+                            @if($recipe->status==1)
+                            <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true"> On</i></td>
                             @else
-                            <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true">
-                                    On</i></td>
+                            <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
                             @endif
                             <td>{{ $recipe->created_at }}</td>
                             <td>
                                 @if(Auth::user()->id == $recipe->author_id)
-                                @if (!$recipe->trashed())
                                 <a href="{{route('cookingEdit',$recipe->id)}}" class="btn btn-info btn-sm">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
                                 </a>
-                                @else
-                                <a href="{{route('cookinRestore',$recipe->id)}}" class="btn btn-success btn-sm">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Khôi phục
-                                </a>
                                 @endif
-                                @endif
-                                
-
-                                <button data-id="{{$recipe->id}}" class="btn btn-danger btn-sm" data-toggle="modal"
-                                    data-target="#modal-delete">
-                                    @if ($recipe->trashed())
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa  
-                                    @else
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa tạm
-                                    @endif
+                                <button data-id="{{$recipe->id}}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Xoá
                                 </button>
                             </td>
                         </tr>
@@ -97,8 +85,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Xóa Bài Viết</h4>
             </div>
             <div class="modal-body">
@@ -161,7 +148,7 @@
                         });
                         if (status == 1) {
                             div.html('<i class="fa fa-check-square-o true" aria-hidden="true"> On</i>');
-                        } else div.html('<i class="fa fa-ban false" aria-hidden="true"> Khôi phục</i>');
+                        } else div.html('<i class="fa fa-ban false" aria-hidden="true"> Off</i>');
                     } else {
                         $.alert(data, {
                             autoClose: true,
