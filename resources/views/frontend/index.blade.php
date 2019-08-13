@@ -578,15 +578,3 @@
   </section>
 @endsection
 
-<script>
-$(document).ready(function(){
-  $(".monAnWrap").hover(
-  function () {
-    $(this).find('.popUp-monAn').slideDown('medium');
-  }, 
-  function () {
-    $(this).find('.popUp-monAn').slideUp('medium');
-  }
-);
-});
-</script>

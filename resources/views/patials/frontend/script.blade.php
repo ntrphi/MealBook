@@ -15,12 +15,19 @@
 <script>
 
 $(document).ready(function(){
-    $(".monAnWrap").hover(
-    function () {
-        $(this).find('.popUp-monAn').slideDown('medium');
-    }, 
-    function () {
-        $(this).find('.popUp-monAn').slideUp('medium');
+        var isShown = false;
+    $(".monAnWrap").click(function () {
+        if( isShown == false )
+        {
+
+            $(this).find('.popUp-monAn').slideDown('medium');
+            isShown = true;
+        }
+        else{
+            $(this).find('.popUp-monAn').slideUp('medium');
+            isShown = false;
+        }
+
     }
     ); 
  
@@ -58,24 +65,47 @@ $(document).ready(function(){
     
     });
 
-  
+     $('button[data-toggle="modal"]').click(function(){
+            // lấy ra 1 mảng các ảnh món ăn
+            var arr = $('.monAnWrap img');
+            $content="";
+            // mỗi món ăn trong mảng đc add vào form. có thể ttheem class để css.
+            for (var index = 0; index < arr.length; index++) {
+                $content+= `<div class="form-group">`
+                                + `<img src="` + arr[index].currentSrc + `" width="50px"; height="50px">`
+                                + `<span>`+arr[index].dataset.name+`</span>`
+                                + `<input type="hidden" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
+                            </div>`;
+                
+            }
+            $('.check-list').empty();
+            $('.check-list').append($content);
+        });
+
+
     $("#soLuongMon").change(function () {
-                var soLuongMon = $("#soLuongMon").val();
-                console.log(soLuongMon);
+                var soLuongMon = $(this).val();
+                $('.check-list').empty();
                 if (soLuongMon == 4) {
                     $(".mamComHome-5, .mamComHome-6").css('display', 'none');
+                    $(".mamComHome-5 .monAnWrap img, .mamComHome-6 .monAnWrap img").remove();
                     $(".mamComHome-4").slideDown('medium');
-
+                    
                 }
                 if(soLuongMon == 5){
                     $(".mamComHome-4,.mamComHome-6").css('display', 'none');
+                    $(".mamComHome-4 .monAnWrap img, .mamComHome-6 .monAnWrap img").remove();
                     $(".mamComHome-5").slideDown('medium');
+                    
                 }
                 if(soLuongMon == 6){
                     $(".mamComHome-4,.mamComHome-5").css('display', 'none');
+                    $(".mamComHome-4 .monAnWrap img, .mamComHome-5 .monAnWrap img").remove();
                     $(".mamComHome-6").slideDown('medium');
+                    
                 }
-            });
+                
+    });
     // $(".saveMonAn").click(function() {
     //     var element = document.querySelector('.mamComHome');
     //     html2canvas(element,{
