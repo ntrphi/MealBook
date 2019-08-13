@@ -95,7 +95,8 @@
             'width': '100px'
         });
         $(inputSoLuong).focusout(function() {
-            $('.soLuongNguyenLieu').text($(this).val());
+
+            $(this).parent().find('.soLuongNguyenLieu').text($(this).val());
             $(this).css({
                 'opacity': '0',
                 'width': '0px'
