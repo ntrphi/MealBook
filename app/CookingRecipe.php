@@ -29,7 +29,7 @@ class CookingRecipe extends Model
     }
 
     public function isPoint(){
-      return $this->point()->where('user_id',auth()->id())->count()>0;
+      return $this->point()->where('user_id',$this->author_id)->count()>0;
             
     }
     public function  mealBookDishe(){

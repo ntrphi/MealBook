@@ -5,12 +5,13 @@
 	$name = 'mealbook';
 	$firstURLSegment = 'mealbooks';
 	@endphp
-@elseif($meal instanceof App\CookingRecipe)
+@elseif($cookingFirst instanceof App\CookingRecipe)
 	@php
 	$name = 'cooking';
 	$firstURLSegment = 'cookings';
 	@endphp
 @endif
+
 <section class="hero-banner mt-5">
     <div class="hero-wrapper container">
 
@@ -340,7 +341,7 @@
                   </div>
        @endif
        
-       <div href="#" class="blog_item_date">
+                    <div href="#" class="blog_item_date">
                               <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
                                 <i class="fa fa-thumbs-up"></i>
@@ -350,6 +351,7 @@
                                     @if($mealbook->isPoint())
                                     @method('DELETE');
                                     @endif
+                                    <input type="hidden" name="user_id" value="{{$mealbook->user_id}}">
                                     <input type="hidden" name="id" value="{{$mealbook->id}}">
                                     <input type="hidden" name="point" value="1">
                                 </form>	
@@ -415,6 +417,25 @@
             <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
             <div class="media-body">
               <div class="d-flex justify-content-between ">
+              <div href="#" class="blog_item_date">
+                  <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
+                      <i class="fa fa-thumbs-up"></i>
+                      <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                          @csrf
+                          @if($item->isPoint())
+                          @method('DELETE');
+                          @endif
+                          <input type="hidden" name="user_id" value="{{$item->author_id}}">
+                          <input type="hidden" name="id" value="{{$item->id}}">
+                          <input type="hidden" name="point" value="1">
+                      </form>
+                   </a>
+                  <p> @if($item->point()->sum('point') > 0)
+                      <span>{{$item->point()->sum('point')}}</span>
+                      @else
+                      <span>0</span>
+                      @endif</p>
+                  </div>
                 <a class="d-block mt-3" href="">
                   <h4>{{$item->name}}</h4>
                 </a>
@@ -458,9 +479,8 @@
               <h4>{{$users->name}}</h4>
               <p>Đóng Ghóp: <span>{{$users->mealCount()}} Mâm Cơm</span>
                             <span>{{$users->cookingCount()}} Món Ăn</span></p>
-                  <p>Tổng Like : @foreach($users->isPoint() as $point)
-                                      {{$point->sum}}
-                                  @endforeach
+                  <p>Tổng Like : {{$users->isPoint()}}
+               
                   </p>
            
             </div>

@@ -43,6 +43,7 @@
                             @if($cooking->isPoint())
                             @method('DELETE');
                             @endif
+                            <input type="hidden" name="user_id" value="{{$cooking->author_id}}">
                             <input type="hidden" name="id" value="{{$cooking->id}}">
                             <input type="hidden" name="point" value="1">
                         </form>	

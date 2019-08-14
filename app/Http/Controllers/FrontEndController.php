@@ -21,11 +21,14 @@ class FrontEndController extends Controller
       
         $meal = MealBook::latest()->first();
         $mealHot = MealBook::latest()->paginate(5);
-        $user = User::paginate(3);
-      
+        $user = User::get();
+        $user = $user->sortByDesc(function($u){
+            return $u->point->sum('point');
+        });
+        $cookingFirst = CookingRecipe::first();
         $cookingWeek = CookingRecipe::paginate(4);
         $post = Post::latest()->paginate(3);
-        return view('frontend.index',compact('meal','cookingWeek','user','post','mealHot'));
+        return view('frontend.index',compact('meal','cookingWeek','user','post','mealHot','cookingFirst'));
     }
 
     /**

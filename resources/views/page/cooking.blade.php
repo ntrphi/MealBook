@@ -22,7 +22,6 @@ $firstURLSegment = 'cookings';
                         <div class="blog_item_img">
                             <img class="card-img rounded-0" src="{{$cooking->avatar}}" alt="">
                             <div href="#" class="blog_item_date">
-
                                 <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
                                     <i class="fa fa-thumbs-up"></i>
                                     <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
@@ -30,6 +29,7 @@ $firstURLSegment = 'cookings';
                                         @if($cooking->isPoint())
                                         @method('DELETE');
                                         @endif
+                                        <input type="hidden" name="user_id" value="{{$cooking->author_id}}">
                                         <input type="hidden" name="id" value="{{$cooking->id}}">
                                         <input type="hidden" name="point" value="1">
                                     </form>
@@ -60,26 +60,8 @@ $firstURLSegment = 'cookings';
                         </div>
                     </article>
                     @endforeach
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <span class="ti-arrow-left"></span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link">{{$recent->links()}}</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <span class="ti-arrow-right"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+                    <nav class=" justify-content-center d-flex">
+                    {{$recent->links()}}
                     </nav>
                 </div>
             </div>

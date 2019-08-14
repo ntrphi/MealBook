@@ -12,7 +12,7 @@ class PointController extends Controller
 
     public function mealbookPoint(Request $request){
         $mealbook = MealBook::find($request->id);
-        $mealbook->point()->create(['user_id'=>Auth::user()->id,'point'=>$request->point]);
+        $mealbook->point()->create(['user_id'=>$request->user_id,'point'=>$request->point]);
                 return back();
 
      }
@@ -20,22 +20,22 @@ class PointController extends Controller
 
      public function destroyMealbookPoint(Request $request){
         $mealbook = MealBook::find($request->id);
-        $mealbook->point()->where('user_id',auth()->id())->delete();
+        $mealbook->point()->where('user_id',$request->user_id)->delete();
         return back();
      }
 
 
 
      public function cookingPoint(Request $request){
-        
+
         $cooking = CookingRecipe::find($request->id);
-        $cooking->point()->create(['user_id'=>Auth::user()->id,'point'=>$request->point]);
+        $cooking->point()->create(['user_id'=>$request->user_id,'point'=>$request->point]);
                 return back();
          
      }
      public function destroyCookingPoint(Request $request){
         $cooking = CookingRecipe::find($request->id);
-        $cooking->point()->where('user_id',auth()->id())->delete();
+        $cooking->point()->where('user_id',$request->user_id)->delete();
         return back();
      }
 }

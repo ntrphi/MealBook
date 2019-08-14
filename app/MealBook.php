@@ -24,7 +24,7 @@ class MealBook extends Model
         return $this->morphOne(Point::class,'pointable');
     }
     public function isPoint(){
-        return $this->point()->where('user_id',auth()->id())->count()>0;
+        return $this->point()->where('user_id',$this->user_id)->count()>0;
     }
     public function pointSum(){
         return $this->point()->where('user_id',$this->id)->sum('point');

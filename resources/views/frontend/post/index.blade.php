@@ -21,7 +21,7 @@
                             <a class="d-inline-block" href="{{route('showPost',$posts->id)}}">
                                 <h2>{{$posts->title}}</h2>
                             </a>
-                            <p>{{strip_tags(html_entity_decode($posts->excerpt))}}</p>
+                            <p>{{strip_tags(html_entity_decode($posts->excerpt()))}}</p>
                             <ul class="blog-info-link">
                               <li><a href="#"><i class="ti-user"></i> {{$posts->user->name}}</a></li>
                               <li><a href="#"><i class="ti-comments"></i> {{$posts->comment->count()}}</a></li>

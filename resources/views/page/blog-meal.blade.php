@@ -149,6 +149,7 @@ $firstURLSegment = 'cookings';
                     @if($mealbook->isPoint())
                     @method('DELETE');
                     @endif
+                    <input type="hidden" name="user_id" value="{{$mealbook->user_id}}">
                     <input type="hidden" name="id" value="{{$mealbook->id}}">
                     <input type="hidden" name="point" value="1">
                   </form>
