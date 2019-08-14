@@ -78,9 +78,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
     });
     Route::prefix('posts')->group(function () {
         Route::get('/list-post','PostController@index')->name('list-post');
-        Route::get('delete/{id}', 'PostController@destroy');
+  
         Route::get('postEdit/{id}','PostController@edit')->name('postEdit');
         Route::post('update','PostController@update')->name('managerPost');
+        Route::get('delete/{id}', 'PostController@destroy')->name('post.delete');
+        Route::get('restore/{id}', 'PostController@restore')->name('post.restore');
         
 
     });

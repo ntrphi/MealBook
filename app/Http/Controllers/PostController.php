@@ -17,11 +17,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $item = Post::latest()->paginate(10);
+      
         $recent = Post::paginate(5);
         if (\Request::is('postAll')) {
+            $item = Post::latest()->paginate(10);
         return view('frontend.post.index',compact('item','recent'));
         }else{
+            $item = Post::withTrashed()->latest()->paginate(10);
             return view('admin.post.list',compact('item'));
         }
     }
@@ -144,8 +146,20 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-     
-        Post::find($id)->delete();
+       $post =  Post::withTrashed()->find($id);
+
+        if (!$post->trashed()) {
+            $post->delete();
+            return redirect()->route('list-post');          
+        }
+        $post->forceDelete();
         return redirect()->route('list-post');
     }
+    public function restore($id){
+  
+        $post = Post::withTrashed()->find($id);
+        $post->restore();
+        return redirect()->route('list-post');
+    }
+
 }

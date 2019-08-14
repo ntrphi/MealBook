@@ -22,6 +22,9 @@ class Post extends Model
         return $this->morphMany(Comment::class,'commentable');
         
     }
+    public function excerpt(){
+        return str_limit($this->content,100);
+    }
 
 
    

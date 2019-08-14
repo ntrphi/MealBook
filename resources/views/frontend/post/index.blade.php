@@ -21,7 +21,7 @@
                             <a class="d-inline-block" href="{{route('showPost',$posts->id)}}">
                                 <h2>{{$posts->title}}</h2>
                             </a>
-                            <p>{{strip_tags(html_entity_decode($posts->content))}}</p>
+                            <p>{{strip_tags(html_entity_decode($posts->excerpt))}}</p>
                             <ul class="blog-info-link">
                               <li><a href="#"><i class="ti-user"></i> {{$posts->user->name}}</a></li>
                               <li><a href="#"><i class="ti-comments"></i> {{$posts->comment->count()}}</a></li>
@@ -39,10 +39,7 @@
                                   </a>
                               </li>
                               <li class="page-item">
-                                  <a href="#" class="page-link">1</a>
-                              </li>
-                              <li class="page-item active">
-                                  <a href="#" class="page-link">2</a>
+                                  <a href="#" class="page-link">{{$item->links()}}</a>
                               </li>
                               <li class="page-item">
                                   <a href="#" class="page-link" aria-label="Next">

@@ -139,7 +139,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.btn-remove').on('click', function(){
-        var conf = confirm('Bạn có chắc chắn muốn xoá bài viết này hay không ?');
+        var conf = confirm('Bạn có chắc chắn muốn xoá món ăn này hay không ?');
         if(conf){
           window.location.href = $(this).attr('linkurl');
         }

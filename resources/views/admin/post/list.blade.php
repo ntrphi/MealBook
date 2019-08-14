@@ -32,33 +32,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($item as $post)
-                        <tr class="odd gradeX">
-                            <td>{{ $post->id }}</td>
-                            <td>
-                                {{ $post->name }}
-                            </td>
-                      
-                            <td>
-                                {{$post->user->name}}
-                            </td>
+                    @foreach($item as $post)
+                          @if($post->trashed())
+                            <tr class="odd gradeX bg-red">
+                                <td>{{ $post->id }}</td>
+                                <td>
+                                    {{ $post->title }}
+                                </td>
+                        
+                                <td>
+                                    {{$post->user->name}}
+                                </td>
 
-                            <td><img src="{{ $post->image }}" alt="" width="50px"> </td>
-                            <td class="text-center">{{ strip_tags(html_entity_decode($post->content)) }}</td>
-                           
-                            <td>{{ $post->created_at }}</td>
-                            <td>
-                                @if(Auth::user()->id == $post->user_id)
-                                <a href="{{route('postEdit',$post->id)}}" class="btn btn-info btn-sm">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
-                                </a>
-                                @endif
-                                <button data-id="{{$post->id}}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete">
-                                    <i class="fa fa-trash" aria-hidden="true"></i> Xoá
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
+                                <td><img src="{{ $post->image }}" alt="" width="50px"> </td>
+                                <td class="text-center">{{ strip_tags(html_entity_decode($post->content)) }}</td>
+                            
+                                <td>{{ $post->created_at }}</td>
+                                <td>
+                                <a href="javascript:void(0);" linkurl="{{ route('post.delete', ['id' => $post->id]) }}"
+                                    class="btn btn-xs btn-warning btn-remove">Delete </a>
+                                    <a class="btn btn-xs btn-success" href="{{route('post.restore', $post->id)}}">Restore</a>
+                                </td>
+                            </tr>
+                        @else
+                            <tr class="odd gradeX">
+                                <td>{{ $post->id }}</td>
+                                <td>
+                                    {{ $post->title }}
+                                </td>
+                                <td>
+                                    {{$post->user->name}}
+                                </td>
+
+                                <td><img src="{{ $post->image }}" alt="" width="50px"> </td>
+                                <td class="text-center">{{ strip_tags(html_entity_decode($post->excerpt())) }}</td>
+                            
+                                <td>{{ $post->created_at }}</td>
+                                <td>
+                                    <a href="javascript:void(0);" linkurl="{{ route('post.delete', ['id' => $post->id]) }}"
+                                    class="btn btn-xs btn-danger btn-remove">Delete</a>
+                                    @if(Auth::user()->id == $post->user_id)
+                                    <a href="{{route('postEdit',$post->id)}}" class="btn btn-info btn-sm">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
+                                    </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -90,17 +111,26 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
 <script>
-     $('#modal-delete').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var iddel = button.data('id')
-            var modal = $(this)
-            modal.find('.modal-body #del-id').html(iddel);
-            modal.find('.modal-body #delete').attr('href', 'admin/posts/delete/' + iddel);
-        })
+    //  $('#modal-delete').on('show.bs.modal', function(event) {
+    //         var button = $(event.relatedTarget)
+    //         var iddel = button.data('id')
+    //         var modal = $(this)
+    //         modal.find('.modal-body #del-id').html(iddel);
+    //         modal.find('.modal-body #delete').attr('href', 'admin/posts/delete/' + iddel);
+    //     })
+    $(document).ready(function(){
+      $('.btn-remove').on('click', function(){
+        var conf = confirm('Bạn có chắc chắn muốn xoá bài viết này hay không ?');
+        if(conf){
+          window.location.href = $(this).attr('linkurl');
+        }
+      });
+    });
 </script>
 <script src="admin/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
 <script src="admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 <script src="js/bootstrap-flash-alert.js"></script>
-
 @endsection
