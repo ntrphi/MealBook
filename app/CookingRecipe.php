@@ -1,12 +1,16 @@
 <?php
 
 namespace App;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class CookingRecipe extends Model
-{
+{   
+
     use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    
     protected $fillable = [
         'name','avatar','ingredient','recipe',  'dish_type_id', 'author_id',
     ];

@@ -20,9 +20,9 @@ Route::get('/contact','FrontEndController@contact')->name('contact');
 Route::get('/chef','FrontEndController@chef')->name('chef');
 Route::get('/postAll','PostController@index')->name('postAll');
 Route::get('/show/{id}','PostController@show')->name('showPost');
-Route::get('/postAdd','PostController@create')->name('postAdd');
+Route::get('/postAdd','PostController@create')->middleware('auth')->name('postAdd');
 Route::post('/postStore','PostController@store')->name('postStore');
-Route::get('/cooking','CookingRecipeController@create')->name('cookingAdd');
+Route::get('/cooking','CookingRecipeController@create')->middleware('auth')->name('cookingAdd');
 Route::post('/cookingStore','CookingRecipeController@store')->name('cookingStore');
 Route::get('/cookingAll','CookingRecipeController@index')->name('cookingAll');
 Route::get('/showCooking/{id}','CookingRecipeController@show')->name('showCooking');
@@ -30,7 +30,7 @@ Route::post('/posts/{post}/comment','CommentController@postComment');
 Route::post('/cookings/{cooking}/comment','CommentController@cookingComment');
 Route::post('/mealbooks/{mealbook}/comment','CommentController@mealbookComment');
 Route::get('/mealAll','MealBookController@index')->name('mealAll');
-Route::get('/mealbook-add', 'MealBookController@create')->name('mealbookAdd');
+Route::get('/mealbook-add', 'MealBookController@create')->middleware('auth')->name('mealbookAdd');
 Route::get('/mealbookShow/{id}','MealBookController@show')->name('showMeal');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
 Route::get('/autocomplete','CookingRecipeController@autocomplete')->name('autocomplete');
@@ -57,7 +57,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::get('index', 'CookingRecipeController@index');
         Route::get('update/{id} ', 'CookingRecipeController@edit')->name('cookingEdit');
         Route::post('update', 'CookingRecipeController@update')->name('managerCookingStore');
-        Route::get('delete/{id}', 'CookingRecipeController@destroy');
+        Route::get('delete/{id}', 'CookingRecipeController@destroy')->name('cooking.delete');
+        Route::get('restore/{id}', 'CookingRecipeController@restore')->name('cooking.restore');
+
     });
     Route::prefix('user')->group(function () {
         Route::get('/', 'AdminController@getUserList')->name('list-author');
@@ -79,6 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role'], function(){
         Route::get('delete/{id}', 'PostController@destroy');
         Route::get('postEdit/{id}','PostController@edit')->name('postEdit');
         Route::post('update','PostController@update')->name('managerPost');
+        
 
     });
 });

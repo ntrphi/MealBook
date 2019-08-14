@@ -138,12 +138,29 @@ class CookingRecipeController extends Controller
         return view('page.blog-cooking', compact('cooking', 'recent'));
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $id = $request->id;
-        CookingRecipe::find($id)->delete();
+        $cooking = CookingRecipe::withTrashed()->find($id);
+   
+        if(!$cooking->trashed()){
+            $cooking->delete();
+            return redirect()->route('manageCookingRecipes');
+           
+        }
+        $cooking->forceDelete();
+        return redirect()->route('manageCookingRecipes');
+  
+
+    }
+
+    public function restore($id){
+  
+        $cooking = CookingRecipe::withTrashed()->find($id);
+        $cooking->restore();
         return redirect()->route('manageCookingRecipes');
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

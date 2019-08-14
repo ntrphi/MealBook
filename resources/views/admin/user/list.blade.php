@@ -71,7 +71,6 @@
                       class="btn btn-xs btn-danger btn-remove">Delete tạm</a>
                     <a class="btn btn-xs btn-info" href="{{route('upgradeToAdmin', $user->id)}}">Upgrade To Admin</a>
                     @endif
-
                   </td>
                 </tr>
                 @endif
