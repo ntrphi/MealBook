@@ -28,8 +28,10 @@
               0
               @endif 
                <span>
+               @if(Auth::check())
                <a title="point" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
+               @endif                 
                                 <i class="fa fa-thumbs-up"></i>
                                 @if(Auth::check())
                                 <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
@@ -189,8 +191,10 @@
               0
               @endif 
                <span>
+               @if(Auth::check())
                <a title="point" class="point {{Auth::guest() ? 'off' : '($mealRandom->isPoint()) ' }} {{$mealRandom->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealRandom->id}}').submit();">
+              @endif                  
                                 <i class="fa fa-thumbs-up"></i>
                                 @if(Auth::check())
                                 <form id="point-{{$name}}-{{$mealRandom->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
@@ -491,8 +495,10 @@
        @endif
        
                     <div href="#" class="blog_item_date">
+                    @if(Auth::check())
                               <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                     @endif          
                                 <i class="fa fa-thumbs-up"></i>
                                 @if(Auth::check())
                                 <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
@@ -529,26 +535,7 @@
       </div>
     </div>
   </section>
-  <!--================Featured Section End =================-->
-
-  <!--================Offer Section Start =================-->
-  <!-- <section class="bg-lightGray section-padding">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-sm">
-          <img class="card-img rounded-0" src="images/home/offer-img.png" alt="">
-        </div>
-        <div class="col-sm">
-          <div class="offer-card offer-card-position">
-            <h3>Italian Pizza Offer</h3>
-            <h2>50% OFF</h2>
-            <a class="button" href="#">Read More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!--================Offer Section End =================-->
+  
 
   @if($cookingFirst instanceof App\MealBook)
 	@php
@@ -575,14 +562,16 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
               <div href="#" class="blog_item_date">
+              @if(Auth::check())
               <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
+               @endif
                       <i class="fa fa-thumbs-up"></i>
                       @if(Auth::check())
                       <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                           @csrf
-                          @if($item->isPoint())
-                          @method('DELETE');
+                           @if($item->isPoint())
+                            @method('DELETE');
                           @endif
                           <input type="hidden" name="user_id" value="{{$item->author_id}}">
                           <input type="hidden" name="id" value="{{$item->id}}">

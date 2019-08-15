@@ -142,8 +142,11 @@ $firstURLSegment = 'cookings';
           <div class="d-sm-flex justify-content-between text-center">
             <p class="like-info">
               <div class="d-flex vote-controls">
+              @if(Auth::check())
                 <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+               @endif
                   <i class="fa fa-heart"></i>
+                  @if(Auth::check())
                   <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                     @csrf
                     @if($mealbook->isPoint())
@@ -153,6 +156,7 @@ $firstURLSegment = 'cookings';
                     <input type="hidden" name="id" value="{{$mealbook->id}}">
                     <input type="hidden" name="point" value="1">
                   </form>
+                  @endif
                 </a>
                 <p>
                   @if($mealbook->point()->sum('point') > 0)

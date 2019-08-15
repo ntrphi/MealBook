@@ -35,9 +35,12 @@
                   <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
                       <p class="like-info"><span class="align-middle">     <div class="d-flex vote-controls">
+                      @if(Auth::check())
                          <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}"
                                 onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
+                        @endif        
                             <i class="fa fa-heart"></i>
+                            @if(Auth::check())
                                 <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                             @csrf
                             @if($cooking->isPoint())
@@ -47,6 +50,7 @@
                             <input type="hidden" name="id" value="{{$cooking->id}}">
                             <input type="hidden" name="point" value="1">
                         </form>	
+                        @endif
                         </a>
                         @if($cooking->point()->sum('point') > 0)
                         <span>{{$cooking->point()->sum('point')}}</span>

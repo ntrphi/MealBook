@@ -122,7 +122,9 @@ $firstURLSegment = 'cookings';
               </div>
               @endif
               <div href="#" class="blog_item_date">
+              @if(Auth::check())
                 <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+                @endif  
                   <i class="fa fa-thumbs-up"></i>
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">

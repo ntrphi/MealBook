@@ -22,7 +22,9 @@ $firstURLSegment = 'cookings';
                         <div class="blog_item_img">
                             <img class="card-img rounded-0" src="{{$cooking->avatar}}" alt="">
                             <div href="#" class="blog_item_date">
+                            @if(Auth::check())
                             <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
+                              @endif   
                                     <i class="fa fa-thumbs-up"></i>
                                     @if(Auth::check())
                                     <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
