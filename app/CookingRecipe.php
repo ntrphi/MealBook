@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Auth;
 class CookingRecipe extends Model
 {   
 
@@ -29,9 +30,9 @@ class CookingRecipe extends Model
     }
 
     public function isPoint(){
-      return $this->point()->where('user_id',$this->author_id)->count()>0;
-            
+      return $this->point()->where('author_id',Auth::user()->id)->count()>0; 
     }
+    
     public function  mealBookDishe(){
         return $this->hasMany(MealBookDishe::class);
     }

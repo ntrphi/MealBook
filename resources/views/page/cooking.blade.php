@@ -22,8 +22,9 @@ $firstURLSegment = 'cookings';
                         <div class="blog_item_img">
                             <img class="card-img rounded-0" src="{{$cooking->avatar}}" alt="">
                             <div href="#" class="blog_item_date">
-                                <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
+                            <a title="point" class="point {{Auth::guest() ? 'off' : '($cooking->isPoint()) ' }} {{$cooking->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$cooking->id}}').submit();">
                                     <i class="fa fa-thumbs-up"></i>
+                                    @if(Auth::check())
                                     <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                                         @csrf
                                         @if($cooking->isPoint())
@@ -33,6 +34,7 @@ $firstURLSegment = 'cookings';
                                         <input type="hidden" name="id" value="{{$cooking->id}}">
                                         <input type="hidden" name="point" value="1">
                                     </form>
+                                    @endif
                                 </a>
                                 <p> @if($cooking->point()->sum('point') > 0)
                                     <span>{{$cooking->point()->sum('point')}}</span>

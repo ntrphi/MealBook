@@ -8,7 +8,7 @@ use App\User;
 use App\Point;
 use App\MealBook;
 use App\CookingRecipe;
-
+use Auth;
 class FrontEndController extends Controller
 {
     /**
@@ -18,17 +18,18 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-      
+        
         $meal = MealBook::latest()->first();
+        $mealRandom = MealBook::get()->random();
         $mealHot = MealBook::latest()->paginate(5);
         $user = User::get();
-        $user = $user->sortByDesc(function($u){
-            return $u->point->sum('point');
+        $user = $user->sortByDesc(function($users){
+            return $users->point->sum('point');
         });
         $cookingFirst = CookingRecipe::first();
         $cookingWeek = CookingRecipe::paginate(4);
         $post = Post::latest()->paginate(3);
-        return view('frontend.index',compact('meal','cookingWeek','user','post','mealHot','cookingFirst'));
+        return view('frontend.index',compact('meal','cookingWeek','user','post','mealHot','cookingFirst','mealRandom'));
     }
 
     /**

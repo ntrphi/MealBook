@@ -5,7 +5,7 @@
 	$name = 'mealbook';
 	$firstURLSegment = 'mealbooks';
 	@endphp
-@elseif($cookingFirst instanceof App\CookingRecipe)
+@elseif($meal instanceof App\CookingRecipe)
 	@php
 	$name = 'cooking';
 	$firstURLSegment = 'cookings';
@@ -14,16 +14,38 @@
 
 <section class="hero-banner mt-5">
     <div class="hero-wrapper container">
-
+      @if(Auth::check())
       <div class="hero-left col-md-6 col-12">
         <h1 class="hero-title">{{$meal->name}}</h1>
         <div class="d-sm-flex flex-wrap">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime sint doloremque fugit ipsam et voluptates, quidem deserunt laudantium labore a tempora iste amet quibusdam aliquid non dolor blanditiis veniam corporis!</p>          
+ 
+          <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>          
         </div>
         <div class="counting-status">
-          <span>2K <span><i class="fa fa-thumbs-up"></i></span></span>
-          <span>189 <span><i class="fa fa-comment"></i></span></span>
-      
+          <span> @if($meal->point()->sum('point') > 0)
+            {{$meal->point()->sum('point')}}
+                @else
+              0
+              @endif 
+               <span>
+               <a title="point" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
+                                <i class="fa fa-thumbs-up"></i>
+                                @if(Auth::check())
+                                <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                                    @csrf
+                                    @if($meal->isPoint())
+                                    @method('DELETE');
+                                    @endif
+                                    <input type="hidden" name="user_id" value="{{$meal->user_id}}">
+                                    <input type="hidden" name="id" value="{{$meal->id}}">
+                                    <input type="hidden" name="point" value="1">
+                                </form>	
+                                @endif
+                              </a></span></span>
+          
+          <span>{{$meal->comment->count()}} <span><i class="fa fa-comment"></i></span></span>
+
         </div>
         <ul class="hero-info d-flex mt-5">
           <li class="ml-0">
@@ -71,7 +93,7 @@
                     </div>
                   </div>
                 </div>
-  @endforeach
+              @endforeach
                 <div class="nuocCham">
                   <img src="images/nuoc cham.jpg" alt="">
                 </div>
@@ -81,7 +103,7 @@
             </div>
           </div> 
       @elseif($meal->mealBookDishes->count() == 5)
-<!-- for mam 5 mon  -->
+        <!-- for mam 5 mon  -->
           <div class="mamComHome">
             <div class="mamComHome-5-content">
             @foreach($meal->mealBookDishes as $cookings)
@@ -150,18 +172,171 @@
                   </div>
               </div>
             </div>
-  @endif
+          @endif
       </div>
 
+  @else
+   <div class="hero-left col-md-6 col-12">
+        <h1 class="hero-title">{{$mealRandom->name}}</h1>
+        <div class="d-sm-flex flex-wrap">
+ 
+          <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>          
+        </div>
+        <div class="counting-status">
+          <span> @if($mealRandom->point()->sum('point') > 0)
+            {{$mealRandom->point()->sum('point')}}
+                @else
+              0
+              @endif 
+               <span>
+               <a title="point" class="point {{Auth::guest() ? 'off' : '($mealRandom->isPoint()) ' }} {{$mealRandom->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealRandom->id}}').submit();">
+                                <i class="fa fa-thumbs-up"></i>
+                                @if(Auth::check())
+                                <form id="point-{{$name}}-{{$mealRandom->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
+                                    @csrf
+                                    @if($mealRandom->isPoint())
+                                    @method('DELETE');
+                                    @endif
+                                    <input type="hidden" name="user_id" value="{{$mealRandom->user_id}}">
+                                    <input type="hidden" name="id" value="{{$mealRandom->id}}">
+                                    <input type="hidden" name="point" value="1">
+                                </form>	
+                                @endif
+                              </a></span></span>
+          
+          <span>{{$mealRandom->comment->count()}} <span><i class="fa fa-comment"></i></span></span>
 
-      <!-- ============= -->
-      
-      <!-- <ul class="social-icons d-none d-lg-block">
-        <li><a href="#"><i class="ti-facebook"></i></a></li>
-        <li><a href="#"><i class="ti-twitter"></i></a></li>
-        <li><a href="#"><i class="ti-instagram"></i></a></li>
-      </ul> -->
-    </div>
+        </div>
+        <ul class="hero-info d-flex mt-5">
+          <li class="ml-0">
+            <a href="">
+              <h4>Like</h4>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <h4>Comment</h4>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <h4>Share</h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-right col-md-6 col-12">
+        <!-- for mam 4 mon -->
+      @if($mealRandom->mealBookDishes->count() == 4)
+       <div class="mamComHome">
+            <div class="mamComHome-4-content">
+            @foreach($mealRandom->mealBookDishes as $cookings)
+                <div class="row monAnWrap">
+                  <div class="monAnDiv-4 mx-auto my-auto">
+                    <img src="{{$cookings->avatar}}" alt="">
+                  </div>
+                  <div class="popUp-monAn popUp1">
+                      <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                    <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                    <div class="container-fluid">
+
+                      <h5 class="congThucTitle">Cong thuc :</h5>
+                      <p>
+                        <span>+ </span>
+                        <span>{{$cookings->ingredient}}</span>
+                        <span class="ml-5">1 con</span>
+                      </p>
+                      <a class="xemThemBtn" href="">
+                        Xem chi tiet
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+                
+                
+                
+            </div>
+          </div> 
+      @elseif($mealRandom->mealBookDishes->count() == 5)
+        <!-- for mam 5 mon  -->
+          <div class="mamComHome">
+            <div class="mamComHome-5-content">
+            @foreach($mealRandom->mealBookDishes as $cookings)
+                <div class="row monAnWrap monAnStt1">
+                    <div class="monAnDiv-5 mx-auto my-auto">
+                      <img src="{{$cookings->avatar}}" alt="">
+                    </div>
+                    <div class="popUp-monAn popUp1">
+                        <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                      <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                      <div class="container-fluid">
+  
+                        <h5 class="congThucTitle">Cong thuc :</h5>
+                        <p>
+                          <span>+ </span>
+                          <span>{{$cookings->ingredient}}</span>
+                          <span class="ml-5">1 con</span>
+                        </p>
+                        <a class="xemThemBtn" href="">
+                          Xem chi tiet
+                        </a>
+                      </div>
+                    </div>
+                </div>
+            @endforeach
+                <div class="nuocCham">
+                  <img src="images/nuoc cham.jpg" alt="">
+                </div>
+
+            </div>
+          </div>
+          
+        @elseif($mealRandom->mealBookDishes->count() == 6)
+          <!-- for mam 6 mon -->
+          <div class="mamComHome">
+              <div class="mamComHome-6-content">
+              
+              @foreach($mealRandom->mealBookDishes as $cookings)
+                  <div class="row monAnWrap monAnStt1">
+                      <div class="monAnDiv-5 mx-auto my-auto">
+                        <img src="{{$cookings->avatar}}" alt="">
+                      </div>
+                      <div class="popUp-monAn popUp1">
+                          <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                        <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                      
+                        <div class="container-fluid">
+    
+                          <h5 class="congThucTitle">Cong thuc :</h5>
+                          <p>
+                            <span>+ </span>
+                            <span>{{$cookings->ingredient}}</span>
+                            <span class="ml-5">1 con</span>
+                          </p>
+                          <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
+                            Xem chi tiet
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+                @endforeach
+
+                <!-- nuoc cham   -->
+                  <div class="nuocCham">
+                    <img src="images/nuoc cham.jpg" alt="">
+                  </div>
+              </div>
+            </div>
+          @endif
+      </div>
+@endif
+   </div>
   </section>
   <!--================Hero Banner Section end =================-->
 <section class="container">
@@ -199,32 +374,6 @@
     </div>
 </section>
   
-
-  
-  <!--================About Section start =================-->
-  <!-- <section class="about section-margin pb-xl-70">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-xl-6 mb-5 mb-md-0 pb-5 pb-md-0">
-          <div class="img-styleBox">
-            <div class="styleBox-border">
-              <img class="styleBox-img1 img-fluid" src="images/home/about-img1.png" alt="">
-            </div>
-            <img class="styleBox-img2 img-fluid" src="images/home/about-img2.png" alt="">
-          </div>
-        </div>
-        <div class="col-md-6 pl-md-5 pl-xl-0 offset-xl-1 col-xl-5">
-          <div class="section-intro mb-lg-4">
-            <h4 class="intro-title">About Us</h4>
-            <h2>We speak the good food language</h2>
-          </div>
-          <p>Living first us creepeth she'd earth second be sixth hath likeness greater image said sixth was without male place fowl evening an grass form living fish and rule lesser for blessed can't saw third one signs moving stars light divided was two you him appear midst cattle for they are gathering.</p>
-          <a class="button button-shadow mt-2 mt-lg-4" href="#">Learn More</a>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!--================About Section End =================-->
 
 
   <!--================Featured Section Start =================-->
@@ -378,9 +527,7 @@
         </div>
   @endforeach
       </div>
-
     </div>
-
   </section>
   <!--================Featured Section End =================-->
 
@@ -403,7 +550,17 @@
   </section> -->
   <!--================Offer Section End =================-->
 
-
+  @if($cookingFirst instanceof App\MealBook)
+	@php
+	$name = 'mealbook';
+	$firstURLSegment = 'mealbooks';
+	@endphp
+@elseif($cookingFirst instanceof App\CookingRecipe)
+	@php
+	$name = 'cooking';
+	$firstURLSegment = 'cookings';
+	@endphp
+@endif
   <!--================Food menu section start =================-->  
   <section class="section-margin">
     <div class="container">
@@ -418,8 +575,10 @@
             <div class="media-body">
               <div class="d-flex justify-content-between ">
               <div href="#" class="blog_item_date">
-                  <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
+              <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}"
+                                onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
                       <i class="fa fa-thumbs-up"></i>
+                      @if(Auth::check())
                       <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                           @csrf
                           @if($item->isPoint())
@@ -429,6 +588,7 @@
                           <input type="hidden" name="id" value="{{$item->id}}">
                           <input type="hidden" name="point" value="1">
                       </form>
+                      @endif
                    </a>
                   <p> @if($item->point()->sum('point') > 0)
                       <span>{{$item->point()->sum('point')}}</span>
@@ -479,12 +639,18 @@
               <h4>{{$users->name}}</h4>
               <p>Đóng Ghóp: <span>{{$users->mealCount()}} Mâm Cơm</span>
                             <span>{{$users->cookingCount()}} Món Ăn</span></p>
-                  <p>Tổng Like : {{$users->isPoint()}}
-               
+                  <p>Tổng Like : @if($users->isPoint() >= 10 )
+                                  {{$users->isPoint()}}
+                                <p>Level : 1</p>
+                                  @elseif($users->isPoint() >= 5 )
+                                  {{$users->isPoint()}}
+                                  <p>Level : 2</p>
+                                  @elseif($users->isPoint() < 5)
+                                  {{$users->isPoint()}}
+                                  <p>Level : 3</p>
+                                  @endif
                   </p>
-           
             </div>
-
             <div class="chef-overlay">
               <ul class="social-icons">
                 <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -500,72 +666,6 @@
   <!--================Chef section end =================-->  
 
 
-  <!--================Reservation section start =================-->  
-  <!-- <section class="bg-lightGray section-padding">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 col-xl-5 mb-4 mb-md-0">
-          <div class="section-intro">
-            <h4 class="intro-title">Reservation</h4>
-            <h2 class="mb-3">Get experience from sneaky</h2>
-          </div>
-          <p>Him given and midst tree form seas she'd saw give evening one every make hath moveth you're appear female heaven had signs own days saw they're have let midst given him given and midst tree. Form seas she'd saw give evening</p>
-        </div>
-        <div class="col-md-6 offset-xl-2 col-xl-5">
-          <div class="search-wrapper">
-            <h3>Book A Table</h3>
-
-            <form class="search-form" action="#">
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Your Name">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="ti-user"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Email Address">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="ti-email"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Phone Number">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="ti-headphone-alt"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Select Date">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="ti-notepad"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Select People">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="ti-layout-column3"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group form-group-position">
-                <button class="button border-0" type="submit">Make Reservation</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!--================Reservation section end =================-->  
 
 
   <!--================Blog section start =================-->  

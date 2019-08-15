@@ -11,8 +11,9 @@ class PointController extends Controller
 {
 
     public function mealbookPoint(Request $request){
+
         $mealbook = MealBook::find($request->id);
-        $mealbook->point()->create(['user_id'=>$request->user_id,'point'=>$request->point]);
+        $mealbook->point()->create(['author_id'=>Auth::user()->id,'user_id'=>$request->user_id,'point'=>$request->point]);
                 return back();
 
      }
@@ -20,7 +21,7 @@ class PointController extends Controller
 
      public function destroyMealbookPoint(Request $request){
         $mealbook = MealBook::find($request->id);
-        $mealbook->point()->where('user_id',$request->user_id)->delete();
+        $mealbook->point()->where('author_id',Auth::user()->id)->delete();
         return back();
      }
 
@@ -29,13 +30,13 @@ class PointController extends Controller
      public function cookingPoint(Request $request){
 
         $cooking = CookingRecipe::find($request->id);
-        $cooking->point()->create(['user_id'=>$request->user_id,'point'=>$request->point]);
+        $cooking->point()->create(['author_id'=>Auth::user()->id,'user_id'=>$request->user_id,'point'=>$request->point]);
                 return back();
          
      }
      public function destroyCookingPoint(Request $request){
         $cooking = CookingRecipe::find($request->id);
-        $cooking->point()->where('user_id',$request->user_id)->delete();
+        $cooking->point()->where('author_id',Auth::user()->id)->delete();
         return back();
      }
 }
