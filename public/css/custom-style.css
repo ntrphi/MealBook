@@ -32,7 +32,10 @@
     margin: 0 auto;
     transition: 0.3s;
 }
-
+.hero-info>li>a{
+    display: block;
+    padding: 0px 10px;
+}
 .hero-info>li:hover{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 }
@@ -203,7 +206,7 @@
 .mamComHome-5-content>.monAnWrap:nth-child(4){
     margin-right: -40px;
 }
-.mamComHome-5-content>.monAnWrap:last-child{
+.mamComHome-5-content>.monAnWrap:nth-child(5){
     margin-left: 90px;
 }
 
@@ -519,7 +522,9 @@
 .main_menu{
     box-shadow: 0px 9px 10px -12px rgba(0,0,0,0.75);
 }
-
+.hero-left p{
+    color: #383636;
+}
 
 
 
@@ -534,6 +539,16 @@
         padding-bottom: 5px;
     }
 }
+
+@media (min-width: 1200px){
+.hero-info li {
+    padding-left: initial;
+    padding-right: initial;
+}
+}
+
+
+
 @media (min-width: 1366px){
     .hero-info {
         padding-top: 5px;
