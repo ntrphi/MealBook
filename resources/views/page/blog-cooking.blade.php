@@ -61,12 +61,7 @@
                       <div class="col-sm-4 text-center my-2 my-sm-0">
                         <p class="comment-count"><span class="align-middle"><i class="ti-comment"></i></span> {{$cooking->comment->count()}} Comments</p>
                       </div>
-                      <ul class="social-icons">
-                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                        <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                        <li><a href="#"><i class="ti-dribbble"></i></a></li>
-                        <li><a href="#"><i class="ti-wordpress"></i></a></li>
-                      </ul>
+                   
                     </div>             
                   
                   <div class="blog-author">
@@ -101,10 +96,6 @@
                                         <a href="#">{{$comments->user->name}}</a>
                                       </h5>
                                       <p class="date">{{$comments->created_at}} </p>
-                                    </div>
-
-                                    <div class="reply-btn">
-                                      <a href="#" class="btn-reply text-uppercase">reply</a>
                                     </div>
                                   </div>
                                   

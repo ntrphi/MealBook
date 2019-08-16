@@ -73,9 +73,6 @@
                                       <p class="date">{{$comments->created_at}} </p>
                                     </div>
 
-                                    <div class="reply-btn">
-                                      <a href="#" class="btn-reply text-uppercase">reply</a>
-                                    </div>
                                   </div>
                                   
                               </div>

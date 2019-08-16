@@ -15,39 +15,42 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'FrontEndController@index')->name('index');
 Route::get('/error', function () {
     return view('error.error');
 })->name('error');
-Route::get('/listRecipe', 'CookingRecipeController@index');
+
+Route::get('/', 'FrontEndController@index')->name('index');
+Route::post('/search', 'FrontEndController@search')->name('search');
 Route::get('/contact', 'FrontEndController@contact')->name('contact');
 Route::get('/chef', 'FrontEndController@chef')->name('chef');
+
 Route::get('/postAll', 'PostController@index')->name('postAll');
 Route::get('/show/{id}', 'PostController@show')->name('showPost');
 Route::get('/postAdd', 'PostController@create')->middleware('auth')->name('postAdd');
 Route::post('/postStore', 'PostController@store')->name('postStore');
+
+Route::get('/listRecipe', 'CookingRecipeController@index');
 Route::get('/cooking', 'CookingRecipeController@create')->middleware('auth')->name('cookingAdd');
 Route::post('/cookingStore', 'CookingRecipeController@store')->name('cookingStore');
 Route::get('/cookingAll', 'CookingRecipeController@index')->name('cookingAll');
 Route::get('/showCooking/{id}', 'CookingRecipeController@show')->name('showCooking');
+Route::get('/autocomplete', 'CookingRecipeController@autocomplete')->name('autocomplete');
+
 Route::post('/posts/{post}/comment', 'CommentController@postComment');
 Route::post('/cookings/{cooking}/comment', 'CommentController@cookingComment');
 Route::post('/mealbooks/{mealbook}/comment', 'CommentController@mealbookComment');
+
 Route::get('/mealAll', 'MealBookController@index')->name('mealAll');
 Route::get('/mealbook-add', 'MealBookController@create')->middleware('auth')->name('mealbookAdd');
 Route::get('/mealbookShow/{id}', 'MealBookController@show')->name('showMeal');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
-Route::get('/autocomplete', 'CookingRecipeController@autocomplete')->name('autocomplete');
-Route::post('/search', 'FrontEndController@search')->name('search');
 
 Route::post('/mealbooks/{name}/point', 'PointController@mealbookPoint');
 Route::delete('/mealbooks/{name}/point', 'PointController@destroyMealbookPoint');
-
 Route::post('/cookings/{name}/point', 'PointController@cookingPoint');
 Route::delete('/cookings/{name}/point', 'PointController@destroyCookingPoint');
 
 
-Route::get('login', 'LoginController@getLogin');
 
 Route::get('/login', function () {
     return view('admin.login');
