@@ -214,9 +214,9 @@ $firstURLSegment = 'cookings';
           @endif
           <span class="pl-1">
             @if(Auth::check())
-            <a title="point" class="point {{Auth::guest() ? 'off' : '($mealRandom->isPoint()) ' }} {{$mealRandom->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealRandom->id}}').submit();">
+            <a title="point" class="point {{Auth::guest() ? 'off' : '($mealRandom->isPoint()) ' }} {{$mealRandom->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealRandom->id}}').submit();">
               @endif
-              <img src="/images/like_png.png" width="20" height="20" alt="">
+              <img src="/images/like_png.png" class="like-but" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$mealRandom->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                 @csrf
@@ -540,9 +540,10 @@ $firstURLSegment = 'cookings';
 
         <div href="#" class="blog_item_date pl-4">
           @if(Auth::check())
-          <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
+          <a title="point" class="point {{Auth::guest() ? 'off ' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
             @endif
-            <img src="/images/like_png.png" width="40" height="40" alt="">
+            <img src="/images/like_png.png" class="like-but"
+             alt="">
             @if(Auth::check())
             <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
               @csrf
@@ -609,7 +610,7 @@ $firstURLSegment = 'cookings';
             <div class="row justify-content-between position-relative ">
               <div href="#" class="blog_item_date position-absolute bestDishesOfWeekLikes">
                 @if(Auth::check())
-                <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
+                <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
                   @endif
                   <img src="/images/like_png.png" width="40" height="40" alt="">
                   @if(Auth::check())
