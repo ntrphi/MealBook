@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-
+use Auth;
 use App\User;
 
 class UserController extends Controller
@@ -46,7 +46,8 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('list-author');
     }
-    public function restore($id){
+    public function restore($id)
+    {
         $user = User::withTrashed()->find($id);
         $user->restore();
         return redirect()->route('list-author');
@@ -59,5 +60,19 @@ class UserController extends Controller
         }
         $user->save();
         return redirect()->route('list-author');
+    }
+    public function update(Request $request)
+    {
+        if (Auth::user()->id == $request->input('id')) {
+            $user = User::find($request->input('id'));
+        } else redirect()->route('error');
+        $user->name = $request->input('name');
+        if ($request->input('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->email = $request->input('email');
+        $user->tel = $request->input('tel');
+        $user->save();
+        return redirect()->route('userpage', $request->input('id'));
     }
 }

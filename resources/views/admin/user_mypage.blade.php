@@ -79,12 +79,7 @@
                   {{$comment->content}}
                 </p>
                 <ul class="list-inline">
-                  {{-- <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li> --}}
-                  {{-- <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li> --}}
+                <li><a href="admin/comment-delete/{{$comment->id}}" class="text-danger link text-sm"><i class="fa fa-trash margin-r-5"></i> Delete</a></li>
                 </ul>
 
               </div>
@@ -109,17 +104,11 @@
                 <p>
                   {{$recipe->ingredient}}
                 </p>
-                <ul class="list-inline">
-                  {{-- <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li> --}}
-                  {{-- <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li> --}}
-                </ul>
-
               </div>
               @endforeach
+              <div class="text-center">
+                <a class="btn btn-lg btn-info" href="{{route('manageCookingRecipes')}}">Manage Cooking Recipe</a>
+              </div>
             </div>
             <!-- /.tab-pane -->
             <!-- /.tab-pane -->
@@ -128,7 +117,7 @@
 
               <div class="post">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="{{$mealbook->images}}" alt="user image">
+                  {{-- <img class="img-circle img-bordered-sm" src="{{$mealbook->images}}" alt="user image"> --}}
                   <span class="username">
                     <a href="{{route('showMeal', $mealbook->id)}}">{{$mealbook->name}}</a>
                     <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -142,21 +131,16 @@
                   {{$dish->name}},&nbsp;
                   @endforeach
                 </p>
-                <ul class="list-inline">
-                  {{-- <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li> --}}
-                  {{-- <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li> --}}
-                </ul>
-
               </div>
               @endforeach
+              <div class="text-center">
+                <a class="btn btn-lg btn-info" href="{{route('mealbook.list')}}">Manage Mealbook</a>
+              </div>
             </div>
             <!-- /.tab-pane -->
             <div class="tab-pane" id="settings">
-              <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{route('user.update')}}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
               <input type="hidden" name="id" value="{{$user->id}}">
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label">Name</label>

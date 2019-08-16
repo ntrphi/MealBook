@@ -69,7 +69,7 @@
 				</div>
 			</form>
 
-			<a href="#">I forgot my password</a><br>
+			<a href="/sign-in">Register as a new member </a><br>
 
 		</div>
 		<!-- /.login-box-body -->

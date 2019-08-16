@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\RouteUrlGenerator;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,8 +54,12 @@ Route::delete('/cookings/{name}/point', 'PointController@destroyCookingPoint');
 
 Route::get('/login', function () {
     return view('admin.login');
-})->name('login');
+})->middleware('guest')->name('login');
 Route::post('login', 'LoginController@postLogin');
+Route::get('/sign-in', function () {
+    return view('admin.signin');
+})->middleware('guest')->name('sign-in');
+Route::post('sign-in', 'Auth\RegisterController@create');
 Route::get('logout', 'LoginController@getLogout');
 Route::get('mypage/user/{id}', 'AdminController@getUserPage')->middleware('auth')->name('userpage');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
@@ -75,6 +79,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
         Route::get('delete/{id}', 'UserController@delete')->name('user.delete');
         Route::get('restore/{id}', 'UserController@restore')->name('user.restore');
+        Route::post('update', 'UserController@update')->name('user.update');
+
     });
     Route::group(['prefix' => 'dish-type', 'middleware' => 'role'], function () {
         Route::get('/', 'AdminController@getDishTypeList')->name('list-dishtype');

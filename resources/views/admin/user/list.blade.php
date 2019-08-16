@@ -46,7 +46,7 @@
                   <td>{{$user->name}}
                   </td>
                   <td>{{$user->email}}</td>
-                  <td>{{$user->avatar}}</td>
+                  <td><img src="{{$user->image}}" width="50px" height="50px" alt=""></td>
                   <td>{{$user->cookingRecipe->count()}} Công thức và {{$user->mealBook->count()}} Mâm cơm</td>
                   <td class="text-center">
                     @if ($user->role->name=="Member")
@@ -63,7 +63,7 @@
                   <td>{{$user->name}}
                   </td>
                   <td>{{$user->email}}</td>
-                  <td>{{$user->avatar}}</td>
+                  <td><img src="{{$user->image}}" width="50px" height="50px" alt=""></td>
                   <td>{{$user->cookingRecipe->count()}} Công thức và {{$user->mealBook->count()}} Mâm cơm</td>
                   <td class="text-center">
                     @if ($user->role->name=="Member")
@@ -101,34 +101,69 @@
         <h4 class="modal-title">Thêm Author</h4>
       </div>
       <div class="modal-body">
-        <form id="form-add" action="admin/user/add" method="POST" enctype="multipart/form-data">
+        <form action="sign-in" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
-          <input type="hidden" name="role_id" value="3">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Tên</label>
-            <input type="text" class="form-control" id="authorname" name="authorname">
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="Full name" name="name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Email</label>
-            <input type="text" class="form-control" id="email" name="email">
+          @if( $errors->has('name') )
+          <p class="text-warning">{{ $errors->first('name')}}</p>
+          @endif
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="Tel number" name="tel">
+            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Telephone Number</label>
-            <input type="text" class="form-control" id="tel" name="tel">
+          @if( $errors->has('tel') )
+          <p class="text-warning">{{ $errors->first('tel')}}</p>
+          @endif
+          <div class="form-group has-feedback">
+            <input type="email" class="form-control" placeholder="Email" name="email">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Avatar</label>
-            <input type="file" class="form-control" id="avatar" name="avatar">
+          @if( $errors->has('email') )
+          <p class="text-warning">{{ $errors->first('email')}}</p>
+          @endif
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Mật Khẩu</label>
-            <input type="password" class="form-control" id="password" name="password">
+          @if( $errors->has('password') )
+          <p class="text-warning">{{ $errors->first('password')}}</p>
+          @endif
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success">Thêm</button>
+          @if( $errors->has('password_confirmation') )
+          <p class="text-warning">{{ $errors->first('password_confirmation')}}</p>
+          @endif
+          <div class="form-group has-feedback">
+            <input type="file" class="form-control" placeholder="choose avatar" name="image">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          </div>
+          @if( $errors->has('image') )
+          <p class="text-warning">{{ $errors->first('image')}}</p>
+          @endif
+          <div class="row">
+            <div class="col-xs-8 ">
+              <div class="d-none" style="display: none">
+                <label>
+                  <input type="checkbox" class="" name="term" checked> I agree to the <a href="#">terms</a>
+                </label>
+              </div>
+              @if( $errors->has('term') )
+              <p class="text-warning">{{ $errors->first('term')}}</p>
+              @endif
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Create</button>
+            </div>
+            <!-- /.col -->
           </div>
         </form>
+
       </div>
     </div>
   </div>
