@@ -93,7 +93,7 @@
 											<h4>Leave a Reply</h4>
 											<form class="form-contact comment_form" action="/{{$firstURLSegment}}/{{$post->id}}/comment" id="commentForm" method="post">
                         <div class="row">
-                          <div class="col-12">@csrf
+                          <div class="col-12">{{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$post->id}}">
                         <div class="form-group">
                                 <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>

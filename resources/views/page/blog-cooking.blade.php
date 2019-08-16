@@ -42,7 +42,7 @@
                             <i class="fa fa-heart"></i>
                             @if(Auth::check())
                                 <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                            @csrf
+                            {{ csrf_field() }}
                             @if($cooking->isPoint())
                             @method('DELETE');
                             @endif
@@ -118,7 +118,7 @@
 											<h4>Leave a Reply</h4>
 											<form class="form-contact comment_form" action="/{{$firstURLSegment}}/{{$cooking->id}}/comment" id="commentForm" method="post">
                         <div class="row">
-                          <div class="col-12">@csrf
+                          <div class="col-12">{{ csrf_field() }}
                         <input type="hidden" name="id" value="{{$cooking->id}}">
                         <div class="form-group">
                                 <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>

@@ -4,7 +4,7 @@
         <h2 class="text-center mb-4">Tạo Tin Tức Của Bạn</h2>
         <div class="col-md-9 mx-auto mb-5 addMonAnField">
     <form action="{{route('postStore')}}" method="post" enctype="multipart/form-data">
-    @csrf
+    {{ csrf_field() }}
     <div class="form-group uploadIMGWrap pt-3">
                   <div class="afterUploadingIMG">
                     <img src="" alt="">

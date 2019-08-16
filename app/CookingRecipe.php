@@ -13,7 +13,7 @@ class CookingRecipe extends Model
 
     
     protected $fillable = [
-        'name','avatar','ingredient','recipe',  'dish_type_id', 'author_id',
+        'name','avatar','ingredient','recipe',  'dish_type_id', 'author_id','short_desc',
     ];
 
     public function user(){

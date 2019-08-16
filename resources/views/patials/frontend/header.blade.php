@@ -7,7 +7,7 @@
           <!-- thanh search -->
        <div class="d-flex justify-content-center h-100">
        <form action="{{route('search')}}" method="post">
-       @csrf
+       {{ csrf_field() }}
             <div class="searchbar">
               <input class="search_input" type="text" name="search" placeholder="Search...">
               <a href="" class="search_icon"><i class="fa fa-search"></i></a>
@@ -45,7 +45,7 @@
               <img src="/images/user-login.png" width="45" alt="">
             </a>
             @else
-            <a href="">
+            <a href="{{route('login')}}">
               <img src="/images/user-login.png" width="45" alt="">
               <span class="text-dark pl-2">Đăng nhập</span>
             </a>

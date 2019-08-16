@@ -28,7 +28,7 @@ $firstURLSegment = 'cookings';
                                     <i class="fa fa-thumbs-up"></i>
                                     @if(Auth::check())
                                     <form id="point-{{$name}}-{{$cooking->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                                        @csrf
+                                        {{ csrf_field() }}
                                         @if($cooking->isPoint())
                                         @method('DELETE');
                                         @endif
@@ -54,7 +54,9 @@ $firstURLSegment = 'cookings';
                                 <h2>{{$cooking->name}}</h2>
                             </a>
                             <span>{{$cooking->dishType->name}}</span>
-                            <p>{{$cooking->ingredient}}</p>
+                       
+                        <p class="excert">{{$cooking->short_desc}}</p> 
+                        
                             <p>{{$cooking->recipe}}</p>
 
                             <ul class="blog-info-link">

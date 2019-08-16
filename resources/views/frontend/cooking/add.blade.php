@@ -4,7 +4,7 @@
     <h2 class="text-center mb-4">Tạo món ăn của riêng bạn</h2>
     <div class="col-md-9 mx-auto mb-5 addMonAnField">
         <form action="{{route('cookingStore')}}" class="col-md-10 mx-auto pb-5" method="post" enctype="multipart/form-data">
-            @csrf
+            {{ csrf_field() }}
             <div class="form-group uploadIMGWrap pt-3">
                 <div class="afterUploadingIMG">
                     <img src="" alt="">
@@ -24,6 +24,13 @@
                 <input class="form-control border-gray" type="text" name="name" placeholder="Nhập tên món ăn của bạn..." value="{{old('title')}}">
                 @if( $errors->has('name') )
                 <p class="text-warning">{{ $errors->first('name')}}</p>
+                @endif
+            </div>
+            <div class="form-group mt-5">
+                <label class="text-dark font-weight-bold off-outline" for="my-input">Mô tả ngắn</label>
+                <textarea rows="" cols="" name="short_desc" value="{{old('short_desc')}}"></textarea>
+                @if( $errors->has('short_desc') )
+                <p class="text-warning">{{ $errors->first('short_desc')}}</p>
                 @endif
             </div>
             <div class="form-group mt-2">

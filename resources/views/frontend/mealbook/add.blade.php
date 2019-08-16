@@ -181,6 +181,10 @@
                             <label for="recipient-name" class="control-label">Tên Mâm Cơm</label>
                             <input type="text" class="form-control" id="authorname" name="name">
                         </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Mô Tả Ngắn</label>
+                            <textarea rows="" cols="" name="short_desc"></textarea>
+                        </div>
                         <div class="check-list">
 
                         </div>

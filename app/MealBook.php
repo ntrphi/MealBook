@@ -11,7 +11,7 @@ class MealBook extends Model
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'name'
+        'name','short_desc',
     ];
 
     public function getAuthor(){

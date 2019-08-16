@@ -33,6 +33,7 @@ $firstURLSegment = 'cookings';
                     <div class="popUp-monAn popUp1">
                       <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
                       <h3 class="text-center mt-2">{{$cookings->name}}</h3>
+                    
                       <div class="container-fluid">
 
                         <h5 class="congThucTitle">Cong thuc :</h5>
@@ -128,7 +129,7 @@ $firstURLSegment = 'cookings';
                   <i class="fa fa-thumbs-up"></i>
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                    @csrf
+                    {{ csrf_field() }}
                     @if($mealbook->isPoint())
                     @method('DELETE');
                     @endif
@@ -153,7 +154,7 @@ $firstURLSegment = 'cookings';
                 <h2>{{$mealbook->name}}</h2>
               </a>
 
-              <p></p>
+              <p>{{$mealbook->short_desc}}</p>
 
 
               <ul class="blog-info-link">

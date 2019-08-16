@@ -19,7 +19,7 @@ $firstURLSegment = 'cookings';
       <h1 class="hero-title">{{$meal->name}}</h1>
       <div class="d-sm-flex flex-wrap">
 
-        <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>
+        <p>- {{$meal->short_desc}}.</p>
       </div>
       <div class="counting-status">
         <span> @if($meal->point()->sum('point') > 0)
@@ -31,7 +31,7 @@ $firstURLSegment = 'cookings';
             @if(Auth::check())
             <a title="point" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
               @endif
-              <i class="fa fa-thumbs-up"></i>
+              <img src="/images/like_png.png" width="20" height="20" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                 @csrf
@@ -45,7 +45,7 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$meal->comment->count()}} <span><i class="fa fa-comment"></i></span></span>
+        <span>{{$meal->comment->count()}} <span><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></span>
 
       </div>
       <ul class="hero-info d-flex mt-5">
@@ -181,7 +181,7 @@ $firstURLSegment = 'cookings';
       <h1 class="hero-title">{{$mealRandom->name}}</h1>
       <div class="d-sm-flex flex-wrap">
 
-        <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>
+        <p>{{$mealRandom->short_desc}}.</p>
       </div>
       <div class="counting-status">
         <span> @if($mealRandom->point()->sum('point') > 0)
@@ -519,7 +519,8 @@ $firstURLSegment = 'cookings';
             <h3>{{$mealbook->name}}</h3>
           </a>
           <p>
-
+          {{$mealbook->short_desc}}
+          </p>
             <div class="d-flex justify-content-between">
 
             </div>
@@ -552,9 +553,7 @@ $firstURLSegment = 'cookings';
       @foreach ($cookingWeek as $item)
       <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
-          <div class="food-card-frame">
           <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
-          </div>
           <div class="media-body">
             <div class="d-flex justify-content-between ">
               <div href="#" class="blog_item_date mt-3">
@@ -584,7 +583,7 @@ $firstURLSegment = 'cookings';
               <a class="d-block mt-3" href="">
                 <h4>{{$item->name}}</h4>
               </a>
-
+              <p>{{$item->short_desc}}</p>
             </div>
             <!-- <p>{{$item->dishType->name}}</p> -->
           </div>
@@ -608,7 +607,7 @@ $firstURLSegment = 'cookings';
 
 
 <!--================Chef section start =================-->
-<section class="section-margin mt-3">
+<section class="section-margin">
   <div class="container">
     <div class="section-intro mb-75px">
       <h4 class="intro-title">Top member </h4>
@@ -623,9 +622,7 @@ $firstURLSegment = 'cookings';
         </div>
         <div class="chef-card">
 
-          <div class="img-frame-top-member">
-            <img class="card-img rounded-0" src="{{$users->image}}" alt="">
-          </div>
+          <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           <div class="chef-footer">
             <h4>{{$users->name}}</h4>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
@@ -641,6 +638,12 @@ $firstURLSegment = 'cookings';
             @endif
             </p>
           </div>
+          <div class="chef-overlay">
+            <ul class="social-icons">
+              <li><a href="#"><i class="ti-facebook"></i></a></li>
+              <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+            </ul>
+          </div>
         </div>
       </div>
       @endforeach
@@ -655,8 +658,8 @@ $firstURLSegment = 'cookings';
 <!--================Blog section start =================-->
 <section class="section-margin">
   <div class="container">
-    <div class="section-intro mb-5">
-      <h4 class="intro-title">Blog nổi bật</h4>
+    <div class="section-intro mb-75px">
+      <h4 class="intro-title">Blog noi bat</h4>
       <!-- <h2>Latest food and recipe news</h2> -->
     </div>
 

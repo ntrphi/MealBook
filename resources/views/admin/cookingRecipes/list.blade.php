@@ -27,6 +27,7 @@
                             <th>Dish Type</th>
                             <th>Author</th>
                             <th>Avatar</th>
+                            <th>Short Desc</th>
                             <th>Ingredients</th>
                             <th>Public</th>
                             <th>Created At</th>
@@ -34,73 +35,82 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($recipesList as $recipe)
+                        @foreach($recipesList as $recipe)
                         @if ($recipe->trashed())
-                            <tr class="odd gradeX bg-red">
-                                <td>{{ $recipe->id }}</td>
-                                <td>
-                                    {{ $recipe->name }}
-                                </td>
-                                <td class="text-center">
-                                    {{ $recipe->dishType->name }}
-                                </td>
-                                <td>
-                                    {{$recipe->user->name}}
-                                </td>
+                        <tr class="odd gradeX bg-red">
+                            <td>{{ $recipe->id }}</td>
+                            <td>
+                                {{ $recipe->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $recipe->dishType->name }}
+                            </td>
+                            <td>
+                                {{$recipe->user->name}}
+                            </td>
 
-                                <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
-                                <td class="text-center">
+                            <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
+                            <td>{{$recipe->short_desc}}</td>
+                            <td class="text-center">
                                 @foreach ($recipe->ingredientDetail as $detail)
-                                        <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
+                                <p class="excert">{{$detail->ingredient}} {{$detail->amount}} </p>
                                 @endforeach
                             </td>
-                                @if($recipe->status==1)
-                                <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true"> On</i></td>
-                                @else
-                                <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
-                                @endif
-                                <td>{{ $recipe->created_at }}</td>
-                                <td>
-                                <a href="javascript:void(0);" linkurl="{{ route('cooking.delete', ['id' => $recipe->id]) }}"
-                                    class="btn btn-xs btn-warning btn-remove">Delete</a>
-                                    <a class="btn btn-xs btn-success" href="{{route('cooking.restore', $recipe->id)}}">Restore</a>
-                                </td>        
-                            </tr>
+                            @if($recipe->deleted_at)
+                            <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
                             @else
-                            <tr class="odd gradeX ">
-                                <td>{{ $recipe->id }}</td>
-                                <td>
-                                    {{ $recipe->name }}
-                                </td>
-                                <td class="text-center">
-                                    {{ $recipe->dishType->name }}
-                                </td>
-                                <td>
-                                    {{$recipe->user->name}}
-                                </td>
-                                <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
-                                <td class="text-center">
-                                @foreach ($recipe->ingredientDetail as $detail)
-                                        <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
-                                @endforeach
-                                </td>
-                                @if($recipe->status==1)
-                                <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true"> On</i></td>
-                                @else
-                                <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
+                            <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true">
+                                    On</i></td>
+                            @endif
+                            <td>{{ $recipe->created_at }}</td>
+                            <td>
+                                <a href="javascript:void(0);"
+                                    linkurl="{{ route('cooking.delete', ['id' => $recipe->id]) }}"
+                                    class="btn btn-xs btn-warning btn-remove">Delete</a>
+                                @if (Auth::user()->role->name=="Admin")
+                                <a class="btn btn-xs btn-success"
+                                    href="{{route('cooking.restore', $recipe->id)}}">Restore</a>
                                 @endif
-                                <td>{{ $recipe->created_at }}</td>
-                                <td>
-                                    <a href="javascript:void(0);" linkurl="{{ route('cooking.delete', ['id' => $recipe->id]) }}"
-                                        class="btn btn-xs btn-danger btn-remove">Delete tạm</a>
-                                        @if(Auth::user()->id == $recipe->author_id)
-                                        <a href="{{route('cookingEdit',$recipe->id)}}" class="btn btn-info btn-sm">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
-                                    </a>
-                                        @endif
-                                </td>                        
-                            </tr>
-                          @endif
+                            </td>
+                        </tr>
+                        @else
+                        <tr class="odd gradeX ">
+                            <td>{{ $recipe->id }}</td>
+                            <td>
+                                {{ $recipe->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $recipe->dishType->name }}
+                            </td>
+                            <td>
+                                {{$recipe->user->name}}
+                            </td>
+                            <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
+                            <td>{{$recipe->short_desc}}</td>
+                            <td class="text-center">
+                                @foreach ($recipe->ingredientDetail as $detail)
+                                <p class="excert">{{$detail->ingredient}} {{$detail->amount}} </p>
+                                @endforeach
+                            </td>
+                            @if($recipe->deleted_at)
+                            <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
+                            @else
+                            <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true">
+                                    On</i></td>
+                            @endif
+                            <td>{{ $recipe->created_at }}</td>
+                            <td>
+                                <a href="javascript:void(0);"
+                                    linkurl="{{ route('cooking.delete', ['id' => $recipe->id]) }}"
+                                    class="btn btn-xs btn-danger btn-remove">Delete tạm</a>
+                                @if(Auth::user()->id == $recipe->author_id)
+                                <a href="{{route('cookingEdit',$recipe->id)}}" class="btn btn-info btn-sm">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -117,7 +127,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Xóa Bài Viết</h4>
             </div>
             <div class="modal-body">
