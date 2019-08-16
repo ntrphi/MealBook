@@ -489,11 +489,11 @@ $firstURLSegment = 'cookings';
         </div>
         @endif
 
-        <div href="#" class="blog_item_date">
+        <div href="#" class="blog_item_date pl-4">
           @if(Auth::check())
           <a title="point" class="point {{Auth::guest() ? 'off' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
             @endif
-            <i class="fa fa-thumbs-up"></i>
+            <img src="/images/like_png.png" width="40" height="40" alt="">
             @if(Auth::check())
             <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
               @csrf
@@ -506,7 +506,7 @@ $firstURLSegment = 'cookings';
             </form>
             @endif
           </a>
-          <p>
+          <p class="mt-2 ml-2">
             @if($mealbook->point()->sum('point') > 0)
             <span>{{$mealbook->point()->sum('point')}}</span>
             @else
@@ -550,16 +550,16 @@ $firstURLSegment = 'cookings';
     </div>
     <div class="row">
       @foreach ($cookingWeek as $item)
-      <div class="col-lg-6">
+      <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
           <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
           <div class="media-body">
             <div class="d-flex justify-content-between ">
-              <div href="#" class="blog_item_date">
+              <div href="#" class="blog_item_date mt-3">
                 @if(Auth::check())
                 <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
                   @endif
-                  <i class="fa fa-thumbs-up"></i>
+                  <img src="/images/like_png.png" width="40" height="40" alt="">
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                     @csrf
@@ -572,11 +572,12 @@ $firstURLSegment = 'cookings';
                   </form>
                   @endif
                 </a>
-                <p> @if($item->point()->sum('point') > 0)
+                <p class="mt-2 ml-2"> @if($item->point()->sum('point') > 0)
                   <span>{{$item->point()->sum('point')}}</span>
                   @else
                   <span>0</span>
-                  @endif</p>
+                  @endif
+                </p>
               </div>
               <a class="d-block mt-3" href="">
                 <h4>{{$item->name}}</h4>
@@ -612,18 +613,22 @@ $firstURLSegment = 'cookings';
       <!-- <h2>Talent & experience member</h2> -->
     </div>
 
-    <div class="row">
+    <div class="row top-member">
       @foreach ($user as $users)
-      <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+      <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0 position-relative">
+        <div class="crown-bg">
+
+        </div>
         <div class="chef-card">
+
           <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           <div class="chef-footer">
             <h4>{{$users->name}}</h4>
-            <p>Đóng Ghóp: <span>{{$users->mealCount()}} Mâm Cơm</span>
+            <p><span>{{$users->mealCount()}} Mâm Cơm</span>
               <span>{{$users->cookingCount()}} Món Ăn</span></p>
             <p>Tổng Like : @if($users->isPoint() >= 10 )
               {{$users->isPoint()}}
-              <p>Level : 1</p>
+              <p>Rank : 1</p>
               @elseif($users->isPoint() >= 5 )
               {{$users->isPoint()}}
               <p>Level : 2</p>
