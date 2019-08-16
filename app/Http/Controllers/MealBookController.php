@@ -35,6 +35,7 @@ class MealBookController extends Controller
         $meal_book = new MealBook;
 
         $meal_book->name=$name;
+        $meal_book->short_desc = $request->short_desc;
         $meal_book->user_id=$request->role_id;
         $meal_book->save();
         // lưu mealbook_id và dish_id trên bảng trung gian

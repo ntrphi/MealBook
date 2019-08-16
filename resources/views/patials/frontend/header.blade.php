@@ -45,7 +45,7 @@
               <img src="/images/user-login.png" width="45" alt="">
             </a>
             @else
-            <a href="">
+            <a href="{{route('login')}}">
               <img src="/images/user-login.png" width="45" alt="">
               <span class="text-dark pl-2">Đăng nhập</span>
             </a>

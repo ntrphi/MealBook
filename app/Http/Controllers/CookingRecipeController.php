@@ -25,6 +25,7 @@ class CookingRecipeController extends Controller
 
         $listRecipes = CookingRecipe::all();
         $recent = CookingRecipe::latest()->paginate(5);
+        
         $first = CookingRecipe::first();
         //return $listRecipes;
         if (\Request::is('manageCookingRecipes')) {
@@ -76,6 +77,7 @@ class CookingRecipeController extends Controller
             $cooking->author_id = Auth::user()->id;
             $cooking->avatar = './images/'.$fileName;
             $cooking->recipe = $request->recipe;
+            $cooking->short_desc = $request->short_desc;
             $cooking->save();
             
             for($i=0;$i<count($ingredient);$i++){
@@ -197,6 +199,7 @@ class CookingRecipeController extends Controller
             $cooking->author_id = Auth::user()->id;
             $cooking->avatar = './images/'.$fileName;
             $cooking->recipe = $request->recipe;
+            $cooking->short_desc = $request->short_desc;
             $cooking->save();
           
          
