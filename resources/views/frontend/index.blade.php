@@ -68,7 +68,7 @@ $firstURLSegment = 'cookings';
       </ul> -->
       
     </div>
-
+11
     <div class="hero-right col-md-6 col-12">
       <!-- for mam 4 mon -->
       @if($meal->mealBookDishes->count() == 4)
