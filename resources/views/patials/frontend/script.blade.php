@@ -15,26 +15,21 @@
 <script>
 
 $(document).ready(function(){
+    // var isShown = false;
     $(".monAnWrap").click(function () {
         $('.popUpActive').slideUp('medium');
-        $('.popUpActive').removeClass('popUpActive');
         isShown = false;
-        $(this).find('.popUp-monAn').addClass('popUpActive');
-        $(this).find('.popUpActive').slideDown('medium');
-        isShown = true;
-        // if( isShown == false )
-        // {
-        //     $(this).find('.popUp-monAn').addClass('popUpActive');
-        //     $(this).find('.popUp-monAn').addClass('isShown');
-        //     $(this).find('.isShown').slideDown('medium');
-        //     isShown = true;
-            
-        // }
-        // else{
-        //     $(this).find('.isShown').slideUp('medium');
-        //     // $(this).removeClass('active-X');
-        //     isShown = false;
-        // }
+        if( isShown == false )
+        {
+            $(this).find('.popUp-monAn').addClass('popUpActive');
+            $(this).find('.popUpActive').slideDown('medium');
+            isShown = true;
+        }
+        else{
+            $('.popUpActive').slideUp('medium');
+            isShown = false;
+        }
+        
         
     }
     ); 
