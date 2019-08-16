@@ -34,6 +34,7 @@ Route::get('/mealbook-add', 'MealBookController@create')->middleware('auth')->na
 Route::get('/mealbookShow/{id}','MealBookController@show')->name('showMeal');
 Route::post('/mealbook-add-save', 'MealBookController@saveadd');
 Route::get('/autocomplete','CookingRecipeController@autocomplete')->name('autocomplete');
+Route::post('/search','FrontEndController@search')->name('search');
 
 Route::post('/mealbooks/{name}/point','PointController@mealbookPoint');
 Route::delete('/mealbooks/{name}/point','PointController@destroyMealbookPoint');
