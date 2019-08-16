@@ -34,7 +34,7 @@ $firstURLSegment = 'cookings';
               <img src="/images/like_png.png" width="20" height="20" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                {{ csrf_field() }}
+                @csrf
                 @if($meal->isPoint())
                 @method('DELETE');
                 @endif
@@ -196,7 +196,7 @@ $firstURLSegment = 'cookings';
               <img src="/images/like_png.png" width="20" height="20" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$mealRandom->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                {{ csrf_field() }}
+                @csrf
                 @if($mealRandom->isPoint())
                 @method('DELETE');
                 @endif
@@ -496,7 +496,7 @@ $firstURLSegment = 'cookings';
             <img src="/images/like_png.png" width="40" height="40" alt="">
             @if(Auth::check())
             <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-              {{ csrf_field() }}
+              @csrf
               @if($mealbook->isPoint())
               @method('DELETE');
               @endif
@@ -519,7 +519,8 @@ $firstURLSegment = 'cookings';
             <h3>{{$mealbook->name}}</h3>
           </a>
           <p>
-
+          {{$mealbook->short_desc}}
+          </p>
             <div class="d-flex justify-content-between">
 
             </div>
@@ -552,9 +553,7 @@ $firstURLSegment = 'cookings';
       @foreach ($cookingWeek as $item)
       <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
-          <div class="food-card-frame">
           <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
-          </div>
           <div class="media-body">
             <div class="d-flex justify-content-between ">
               <div href="#" class="blog_item_date mt-3">
@@ -564,7 +563,7 @@ $firstURLSegment = 'cookings';
                   <img src="/images/like_png.png" width="40" height="40" alt="">
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                    {{ csrf_field() }}
+                    @csrf
                     @if($item->isPoint())
                     @method('DELETE');
                     @endif
@@ -584,7 +583,7 @@ $firstURLSegment = 'cookings';
               <a class="d-block mt-3" href="">
                 <h4>{{$item->name}}</h4>
               </a>
-
+              <p>{{$item->short_desc}}</p>
             </div>
             <p>{{$item->dishType->name}}</p>
           </div>
@@ -608,7 +607,7 @@ $firstURLSegment = 'cookings';
 
 
 <!--================Chef section start =================-->
-<section class="section-margin mt-3">
+<section class="section-margin">
   <div class="container">
     <div class="section-intro mb-75px">
       <h4 class="intro-title">Top member </h4>
@@ -623,9 +622,7 @@ $firstURLSegment = 'cookings';
         </div>
         <div class="chef-card">
 
-          <div class="img-frame-top-member">
-            <img class="card-img rounded-0" src="{{$users->image}}" alt="">
-          </div>
+          <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           <div class="chef-footer">
             <h4>{{$users->name}}</h4>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
@@ -641,6 +638,12 @@ $firstURLSegment = 'cookings';
             @endif
             </p>
           </div>
+          <div class="chef-overlay">
+            <ul class="social-icons">
+              <li><a href="#"><i class="ti-facebook"></i></a></li>
+              <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+            </ul>
+          </div>
         </div>
       </div>
       @endforeach
@@ -655,8 +658,8 @@ $firstURLSegment = 'cookings';
 <!--================Blog section start =================-->
 <section class="section-margin">
   <div class="container">
-    <div class="section-intro mb-5">
-      <h4 class="intro-title">Blog nổi bật</h4>
+    <div class="section-intro mb-75px">
+      <h4 class="intro-title">Blog noi bat</h4>
       <!-- <h2>Latest food and recipe news</h2> -->
     </div>
 

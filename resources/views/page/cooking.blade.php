@@ -54,7 +54,9 @@ $firstURLSegment = 'cookings';
                                 <h2>{{$cooking->name}}</h2>
                             </a>
                             <span>{{$cooking->dishType->name}}</span>
-                            <p>{{$cooking->ingredient}}</p>
+                       
+                        <p class="excert">{{$cooking->short_desc}}</p> 
+                        
                             <p>{{$cooking->recipe}}</p>
 
                             <ul class="blog-info-link">
