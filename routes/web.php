@@ -75,7 +75,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     });
     Route::group(['prefix' => 'user', 'middleware' => 'role'], function () {
         Route::get('/', 'AdminController@getUserList')->name('list-author');
-        Route::post('add', 'UserController@postAdd');
         Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
         Route::get('delete/{id}', 'UserController@delete')->name('user.delete');
         Route::get('restore/{id}', 'UserController@restore')->name('user.restore');

@@ -14,21 +14,6 @@ class UserController extends Controller
         return view('user/list', compact('id'));
     }
 
-    public function postAdd(Request $request)
-    {
-
-        $user = new User();
-        $user->name = $request->input('authorname');
-        $user->password = bcrypt($request->input('password'));
-        $user->email = $request->input('email');
-        $user->tel = $request->input('tel');
-        $user->role_id = $request->input('role_id');
-
-        $user->save();
-        return redirect()->route('list-author');
-    }
-
-
     public function listuser()
     {
         $list = User::all();
