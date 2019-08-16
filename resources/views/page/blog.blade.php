@@ -25,19 +25,14 @@
                       <div class="col-sm-4 text-center my-2 my-sm-0">
                         <p class="comment-count"><span class="align-middle"><i class="ti-comment"></i></span> 06 Comments</p>
                       </div>
-                      <ul class="social-icons">
-                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                        <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                        <li><a href="#"><i class="ti-dribbble"></i></a></li>
-                        <li><a href="#"><i class="ti-wordpress"></i></a></li>
-                      </ul>
+                     
                     </div>             
                   
                   <div class="blog-author">
                     <div class="media align-items-center">
                       <img src="{{$post->user->image}}" alt="">
                       <div class="media-body">
-                        <a href="#">
+                        <a href="{{route('userpage',$post->user_id)}}">
                           <h4>{{$post->user->name}}</h4>
                         </a>
                        <p>{{$post->user->email}}</p>
@@ -73,7 +68,7 @@
                                   <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                       <h5>
-                                        <a href="#">{{$comments->user->name}}</a>
+                                        <a href="{{route('userpage',$post->user_id)}}">{{$comments->user->name}}</a>
                                       </h5>
                                       <p class="date">{{$comments->created_at}} </p>
                                     </div>

@@ -110,8 +110,8 @@ $firstURLSegment = 'cookings';
                         </p>
                         <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                           Xem chi tiet
-                        </a>
                       </div>
+                        </a>
                     </div>
                   </div>
 
@@ -158,7 +158,7 @@ $firstURLSegment = 'cookings';
 
 
               <ul class="blog-info-link">
-                <li><a href="#">{{$mealbook->getAuthor->name}}</a></li>
+                <li><a href="{{route('userpage',$mealbook->user_id)}}">{{$mealbook->getAuthor->name}}</a></li>
                 <li><a href="#"><i class="fa fa-comment-alt"></i></a></li>
               </ul>
             </div>

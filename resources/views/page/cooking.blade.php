@@ -57,10 +57,10 @@ $firstURLSegment = 'cookings';
                        
                         <p class="excert">{{$cooking->short_desc}}</p> 
                         
-                            <p>{{$cooking->recipe}}</p>
+                            <p><strong>Công thức : </strong>{{$cooking->recipe}}</p>
 
                             <ul class="blog-info-link">
-                                <li><a href="#"><i class="ti-user"></i> {{$cooking->user->name}}</a></li>
+                                <li><a href="{{route('userpage',$cooking->author_id)}}"><i class="ti-user"></i> {{$cooking->user->name}}</a></li>
                                 <li><a href="#"><i class="ti-comments"></i> {{$cooking->comment->count()}}</a></li>
                             </ul>
                         </div>
