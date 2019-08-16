@@ -15,24 +15,23 @@
 <script>
 
 $(document).ready(function(){
-    // var isShown = false;
+    var isShown = false;
     $(".monAnWrap").click(function () {
-        $('.popUpActive').slideUp('medium');
-        isShown = false;
-        if( isShown == false )
-        {
+        // var isShown = false;
             $(this).find('.popUp-monAn').addClass('popUpActive');
             $(this).find('.popUpActive').slideDown('medium');
             isShown = true;
-        }
-        else{
-            $('.popUpActive').slideUp('medium');
-            isShown = false;
-        }
+        
+            
         
         
     }
-    ); 
+    );
+
+    $('.x-but').click(function(){
+        $('.popUpActive').slideUp('medium');
+        isShown = false;
+    });
  
     $( ".monAnBox>img" ).draggable({
         
@@ -113,25 +112,7 @@ $(document).ready(function(){
                 }
                 
     });
-    // $(".saveMonAn").click(function() {
-    //     var element = document.querySelector('.mamComHome');
-    //     html2canvas(element,{
-    //         imageTimeout: 0,
-    //         removeContainer: false
-
-    //     }).then(
-    //         function(canvas) {
-    //         // $('.canvasContainer').append(canvas);
-            
-    //         var base64image = canvas.toDataURL("image/png");
-    //         $('.displayBase64').attr('src',base64image);
-            
-    //         }
-    //     );
-    //     console.log('123');
-        
-        
-    // });
+    
 
 });
 </script>

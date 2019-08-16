@@ -599,6 +599,11 @@
     height: 60px;
     overflow: hidden;
 }
+.x-but{
+    color: red;
+    font-size: 50px;
+    cursor: pointer;
+}
 /* .user-wrap img{
     max-width: 20%;
 } */

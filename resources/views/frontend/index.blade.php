@@ -92,7 +92,17 @@ $firstURLSegment = 'cookings';
                   Xem chi tiet
                 </a>
               </div>
+
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
+              </div>
+
             </div>
+
           </div>
           @endforeach
           <div class="nuocCham">
@@ -126,6 +136,13 @@ $firstURLSegment = 'cookings';
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
+              </div>
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
               </div>
             </div>
           </div>
@@ -162,6 +179,13 @@ $firstURLSegment = 'cookings';
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
                 </a>
+              </div>
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
               </div>
             </div>
           </div>
@@ -254,6 +278,13 @@ $firstURLSegment = 'cookings';
                   Xem chi tiet
                 </a>
               </div>
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
+              </div>
             </div>
           </div>
           @endforeach
@@ -288,6 +319,13 @@ $firstURLSegment = 'cookings';
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
+              </div>
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
               </div>
             </div>
           </div>
@@ -324,6 +362,13 @@ $firstURLSegment = 'cookings';
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
                 </a>
+              </div>
+              <div class="container">
+                <div class="row">
+                    <span class="d-block mx-auto x-but">
+                    <i class="fa fa-times-circle"></i>
+                    </span>
+                </div>
               </div>
             </div>
           </div>
