@@ -8,6 +8,7 @@ use App\CookingRecipe;
 use App\User;
 use App\DishType;
 use App\MealBook;
+use App\Comment;
 use App\Post;
 
 class AdminController extends Controller
@@ -19,12 +20,12 @@ class AdminController extends Controller
         $mealbook_count = MealBook::count();
         $dishtype_count = DishType::count();
         $post_count = Post::count();
-
+        $comment_count = Comment::count();
         $user_count = User::whereHas('role', function ($query) {
             $query->where('name', 'like', 'Member');
         })->count();
         $current_user = Auth::user();
-        return view('admin.index', compact('recipe_count','mealbook_count','dishtype_count','post_count','user_count'));
+        return view('admin.index', compact('recipe_count','mealbook_count','dishtype_count','post_count','comment_count','user_count'));
     }
     public function getListCookingRecipes()
     {
@@ -54,5 +55,9 @@ class AdminController extends Controller
     {
         $mealBookList = MealBook::withTrashed()->paginate(10);
         return view('admin.mealbooks.list', ['mealbooks'=>$mealBookList]);
+    }
+    public function getCommentList(){
+        $comment = Comment::latest()->paginate(10);
+        return view('admin.comments.list',compact('comment'));
     }
 }

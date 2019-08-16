@@ -85,9 +85,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
@@ -128,9 +130,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
@@ -169,9 +173,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
                 </a>
@@ -268,9 +274,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
@@ -308,9 +316,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
                 </a>
@@ -349,9 +359,11 @@ $firstURLSegment = 'cookings';
               <div class="container-fluid">
 
                 <h5 class="congThucTitle">Công thức :</h5>
+                <div class="cooking-body">
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
                 </a>
@@ -436,9 +448,11 @@ $firstURLSegment = 'cookings';
                 <div class="container-fluid">
 
                   <h5 class="congThucTitle">Công thức :</h5>
-                  @foreach ($cookings->ingredientDetail as $detail)
+                  <div class="cooking-body">
+                @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
@@ -475,9 +489,11 @@ $firstURLSegment = 'cookings';
                 <div class="container-fluid">
 
                   <h5 class="congThucTitle">Công thức :</h5>
-                  @foreach ($cookings->ingredientDetail as $detail)
+                  <div class="cooking-body">
+                @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
@@ -513,9 +529,11 @@ $firstURLSegment = 'cookings';
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
                   <h5 class="congThucTitle">Công thức :</h5>
-                  @foreach ($cookings->ingredientDetail as $detail)
+                  <div class="cooking-body">
+                @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
+                </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
