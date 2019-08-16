@@ -8,7 +8,9 @@ use App\User;
 use App\Point;
 use App\MealBook;
 use App\CookingRecipe;
+use App\IngredientDetail;
 use Auth;
+use Illuminate\Support\Str;
 class FrontEndController extends Controller
 {
     /**
@@ -55,9 +57,19 @@ class FrontEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
-        //
+        $search = Str::lower($request->search);
+
+       $mealbook = MealBook::where('name','like','%'.$search.'%')->get();
+        $cook = CookingRecipe::where('name','like','%'.$search.'%')->get();
+        $ingredient = IngredientDetail::where('ingredient','like','%'.$search.'%')->get();
+        foreach ($ingredient as $data){
+            $ingredientCooking = CookingRecipe::where('id',$data->cooking_recipe_id)->get();
+        }
+
+      
+        return view('page.search',compact('mealbook','cook','ingredientCooking'));
     }
 
     /**
