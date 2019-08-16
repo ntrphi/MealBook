@@ -624,7 +624,9 @@ $firstURLSegment = 'cookings';
         </div>
         <div class="chef-card">
 
+          <div class="img-frame-top-member">
           <img class="card-img rounded-0" src="{{$users->image}}" alt="">
+          </div>
           <div class="chef-footer">
             <a href="{{route('userpage',$users->id)}}"><h4>{{$users->name}}</h4></a>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
@@ -640,12 +642,7 @@ $firstURLSegment = 'cookings';
             @endif
             </p>
           </div>
-          <div class="chef-overlay">
-            <ul class="social-icons">
-              <li><a href="#"><i class="ti-facebook"></i></a></li>
-              <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-            </ul>
-          </div>
+          
         </div>
       </div>
       @endforeach
