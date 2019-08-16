@@ -27,6 +27,7 @@
                             <th>Dish Type</th>
                             <th>Author</th>
                             <th>Avatar</th>
+                            <th>Short Desc</th>
                             <th>Ingredients</th>
                             <th>Public</th>
                             <th>Created At</th>
@@ -47,8 +48,9 @@
                                 <td>
                                     {{$recipe->user->name}}
                                 </td>
-
+                            
                                 <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
+                                <td>{{$recipe->short_desc}}</td>
                                 <td class="text-center">
                                 @foreach ($recipe->ingredientDetail as $detail)
                                         <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
@@ -81,6 +83,7 @@
                                     {{$recipe->user->name}}
                                 </td>
                                 <td><img src="{{ $recipe->avatar }}" alt="" width="50px"> </td>
+                                <td>{{$recipe->short_desc}}</td>
                                 <td class="text-center">
                                 @foreach ($recipe->ingredientDetail as $detail)
                                         <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 

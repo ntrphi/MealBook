@@ -19,7 +19,7 @@ $firstURLSegment = 'cookings';
       <h1 class="hero-title">{{$meal->name}}</h1>
       <div class="d-sm-flex flex-wrap">
 
-        <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>
+        <p>- {{$meal->short_desc}}.</p>
       </div>
       <div class="counting-status">
         <span> @if($meal->point()->sum('point') > 0)
@@ -31,7 +31,7 @@ $firstURLSegment = 'cookings';
             @if(Auth::check())
             <a title="point" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
               @endif
-              <i class="fa fa-thumbs-up"></i>
+              <img src="/images/like_png.png" width="20" height="20" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                 {{ csrf_field() }}
@@ -45,7 +45,7 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$meal->comment->count()}} <span><i class="fa fa-comment"></i></span></span>
+        <span>{{$meal->comment->count()}} <span><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></span>
 
       </div>
       <ul class="hero-info d-flex mt-5">
@@ -181,7 +181,7 @@ $firstURLSegment = 'cookings';
       <h1 class="hero-title">{{$mealRandom->name}}</h1>
       <div class="d-sm-flex flex-wrap">
 
-        <p>- Đảm bảo với những mâm cơm ngày hè như thế này chẳng ai có thể lắc ... nấu ăn để chế biến các món vừa ngon lại hợp thời tiết cho gia đình.</p>
+        <p>{{$mealRandom->short_desc}}.</p>
       </div>
       <div class="counting-status">
         <span> @if($mealRandom->point()->sum('point') > 0)

@@ -69,6 +69,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="">Short Desc</label>
+                             <textarea class=" form-control" rows="3" placeholder="Place some text here" name="short_desc">{{$recipe->short_desc}}</textarea>
+                                  
+                            </div>
+                            <div class="form-group">
                                 <label for="">Avatar</label>
                                 <input type="file" class="form-control" name="avatar" id="">
                             </div>
