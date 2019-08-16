@@ -13,14 +13,23 @@
 <script src="/ckeditor/ckeditor.js"></script>  
 
 <script>
-
+var isShown = false;
 $(document).ready(function(){
     var isShown = false;
+
     $(".monAnWrap").click(function () {
-        // var isShown = false;
+
+        if( isShown == false ){
             $(this).find('.popUp-monAn').addClass('popUpActive');
             $(this).find('.popUpActive').slideDown('medium');
             isShown = true;
+            
+        }
+        else{
+            $(this).find('.popUpActive').slideUp('medium');
+            isShown = false;
+        }
+            
         
             
         
@@ -28,10 +37,11 @@ $(document).ready(function(){
     }
     );
 
-    $('.x-but').click(function(){
-        $('.popUpActive').slideUp('medium');
-        isShown = false;
-    });
+    // $('.x-but').click(function(){
+    //     console.log('123');
+    //     // $('.popUpActive').slideUp('medium');
+    //     // isShown = false;
+    // });
  
     $( ".monAnBox>img" ).draggable({
         

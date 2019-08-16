@@ -78,7 +78,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
@@ -123,7 +123,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
@@ -165,7 +165,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
 
               <div class="container-fluid">
@@ -264,7 +264,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
@@ -306,7 +306,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
@@ -348,7 +348,7 @@ $firstURLSegment = 'cookings';
               <img src="{{$cookings->avatar}}" alt="">
             </div>
             <div class="popUp-monAn popUp1">
-              <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+              <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
 
               <div class="container-fluid">
@@ -442,7 +442,7 @@ $firstURLSegment = 'cookings';
                 <img src="{{$cookings->avatar}}" alt="">
               </div>
               <div class="popUp-monAn popUp1">
-                <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
 
@@ -476,7 +476,7 @@ $firstURLSegment = 'cookings';
                 <img src="{{$cookings->avatar}}" alt="">
               </div>
               <div class="popUp-monAn popUp1">
-                <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
 
@@ -510,7 +510,7 @@ $firstURLSegment = 'cookings';
                 <img src="{{$cookings->avatar}}" alt="">
               </div>
               <div class="popUp-monAn popUp1">
-                <img class="img-fluid" src="{{$cookings->avatar}}" alt="">
+                <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
                   <h5 class="congThucTitle">Cong thuc :</h5>
