@@ -199,7 +199,9 @@ $firstURLSegment = 'cookings';
     @else
     <div class="hero-left pt-4 col-md-6 col-12">
       <h1 class="hero-title">{{$mealRandom->name}}</h1>
-      <span>Tác giả:  <a href="{{route('userpage',Auth::user()->id)}}"><strong>{{$meal->getAuthor->name}}</strong></a></span>
+      
+      <span>Tác giả: @if(Auth::check()) <a href="{{route('userpage',Auth::user()->id)}}">@endif
+      <strong>{{$meal->getAuthor->name}}</strong></a></span>
       <div class="d-sm-flex flex-wrap">
 
         <p>{{$mealRandom->short_desc}}.</p>
