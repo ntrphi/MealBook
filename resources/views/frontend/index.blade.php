@@ -34,7 +34,7 @@ $firstURLSegment = 'cookings';
               <i class="fa fa-thumbs-up"></i>
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                @csrf
+                {{ csrf_field() }}
                 @if($meal->isPoint())
                 @method('DELETE');
                 @endif
@@ -196,7 +196,7 @@ $firstURLSegment = 'cookings';
               <img src="/images/like_png.png" width="20" height="20" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$mealRandom->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                @csrf
+                {{ csrf_field() }}
                 @if($mealRandom->isPoint())
                 @method('DELETE');
                 @endif
@@ -496,7 +496,7 @@ $firstURLSegment = 'cookings';
             <img src="/images/like_png.png" width="40" height="40" alt="">
             @if(Auth::check())
             <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-              @csrf
+              {{ csrf_field() }}
               @if($mealbook->isPoint())
               @method('DELETE');
               @endif
@@ -564,7 +564,7 @@ $firstURLSegment = 'cookings';
                   <img src="/images/like_png.png" width="40" height="40" alt="">
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$item->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                    @csrf
+                    {{ csrf_field() }}
                     @if($item->isPoint())
                     @method('DELETE');
                     @endif

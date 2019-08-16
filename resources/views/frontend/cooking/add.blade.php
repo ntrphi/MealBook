@@ -4,7 +4,7 @@
     <h2 class="text-center mb-4">Tạo món ăn của riêng bạn</h2>
     <div class="col-md-9 mx-auto mb-5 addMonAnField">
         <form action="{{route('cookingStore')}}" class="col-md-10 mx-auto pb-5" method="post" enctype="multipart/form-data">
-            @csrf
+            {{ csrf_field() }}
             <div class="form-group uploadIMGWrap pt-3">
                 <div class="afterUploadingIMG">
                     <img src="" alt="">

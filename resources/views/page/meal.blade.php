@@ -128,7 +128,7 @@ $firstURLSegment = 'cookings';
                   <i class="fa fa-thumbs-up"></i>
                   @if(Auth::check())
                   <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
-                    @csrf
+                    {{ csrf_field() }}
                     @if($mealbook->isPoint())
                     @method('DELETE');
                     @endif

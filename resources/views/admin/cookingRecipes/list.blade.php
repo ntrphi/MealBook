@@ -63,7 +63,9 @@
                                 <td>
                                 <a href="javascript:void(0);" linkurl="{{ route('cooking.delete', ['id' => $recipe->id]) }}"
                                     class="btn btn-xs btn-warning btn-remove">Delete</a>
-                                    <a class="btn btn-xs btn-success" href="{{route('cooking.restore', $recipe->id)}}">Restore</a>
+                                    @if (Auth::user()->role->name=="Admin")
+                                        <a class="btn btn-xs btn-success" href="{{route('cooking.restore', $recipe->id)}}">Restore</a>
+                                    @endif
                                 </td>        
                             </tr>
                             @else
@@ -84,10 +86,10 @@
                                         <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
                                 @endforeach
                                 </td>
-                                @if($recipe->status==1)
-                                <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true"> On</i></td>
-                                @else
+                                @if($recipe->deleted_at)
                                 <td class="text-center status"><i class="fa fa-ban false" aria-hidden="true"> Off</i></td>
+                                @else
+                                <td class="text-center status"><i class="fa fa-check-square-o true" aria-hidden="true"> On</i></td>
                                 @endif
                                 <td>{{ $recipe->created_at }}</td>
                                 <td>
