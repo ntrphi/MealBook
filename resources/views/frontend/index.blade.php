@@ -624,7 +624,7 @@ $firstURLSegment = 'cookings';
         </div>
         <div class="chef-card">
 
-          <div class="img-frame-top-membe">
+          <div class="img-frame-top-member">
           <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           </div>
           <div class="chef-footer">
