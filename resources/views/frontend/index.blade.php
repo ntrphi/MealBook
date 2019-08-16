@@ -108,7 +108,7 @@ $firstURLSegment = 'cookings';
       <div class="mamComHome">
         <div class="mamComHome-5-content">
           @foreach($meal->mealBookDishes as $cookings)
-          <div class="row monAnWrap monAnStt1">
+          <div class="row monAnWrap">
             <div class="monAnDiv-5 mx-auto my-auto">
               <img src="{{$cookings->avatar}}" alt="">
             </div>
@@ -143,7 +143,7 @@ $firstURLSegment = 'cookings';
         <div class="mamComHome-6-content">
 
           @foreach($meal->mealBookDishes as $cookings)
-          <div class="row monAnWrap monAnStt1">
+          <div class="row monAnWrap ">
             <div class="monAnDiv-5 mx-auto my-auto">
               <img src="{{$cookings->avatar}}" alt="">
             </div>
@@ -270,7 +270,7 @@ $firstURLSegment = 'cookings';
       <div class="mamComHome">
         <div class="mamComHome-5-content">
           @foreach($mealRandom->mealBookDishes as $cookings)
-          <div class="row monAnWrap monAnStt1">
+          <div class="row monAnWrap ">
             <div class="monAnDiv-5 mx-auto my-auto">
               <img src="{{$cookings->avatar}}" alt="">
             </div>
@@ -305,7 +305,7 @@ $firstURLSegment = 'cookings';
         <div class="mamComHome-6-content">
 
           @foreach($mealRandom->mealBookDishes as $cookings)
-          <div class="row monAnWrap monAnStt1">
+          <div class="row monAnWrap ">
             <div class="monAnDiv-5 mx-auto my-auto">
               <img src="{{$cookings->avatar}}" alt="">
             </div>
@@ -426,7 +426,7 @@ $firstURLSegment = 'cookings';
         <div class="mamComHome">
           <div class="mamComHome-5-content">
             @foreach ($mealbook->mealBookDishes as $cookings)
-            <div class="row monAnWrap monAnStt1">
+            <div class="row monAnWrap ">
               <div class="monAnDiv-5 mx-auto my-auto">
                 <img src="{{$cookings->avatar}}" alt="">
               </div>
@@ -460,7 +460,7 @@ $firstURLSegment = 'cookings';
           <div class="mamComHome-6-content">
             @foreach ($mealbook->mealBookDishes as $cookings)
 
-            <div class="row monAnWrap monAnStt1">
+            <div class="row monAnWrap">
               <div class="monAnDiv-5 mx-auto my-auto">
                 <img src="{{$cookings->avatar}}" alt="">
               </div>
@@ -586,7 +586,7 @@ $firstURLSegment = 'cookings';
               </a>
 
             </div>
-            <p>{{$item->dishType->name}}</p>
+            <!-- <p>{{$item->dishType->name}}</p> -->
           </div>
         </div>
       </div>
