@@ -386,7 +386,7 @@ $firstURLSegment = 'cookings';
 
     <div class="owl-carousel owl-theme featured-carousel">
       @foreach ($mealHot as $mealbook)
-      <div class="featured-item">
+      <div class="featured-item pt-2">
         @if($mealbook->mealBookDishes->count() == 4)
         <div class="mamComHome">
           <div class="mamComHome-4-content">
