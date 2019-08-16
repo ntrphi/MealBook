@@ -90,4 +90,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('delete/{id}', 'PostController@destroy')->name('post.delete');
         Route::get('restore/{id}', 'PostController@restore')->name('post.restore');
     });
+    Route::prefix('mealbook')->group(function () {
+        Route::get('/', 'MealbookController@index')->name('mealbook.list');
+
+        Route::get('postEdit/{id}', 'MealbookController@edit')->name('mealbook.edit');
+        Route::post('update', 'MealbookController@update')->name('mealbook.update');
+        Route::get('delete/{id}', 'MealbookController@destroy')->name('mealbook.delete');
+        Route::get('restore/{id}', 'MealbookController@restore')->name('mealbook.restore');
+    });
+    Route::get('/comment-delete/{id}', 'CommentController@delete');
 });
