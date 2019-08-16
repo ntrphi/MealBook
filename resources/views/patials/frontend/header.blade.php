@@ -5,7 +5,7 @@
         <div class="container box_1620">
           <a class="navbar-brand logo_h" href="{{url('/')}}"><img class="img-fluid main-logo" src="images/mealbook logo.png" alt=""></a>
           <!-- thanh search -->
-       <div class="d-flex justify-content-center h-100">
+          <div class="d-flex justify-content-center h-100">
             <div class="searchbar">
               <input class="search_input" type="text" name="" placeholder="Search...">
               <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
@@ -19,9 +19,9 @@
 
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
-            
-              <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li> 
-              <li class="nav-item"><a class="nav-link" href="{{route('mealAll')}}">Mâm Cơm</a></li> 
+
+              <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('mealAll')}}">Mâm Cơm</a></li>
               <li class="nav-item"><a class="nav-link" href="{{route('postAll')}}">Tin Tức</a>
               <li class="nav-item"><a class="nav-link" href="{{route('cookingAll')}}">Món Ăn</a>
 
@@ -31,12 +31,17 @@
                   <li class="nav-item"><a class="nav-link" href="blog.html">Blog Single</a></li>
                   <li class="nav-item"><a class="nav-link" href="blog-details.html">Blog Details</a></li>
                 </ul> -->
-							</li>
+              </li>
               <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Lien he</a></li>
 
-            
+
             </ul>
-          </div> 
+          </div>
+          <div class="user-wrap">
+              <a href="">
+                
+              </a>
+          </div>
         </div>
       </nav>
     </div>

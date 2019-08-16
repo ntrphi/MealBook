@@ -351,20 +351,17 @@ $firstURLSegment = 'cookings';
             <img src="images/blog/c1.png" alt="">
           </div>
           <div class="desc">
-            <p class="comment">
-              {{$comments->title}}
-            </p>
-            <p> {{$comments->content}}</p>
+            <h4 class="mt-1 mb-0">
+              <a href="#">{{$comments->user->name}}</a>
+            </h4>
+            <p class="mt-1 mb-0"> {{$comments->content}}</p>
             <div class="d-flex justify-content-between">
               <div class="d-flex align-items-center">
-                <h5>
-                  <a href="#">{{$comments->user->name}}</a>
-                </h5>
-                <p class="date">{{$comments->created_at}}</p>
+                <p class="date ml-0">{{$comments->created_at}}</p>
               </div>
 
               <div class="reply-btn">
-                <a href="#" class="btn-reply text-uppercase">reply</a>
+                <a href="#" class="btn-reply text-uppercase">Trả lời</a>
               </div>
             </div>
 
