@@ -17,9 +17,10 @@ $firstURLSegment = 'cookings';
     @if(Auth::check())
     <div class="hero-left col-md-6 col-12">
       <h1 class="hero-title">{{$meal->name}}</h1>
+      <span>Tác giả:  <a href="{{route('userpage',Auth::user()->id)}}"><strong>{{$meal->getAuthor->name}}</strong></a></span>
       <div class="d-sm-flex flex-wrap">
 
-        <p>- {{$meal->short_desc}}.</p>
+        <p> {{$meal->short_desc}}.</p>
       </div>
       <div class="counting-status">
         <span> @if($meal->point()->sum('point') > 0)
@@ -45,7 +46,7 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$meal->comment->count()}} <span><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></span>
+        <span>{{$meal->comment->count()}} <span>  <button type="button" class="btn-comment" data-toggle="modal" data-target="#show-add"><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></button></span>
 
       </div>
       <ul class="hero-info d-flex mt-5">
@@ -65,6 +66,7 @@ $firstURLSegment = 'cookings';
           </a>
         </li>
       </ul>
+      
     </div>
 
     <div class="hero-right col-md-6 col-12">
@@ -203,6 +205,7 @@ $firstURLSegment = 'cookings';
     @else
     <div class="hero-left pt-4 col-md-6 col-12">
       <h1 class="hero-title">{{$mealRandom->name}}</h1>
+      <span>Tác giả:  <a href="{{route('userpage',Auth::user()->id)}}"><strong>{{$meal->getAuthor->name}}</strong></a></span>
       <div class="d-sm-flex flex-wrap">
 
         <p>{{$mealRandom->short_desc}}.</p>
@@ -403,10 +406,6 @@ $firstURLSegment = 'cookings';
             <div class="d-flex justify-content-between">
               <div class="d-flex align-items-center">
                 <p class="date ml-0">{{$comments->created_at}}</p>
-              </div>
-
-              <div class="reply-btn">
-                <a href="#" class="btn-reply text-uppercase">Trả lời</a>
               </div>
             </div>
 
@@ -694,11 +693,6 @@ $firstURLSegment = 'cookings';
     </div>
   </div>
 </section>
-<!--================Chef section end =================-->
-
-
-
-
 <!--================Blog section start =================-->
 <section class="section-margin">
   <div class="container">
@@ -726,5 +720,67 @@ $firstURLSegment = 'cookings';
       @endforeach
     </div>
   </div>
+  @if($meal instanceof App\MealBook)
+@php
+$name = 'mealbook';
+$firstURLSegment = 'mealbooks';
+@endphp
+@elseif($meal instanceof App\CookingRecipe)
+@php
+$name = 'cooking';
+$firstURLSegment = 'cookings';
+@endphp
+@endif
+
+
+  <div class="modal fade" id="show-add" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <form class="form-contact comment_form" action="/{{$firstURLSegment}}/{{$meal->id}}/comment" id="commentForm" method="post">
+                <div class="row">
+                  <div class="col-12">{{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{$meal->id}}">
+                    <div class="form-group">
+                      <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>
+                      @if( $errors->has('content') )
+                      <p class="text-warning">{{ $errors->first('content')}}</p>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
+                      @if( $errors->has('title') )
+                      <p class="text-warning">{{ $errors->first('title')}}</p>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+            @if(Auth::user())
+            <div class="form-group">
+              <button type="submit" class="button button-contactForm">Send Message</button>
+            </div>
+            @endif
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
 </section>
 @endsection
