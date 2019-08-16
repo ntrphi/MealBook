@@ -2,7 +2,7 @@
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container box_1620">
+        <div class="container box_1620 position-relative">
           <a class="navbar-brand logo_h" href="{{url('/')}}"><img class="img-fluid main-logo" src="images/mealbook logo.png" alt=""></a>
           <!-- thanh search -->
           <div class="d-flex justify-content-center h-100">
@@ -37,10 +37,18 @@
 
             </ul>
           </div>
-          <div class="user-wrap">
-              <a href="">
-                
-              </a>
+          <div class="user-wrap position-absolute top-0">
+            @if(Auth::check())
+            <a href="">
+              <img src="/images/user-login.png" width="45" alt="">
+            </a>
+            @else
+            <a href="">
+              <img src="/images/user-login.png" width="45" alt="">
+              <span class="text-dark pl-2">Đăng nhập</span>
+            </a>
+            @endif
+
           </div>
         </div>
       </nav>

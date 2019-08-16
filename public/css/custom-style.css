@@ -525,7 +525,14 @@
 .hero-left p{
     color: #383636;
 }
-
+.user-wrap{
+    right: -160px;
+    width: 150px;
+    
+}
+/* .user-wrap img{
+    max-width: 20%;
+} */
 
 
 
