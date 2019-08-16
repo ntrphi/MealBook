@@ -61,6 +61,30 @@ class CookingRecipeController extends Controller
      
     public function store(Request $request)
     {
+            
+        $rules = [
+    		'name' => 'required | min:4|max:30|unique:cooking_recipes',
+            'avatar' => 'required | image',           
+            'short_desc' => 'required | min:4',
+            'recipe'=>'required|min:4',
+            'ingredient'=>'required|array',
+            'amount.'=>'required|array',
+    	];
+
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+		    'min' => ':attribute quá ngắn mời nhập dài hơn.',
+		    'max' => ':attribute có vẻ tên hơi dài bạn rút gọn bớt.',
+            'avatar.image' => ':attribute không đúng định dạng',
+		    'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+		];
+	
+    	$validator = Validator::make($request->all(), $rules , $msg);       
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
 
         $ingredient = $_POST['ingredient'];
         $amount = $_POST['amount'];
@@ -87,44 +111,8 @@ class CookingRecipeController extends Controller
             }
         
             return redirect()->route('cookingAll');
-     
-        // $rules = [
-    	// 	'name' => 'required | min:4|unique:cooking_recipes',
-        //     'avatar' => 'required | image',           
-        //     'ingredient' => 'required | min:4',
-        //     'recipe'=>'required|min:4',
-    	// ];
+            }
 
-    	// $msg = [
-		//     'required' => ':attribute không được bỏ trống.',
-		//     'min' => ':attribute quá ngắn mời nhập dài hơn.',
-        //     'avatar.image' => ':attribute không đúng định dạng',
-		//     'name.unique' => ':attribute đã có, mời ghi nội dung khác',
-		// ];
-	
-    	// $validator = Validator::make($request->all(), $rules , $msg);       
-    	// if ($validator->fails()) {
-        //     return redirect()->back()
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // } else {
-        //     $fileName = null;
-        //     if (request()->hasFile('avatar')) {
-        //         $file = request()->file('avatar');
-        //         $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-        //         $file->move('./images/', $fileName);
-        //     }
-           
-        //     CookingRecipe::create([
-        //         'dish_type_id' => $request->dish_type_id,
-        //         'author_id' => Auth::user()->id,
-        //         'name' => $request->name,
-        //         'avatar' => './images/'.$fileName,
-        //         'ingredient' => $request->ingredient,
-        //         'recipe' => $request->recipe
-        //     ]);
-        //     return redirect()->route('index')->with('success', "You question has been submitted");
-        // }
     }
 
     /**
@@ -184,6 +172,29 @@ class CookingRecipeController extends Controller
 
     public function update(Request $request)
     {
+        $rules = [
+    		'name' => 'required | min:4|max:30|unique:cooking_recipes',
+            'avatar' => 'required | image',           
+            'short_desc' => 'required | min:4',
+            'recipe'=>'required|min:4',
+            'ingredient'=>'required|array',
+            'amount.'=>'required|array',
+    	];
+
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+		    'min' => ':attribute quá ngắn mời nhập dài hơn.',
+		    'max' => ':attribute có vẻ tên hơi dài bạn rút gọn bớt.',
+            'avatar.image' => ':attribute không đúng định dạng',
+		    'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+		];
+	
+    	$validator = Validator::make($request->all(), $rules , $msg);       
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
         $ingredient = $_POST['ingredient'];
         $amount = $_POST['amount'];
         $idDetail = $_POST['idDetail'];
@@ -215,25 +226,9 @@ class CookingRecipeController extends Controller
          
         
             return redirect()->route('manageCookingRecipes');
-    //     $id = $request->id;
-    //     $fileName = null;
-    //     if ($request->hasFile('avatar')) {
-    //         $file = request()->file('avatar');
-    //         $fileName = md5($file->getClientOriginalName() . time()) . "." . $file->getClientOriginalExtension();
-    //         $file->move('./images/', $fileName);
-    //     }
-    //     $cooking_recipe = CookingRecipe::find($id);
-    //     $cooking_recipe->name = $request->name;
-    //     $cooking_recipe->ingredient = $request->input('ingredient');
-    //     $cooking_recipe->recipe = $request->input('recipe');
-    //     if ($fileName) {
-    //         $cooking_recipe->avatar = './images/'.$fileName;
-    //     }
-
-    //     $cooking_recipe->dish_type_id = $request->input('dish_type_id');
-    //     $cooking_recipe->save();
-    //     return redirect()->route('manageCookingRecipes');
+        }
     }
+
     public function getAllDishTypes()
     {
         return DishType::all();

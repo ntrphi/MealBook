@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\MealBook;
 use App\CookingRecipe;
 use Auth;
+use Validator;
 
 class MealBookController extends Controller
 {
@@ -28,9 +29,32 @@ class MealBookController extends Controller
     }
     public function saveadd(Request $request)
     {
+        $rules = [
+    		'name' => 'required | min:4|max:30|unique:meal_books',    
+            'short_desc' => 'required | min:4',
+            'cookingrecipes' =>'required |array|min:3',
+          
+    	];
+
+    	$msg = [
+		    'required' => ':attribute không được bỏ trống.',
+            'min' => ':attribute quá ít mời nhập nhiều hơn.',
+            'cookingrecipes.min' => 'Tối thiểu 1 mâm 3 món ăn',
+		    'max' => ':attribute có vẻ tên hơi dài bạn rút gọn bớt.',
+		    'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+		];
+	
+    	$validator = Validator::make($request->all(), $rules , $msg);       
+    	if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+
         $name= $request->input('name');
         // nhận 1 mảng ID của món ăn
         $dishes = $_POST['cookingrecipes'];
+    
         // tạo mâm cơm mới lưu trên bảng meal_book
         $meal_book = new MealBook;
 
@@ -42,5 +66,6 @@ class MealBookController extends Controller
         $meal_book->mealBookDishes()->sync($dishes);
         // return về trang nào đấy
         return redirect()->route('index');
+        }
     }
 }

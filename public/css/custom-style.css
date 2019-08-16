@@ -88,7 +88,23 @@
     margin-top: unset;
     border: 0;
 }
+.list-cooking-arr > input {
 
+    margin-left: 10px;
+}
+.popUp-monAn p {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 0;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.text-warning {
+    color: red !important;
+}
+.text-dark{display: block;}
 .mamComHome{
     width: 450px !important;
     height: 450px !important;

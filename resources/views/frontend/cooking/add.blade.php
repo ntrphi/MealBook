@@ -28,7 +28,7 @@
             </div>
             <div class="form-group mt-5">
                 <label class="text-dark font-weight-bold off-outline" for="my-input">Mô tả ngắn</label>
-                <textarea rows="" cols="" name="short_desc" value="{{old('short_desc')}}"></textarea>
+                <textarea rows="5" cols="" class="form-control border-gray" name="short_desc" value="{{old('short_desc')}}"></textarea>
                 @if( $errors->has('short_desc') )
                 <p class="text-warning">{{ $errors->first('short_desc')}}</p>
                 @endif

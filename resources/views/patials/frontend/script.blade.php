@@ -78,9 +78,12 @@ $(document).ready(function(){
                                     <div class="confirm-img-box col-md-5">
                                         <img src="` + arr[index].currentSrc + `">
                                     </div>
-                                    <span class="col-md-7 font-weight-bold text-dark">`+arr[index].dataset.name+`</span>
+                                    <div class="list-array-cooking col-md-7">
+                                    <span class="font-weight-bold text-dark">`+arr[index].dataset.name+` </span>
+                                    <label class="list-cooking-arr">Bỏ tích để xóa món này khỏi mâm <input type="checkbox" name="cookingrecipes[]"  value="`+arr[index].dataset.id+`" checked> </label>
+                                    </div>
                                  </div>`
-                                + `<input type="hidden" value="`+arr[index].dataset.id+`" name="cookingrecipes[]" checked>
+                                + `
                             </div>`;
                 
             }

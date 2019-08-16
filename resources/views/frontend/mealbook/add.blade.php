@@ -177,16 +177,26 @@
                     <form id="form-add" action="mealbook-add-save" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="role_id" value="{{Auth::user()->id}}">
+                        @if( $errors->has('cookingrecipes') )
+                            <p class="text-warning">{{ $errors->first('cookingrecipes')}}</p>
+                            @endif
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">Tên Mâm Cơm</label>
                             <input type="text" class="form-control" id="authorname" name="name">
+                            @if( $errors->has('name') )
+                            <p class="text-warning">{{ $errors->first('name')}}</p>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">Mô Tả Ngắn</label>
                             <textarea rows="" cols="" name="short_desc"></textarea>
+                            @if( $errors->has('short_desc') )
+                            <p class="text-warning">{{ $errors->first('short_desc')}}</p>
+                            @endif
                         </div>
+                    
                         <div class="check-list">
-
+                   
                         </div>
 
                         <div class="modal-footer">
