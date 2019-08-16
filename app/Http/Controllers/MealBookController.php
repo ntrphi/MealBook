@@ -18,7 +18,7 @@ class MealBookController extends Controller
 
     public function show($id){
         $mealbook = MealBook::find($id);
-        $recent = CookingRecipe::paginate(5);
+        $recent = CookingRecipe::orderBy('created_at', 'asc')->limit(5)->get();
         return view('page.blog-meal',compact('mealbook','recent'));
     }
     public function create()

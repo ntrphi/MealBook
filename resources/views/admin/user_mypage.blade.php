@@ -7,8 +7,7 @@
       User Profile
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Examples</a></li>
+      <li><a href="admin/home"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">User profile</li>
     </ol>
   </section>
@@ -22,7 +21,7 @@
         <!-- Profile Image -->
         <div class="box box-primary">
           <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="admin/dist/img/user4-128x128.jpg"
+          <img class="profile-user-img img-responsive img-circle" src="{{$user->image}}"
               alt="User profile picture">
 
             <h3 class="profile-username text-center">{{$user->name}}</h3>
@@ -41,51 +40,13 @@
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
           </div>
           <!-- /.box-body -->
         </div>
         <!-- /.box -->
 
         <!-- About Me Box -->
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">About Me</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-            <p class="text-muted">
-              B.S. in Computer Science from the University of Tennessee at Knoxville
-            </p>
-
-            <hr>
-
-            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-            <p class="text-muted">Malibu, California</p>
-
-            <hr>
-
-            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-            <p>
-              <span class="label label-danger">UI Design</span>
-              <span class="label label-success">Coding</span>
-              <span class="label label-info">Javascript</span>
-              <span class="label label-warning">PHP</span>
-              <span class="label label-primary">Node.js</span>
-            </p>
-
-            <hr>
-
-            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-          </div>
-          <!-- /.box-body -->
-        </div>
+     
         <!-- /.box -->
       </div>
       <!-- /.col -->
@@ -106,10 +67,10 @@
 
               <div class="post">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="{{$user->images}}" alt="user image">
+                  <img class="img-circle img-bordered-sm" src="{{$user->image}}" alt="user image">
                   <span class="username">
-                    <a href="#">{{$comment->title}}</a>
-                    <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                    <a href="">{{$comment->title}}</a>
+                    <a href="" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                   </span>
                   <span class="description">Shared publicly - {{$comment->created_at}}</span>
                 </div>
@@ -126,7 +87,6 @@
                         (5)</a></li> --}}
                 </ul>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
               </div>
               @endforeach
 
@@ -138,9 +98,9 @@
 
               <div class="post">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="{{$recipe->images}}" alt="user image">
+                  <img class="img-circle img-bordered-sm" src="{{$recipe->avatar}}" alt="user image">
                   <span class="username">
-                    <a href="#">{{$recipe->name}}</a>
+                  <a href="{{route('showCooking', $recipe->id)}}">{{$recipe->name}}</a>
                     <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                   </span>
                   <span class="description">Shared publicly - {{$recipe->created_at}}</span>
@@ -158,7 +118,6 @@
                         (5)</a></li> --}}
                 </ul>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
               </div>
               @endforeach
             </div>
@@ -171,7 +130,7 @@
                 <div class="user-block">
                   <img class="img-circle img-bordered-sm" src="{{$mealbook->images}}" alt="user image">
                   <span class="username">
-                    <a href="#">{{$mealbook->name}}</a>
+                    <a href="{{route('showMeal', $mealbook->id)}}">{{$mealbook->name}}</a>
                     <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                   </span>
                   <span class="description">Shared publicly - {{$mealbook->created_at}}</span>
@@ -192,18 +151,18 @@
                         (5)</a></li> --}}
                 </ul>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
               </div>
               @endforeach
             </div>
             <!-- /.tab-pane -->
             <div class="tab-pane" id="settings">
               <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="id" value="{{$user->id}}">
                 <div class="form-group">
                   <label for="inputName" class="col-sm-2 control-label">Name</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputName" name="name" placeholder="Name" value="{{$user->name}}">
+                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" value="{{$user->name}}">
                   </div>
                 </div>
                 <div class="form-group">
@@ -221,26 +180,10 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputImage" class="col-sm-2 control-label">Avatar</label>
-
-                  <div class="col-sm-10">
-                  <input type="text" class="form-control" name="image" id="inputImage">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="inputSkills" class="col-sm-2 control-label">Change Password</label>
 
                   <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="inputSkills" placeholder="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                      </label>
-                    </div>
                   </div>
                 </div>
                 <div class="form-group">

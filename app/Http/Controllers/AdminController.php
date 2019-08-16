@@ -28,8 +28,10 @@ class AdminController extends Controller
     }
     public function getListCookingRecipes()
     {
-         $recipesList = CookingRecipe::withTrashed()->get();
-      // $recipesList = CookingRecipe::all();
+        if (Auth::user()->role->name=="Member") {
+         $recipesList = CookingRecipe::withTrashed()->where('author_id',Auth::user()->id)->get();
+            
+        } else $recipesList = CookingRecipe::withTrashed()->get();
         return view('admin.cookingRecipes.list', ['recipesList' => $recipesList]);
     }
     public function getUserPage(Request $request)
@@ -50,7 +52,7 @@ class AdminController extends Controller
     }
     public function getMealBookList()
     {
-        $mealBookList = MealBook::paginate(10);
-        return;
+        $mealBookList = MealBook::withTrashed()->paginate(10);
+        return view('admin.mealbooks.list', ['mealbooks'=>$mealBookList]);
     }
 }
