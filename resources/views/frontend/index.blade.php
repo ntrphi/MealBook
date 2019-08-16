@@ -552,7 +552,9 @@ $firstURLSegment = 'cookings';
       @foreach ($cookingWeek as $item)
       <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
+          <div class="food-card-frame">
           <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
+          </div>
           <div class="media-body">
             <div class="d-flex justify-content-between ">
               <div href="#" class="blog_item_date mt-3">
@@ -606,7 +608,7 @@ $firstURLSegment = 'cookings';
 
 
 <!--================Chef section start =================-->
-<section class="section-margin">
+<section class="section-margin mt-3">
   <div class="container">
     <div class="section-intro mb-75px">
       <h4 class="intro-title">Top member </h4>
@@ -621,7 +623,9 @@ $firstURLSegment = 'cookings';
         </div>
         <div class="chef-card">
 
-          <img class="card-img rounded-0" src="{{$users->image}}" alt="">
+          <div class="img-frame-top-member">
+            <img class="card-img rounded-0" src="{{$users->image}}" alt="">
+          </div>
           <div class="chef-footer">
             <h4>{{$users->name}}</h4>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
@@ -637,12 +641,6 @@ $firstURLSegment = 'cookings';
             @endif
             </p>
           </div>
-          <div class="chef-overlay">
-            <ul class="social-icons">
-              <li><a href="#"><i class="ti-facebook"></i></a></li>
-              <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-            </ul>
-          </div>
         </div>
       </div>
       @endforeach
@@ -657,8 +655,8 @@ $firstURLSegment = 'cookings';
 <!--================Blog section start =================-->
 <section class="section-margin">
   <div class="container">
-    <div class="section-intro mb-75px">
-      <h4 class="intro-title">Blog noi bat</h4>
+    <div class="section-intro mb-5">
+      <h4 class="intro-title">Blog nổi bật</h4>
       <!-- <h2>Latest food and recipe news</h2> -->
     </div>
 

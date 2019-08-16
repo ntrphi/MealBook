@@ -23,7 +23,7 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
             
-              <li class="nav-item active"><a class="nav-link" href="{{url('/')}}">Home</a></li> 
+              <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li> 
               <li class="nav-item"><a class="nav-link" href="{{route('mealAll')}}">Mâm Cơm</a></li> 
               <li class="nav-item"><a class="nav-link" href="{{route('postAll')}}">Tin Tức</a>
               <li class="nav-item"><a class="nav-link" href="{{route('cookingAll')}}">Món Ăn</a>
@@ -35,7 +35,7 @@
                   <li class="nav-item"><a class="nav-link" href="blog-details.html">Blog Details</a></li>
                 </ul> -->
 							</li>
-              <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Lien he</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Liên hệ</a></li>
 
             
             </ul>
