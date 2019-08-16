@@ -23,26 +23,25 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
             
-              <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Home</a></li> 
+              <li class="nav-item"><a class="nav-link" href="{{url('/')}}">Trang Chủ</a></li> 
               <li class="nav-item"><a class="nav-link" href="{{route('mealAll')}}">Mâm Cơm</a></li> 
-              <li class="nav-item"><a class="nav-link" href="{{route('postAll')}}">Tin Tức</a>
               <li class="nav-item"><a class="nav-link" href="{{route('cookingAll')}}">Món Ăn</a>
-
               <li class="nav-item ">
                 <a href="{{route('chef')}}" class="nav-link" role="button">Đầu Bếp</a>
                 <!-- <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="blog.html">Blog Single</a></li>
                   <li class="nav-item"><a class="nav-link" href="blog-details.html">Blog Details</a></li>
                 </ul> -->
-							</li>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="{{route('postAll')}}">Tin Tức</a>
               <li class="nav-item"><a class="nav-link" href="{{route('contact')}}">Liên hệ</a></li>
 
             
             </ul>
             <div class="user-wrap position-absolute top-0">
             @if(Auth::check())
-            <a href="">
-              <img src="/images/user-login.png" width="45" alt="">
+            <a href="{{route('userpage',Auth::user()->id)}}">    
+              <img src="{{Auth::user()->image}}" width="45" class="img-circle">
             </a>
             @else
             <a href="{{route('login')}}">
