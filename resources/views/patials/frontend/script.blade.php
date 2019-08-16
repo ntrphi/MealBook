@@ -13,7 +13,6 @@
 <script src="/ckeditor/ckeditor.js"></script>  
 
 <script>
-var isShown = false;
 $(document).ready(function(){
     var isShown = false;
 

@@ -44,9 +44,9 @@
               <img src="{{Auth::user()->image}}" width="45" class="img-circle">
             </a>
             @else
-            <a href="{{route('login')}}">
+            <a href="{{route('login')}}" class="d-flex">
               <img src="/images/user-login.png" width="45" alt="">
-              <span class="text-dark pl-2">Đăng nhập</span>
+              <span class="text-dark pl-2 pt-2">Đăng nhập</span>
             </a>
             @endif
 
