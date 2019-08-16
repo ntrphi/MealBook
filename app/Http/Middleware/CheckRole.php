@@ -20,7 +20,7 @@ class CheckRole
             if( Auth::user()->role->name == 'Admin' ){
                 return $next($request);
             } elseif (Auth::user()->role->name == 'Member')
-            return redirect()->route('userpage', Auth::user()->id); 
+            return redirect()->route('error'); 
         }
         return redirect()->route('index'); 
     }
