@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         // Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
         Route::get('delete/{id}', 'DishtypeController@delete')->name('dishtype.delete');
     });
-    Route::prefix('posts')->group(function () {
+    Route::group(['prefix' => 'posts', 'middleware' => 'role'], function () {
         Route::get('/list-post', 'PostController@index')->name('list-post');
 
         Route::get('postEdit/{id}', 'PostController@edit')->name('postEdit');
@@ -98,5 +98,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('delete/{id}', 'MealbookController@destroy')->name('mealbook.delete');
         Route::get('restore/{id}', 'MealbookController@restore')->name('mealbook.restore');
     });
-    Route::get('/comment-delete/{id}', 'CommentController@delete');
+    Route::group(['prefix' => 'comment', 'middleware' => 'role'], function () {
+        Route::get('list-comment', 'CommentController@index')->name('list.comment');
+        Route::get('delete/{id}', 'CommentController@delete');
+    });
 });
