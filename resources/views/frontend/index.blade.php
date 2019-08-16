@@ -624,7 +624,7 @@ $firstURLSegment = 'cookings';
 
           <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           <div class="chef-footer">
-            <h4>{{$users->name}}</h4>
+            <a href="{{route('userpage',$users->id)}}"><h4>{{$users->name}}</h4></a>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
               <span>{{$users->cookingCount()}} Món Ăn</span></p>
             <p>Tổng Like : @if($users->isPoint() >= 10 )

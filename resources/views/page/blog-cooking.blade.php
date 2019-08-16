@@ -25,7 +25,7 @@
                         <p class="excert">{{$detail->ingredient}} {{$detail->amount}}  </p> 
                         @endforeach
                           <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="ti-user"></i> {{$cooking->user->name}}</a></li>
+                            <li><a href="{{route('userpage',$cooking->author_id)}}"><i class="ti-user"></i> {{$cooking->user->name}}</a></li>
                             <li><a href="#"><i class="ti-comments"></i>{{$cooking->comment->count()}} Comment</a></li>
                             </ul>
 											
@@ -73,7 +73,7 @@
                     <div class="media align-items-center">
                       <img src="{{$cooking->user->image}}" alt="">
                       <div class="media-body">
-                        <a href="#">
+                        <a href="{{route('userpage',$cooking->author_id)}}">
                           <h4>{{$cooking->user->name}}</h4>
                         </a>
                        <p>{{$cooking->user->email}}</p>
