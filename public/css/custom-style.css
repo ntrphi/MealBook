@@ -95,7 +95,6 @@
 .popUp-monAn p {
     width: 50%;
     display: inline-block;
-    float: left;
     margin-bottom: 0;
 }
 .img-circle {
@@ -427,9 +426,7 @@
     /* padding-top: 55px; */
     /* background: white; */
 }
-.khoMonAn{
-    /* margin-left: 70px; */
-}
+
 .monAnBox{
     width: 150px;
     height: 100px;
@@ -688,15 +685,44 @@
 }
 .x-but{
     color: red;
-    font-size: 50px;
+    font-size: 40px;
     cursor: pointer;
 }
-/* .user-wrap img{
-    max-width: 20%;
-} */
-
-
-
+.frameUser{
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.frameUser>img{
+    max-width: 150%;
+}
+.like-but,.cmt-but{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.btn-comment{
+    border: 0;
+    background: unset;
+}
+.like-but:hover{
+    width: 60px;
+    height: 60px;
+    
+}
+.cmt-but:hover{
+    width: 60px;
+    height: 60px;
+}
+.point{
+    filter: saturate(0);
+}
+.likedStatus{
+    filter: saturate(2);
+}
 
 
 

@@ -30,9 +30,9 @@ $firstURLSegment = 'cookings';
           @endif
           <span>
             @if(Auth::check())
-            <a title="point" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
+            <a title="Thích" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
               @endif
-              <img src="/images/like_png.png" width="20" height="20" alt="">
+              <img src="/images/like_png.png" class="like-but"  alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                 @csrf
@@ -46,10 +46,10 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$meal->comment->count()}} <span>  <button type="button" class="btn-comment" data-toggle="modal" data-target="#show-add"><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></button></span>
+        <span>{{$meal->comment->count()}} <span title="Bình luận">  <button type="button" class="btn-comment" data-toggle="modal" data-target="#show-add"><img src="/images/comment-icon.jpg" class="cmt-but" alt=""></span></button></span>
 
       </div>
-      <ul class="hero-info d-flex mt-5">
+      <!-- <ul class="hero-info d-flex mt-5">
         <li class="ml-0">
           <a href="">
             <h4>Like</h4>
@@ -65,7 +65,7 @@ $firstURLSegment = 'cookings';
             <h4>Share</h4>
           </a>
         </li>
-      </ul>
+      </ul> -->
       
     </div>
 
@@ -84,7 +84,7 @@ $firstURLSegment = 'cookings';
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -127,7 +127,7 @@ $firstURLSegment = 'cookings';
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -168,7 +168,7 @@ $firstURLSegment = 'cookings';
 
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -267,7 +267,7 @@ $firstURLSegment = 'cookings';
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -307,7 +307,7 @@ $firstURLSegment = 'cookings';
               <h3 class="text-center mt-2">{{$cookings->name}}</h3>
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -348,7 +348,7 @@ $firstURLSegment = 'cookings';
 
               <div class="container-fluid">
 
-                <h5 class="congThucTitle">Cong thuc :</h5>
+                <h5 class="congThucTitle">Công thức :</h5>
                 @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -435,7 +435,7 @@ $firstURLSegment = 'cookings';
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
 
-                  <h5 class="congThucTitle">Cong thuc :</h5>
+                  <h5 class="congThucTitle">Công thức :</h5>
                   @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -474,7 +474,7 @@ $firstURLSegment = 'cookings';
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
 
-                  <h5 class="congThucTitle">Cong thuc :</h5>
+                  <h5 class="congThucTitle">Công thức :</h5>
                   @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -512,7 +512,7 @@ $firstURLSegment = 'cookings';
                 <div class="imgPopUpFrame"><img class="img-fluid" src="{{$cookings->avatar}}" alt=""></div>
                 <h3 class="text-center mt-2">{{$cookings->name}}</h3>
                 <div class="container-fluid">
-                  <h5 class="congThucTitle">Cong thuc :</h5>
+                  <h5 class="congThucTitle">Công thức :</h5>
                   @foreach ($cookings->ingredientDetail as $detail)
                     <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
                 @endforeach
@@ -768,7 +768,7 @@ $firstURLSegment = 'cookings';
                 </div>
             @if(Auth::user())
             <div class="form-group">
-              <button type="submit" class="button button-contactForm">Send Message</button>
+              <button type="submit" class="button button-contactForm">Bình luận</button>
             </div>
             @endif
         </form>

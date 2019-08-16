@@ -40,8 +40,8 @@
             </ul>
             <div class="user-wrap position-absolute top-0">
             @if(Auth::check())
-            <a href="{{route('userpage',Auth::user()->id)}}">    
-              <img src="{{Auth::user()->image}}" width="45" class="img-circle">
+            <a href="{{route('userpage',Auth::user()->id)}}" class="frameUser">    
+              <img src="{{Auth::user()->image}}">
             </a>
             @else
             <a href="{{route('login')}}" class="d-flex">
