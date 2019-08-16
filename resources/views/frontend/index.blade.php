@@ -518,7 +518,7 @@ $firstURLSegment = 'cookings';
           <a href="#">
             <h3>{{$mealbook->name}}</h3>
           </a>
-          <p>
+          <p class="mt-2">
           {{$mealbook->short_desc}}
           </p>
             <div class="d-flex justify-content-between">
@@ -553,10 +553,12 @@ $firstURLSegment = 'cookings';
       @foreach ($cookingWeek as $item)
       <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
+          <div class="food-card-frame">
           <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
-          <div class="media-body">
-            <div class="d-flex justify-content-between ">
-              <div href="#" class="blog_item_date mt-3">
+          </div>
+          <div class="media-body pl-0">
+            <div class="row justify-content-between position-relative ">
+              <div href="#" class="blog_item_date position-absolute bestDishesOfWeekLikes">
                 @if(Auth::check())
                 <a title="point" class="point {{Auth::guest() ? 'off' : '($item->isPoint()) ' }} {{$item->isPoint() ? 'off' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$item->id}}').submit();">
                   @endif
@@ -580,10 +582,10 @@ $firstURLSegment = 'cookings';
                   @endif
                 </p>
               </div>
-              <a class="d-block mt-3" href="">
+              <a class="d-block mt-3 col-md-12" href="">
                 <h4>{{$item->name}}</h4>
               </a>
-              <p>{{$item->short_desc}}</p>
+              <p class="col-md-12 bestDishesOfWeekDesc">{{$item->short_desc}}</p>
             </div>
             <!-- <p>{{$item->dishType->name}}</p> -->
           </div>

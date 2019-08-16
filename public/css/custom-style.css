@@ -472,6 +472,10 @@
 .item-body{
     text-align: center;
 }
+.item-body>p{
+    height: 75px;
+    overflow: hidden;
+}
 .owl-carousel .owl-item img{
     width: initial;
 }
@@ -580,6 +584,20 @@
 .active-X{
     background: #f90;
     
+}
+.bestDishesOfWeekLikes{
+    top: -80px;
+    padding: 17px 0px 0px 10px;
+    left: 20px;
+    background: white;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.bestDishesOfWeekDesc{
+    height: 60px;
+    overflow: hidden;
 }
 /* .user-wrap img{
     max-width: 20%;
