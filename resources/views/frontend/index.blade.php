@@ -564,7 +564,7 @@ $firstURLSegment = 'cookings';
           </p>
         </div>
         <div class="item-body">
-          <a href="#">
+          <a href="{{route('showMeal',$mealbook->id)}}">
             <h3>{{$mealbook->name}}</h3>
           </a>
           <p class="mt-2">
@@ -631,7 +631,7 @@ $firstURLSegment = 'cookings';
                   @endif
                 </p>
               </div>
-              <a class="d-block mt-3 col-md-12" href="">
+              <a class="d-block mt-3 col-md-12"  href="{{route('showCooking',$item->id)}}">
                 <h4>{{$item->name}}</h4>
               </a>
               <p class="col-md-12 bestDishesOfWeekDesc">{{$item->short_desc}}</p>

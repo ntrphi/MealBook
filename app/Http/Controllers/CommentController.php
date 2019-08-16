@@ -5,12 +5,18 @@ use App\Post;
 use App\User;
 use App\MealBook;
 use App\CookingRecipe;
+use App\Comment;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
+   public function index(){
+      $comment = Comment::latest()->paginate(10);
+      return view('comments.list',compact('comment'));
+   }
 
     public function postComment(Post $post,Request $request){
       $this->authorize('create');	

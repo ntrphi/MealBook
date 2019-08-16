@@ -82,12 +82,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         // Route::get('upgrade/{id}', 'UserController@UpOrDownGrade')->name('upgradeToAdmin');
         Route::get('delete/{id}', 'DishtypeController@delete')->name('dishtype.delete');
     });
-    Route::prefix('posts')->group(function () {
+    Route::group(['prefix' => 'posts', 'middleware' => 'role'], function () {
         Route::get('/list-post', 'PostController@index')->name('list-post');
 
         Route::get('postEdit/{id}', 'PostController@edit')->name('postEdit');
         Route::post('update', 'PostController@update')->name('managerPost');
         Route::get('delete/{id}', 'PostController@destroy')->name('post.delete');
         Route::get('restore/{id}', 'PostController@restore')->name('post.restore');
+    });
+    Route::group(['prefix' => 'comment', 'middleware' => 'role'], function () {
+       Route::get('list-comment','CommentController@index')->name('list.comment');
     });
 });
