@@ -28,20 +28,21 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
-                  <th>Action</th>
+                  <th>Tên Mâm Cơm Or Món Ăn</th>
+                  <th>title</th>
+                  <th>content</th>
 
                 </tr>
               </thead>
               <tbody>
-                @foreach($dishtypes as $dt)
+                @foreach($comment as $comments)
                 <tr class="bg-light">
-                  <td>{{$dt->id}}</td>
-                  <td>{{$dt->name}}</td>
-                  <td>{{$dt->avatar}}</td>
-                  <td>{{$dt->cookingRecipe->count()}} Công thức </td>
+                  <td>{{$comments->id}}</td>
+                  <td>{{$comments->commentable->name}}</td>
+                  <td>{{$comments->title}}</td>
+                  <td>{{$comments->content}}</td>
                   <td class="text-center">
-                    <a href="javascript:void(0);" linkurl="{{ route('dishtype.delete', ['id' => $dt->id]) }}"
+                    <a href="javascript:void(0);" linkurl="{{ route('comment.delete', ['id' => $comments->id]) }}"
                       class="btn btn-xs btn-warning btn-remove">Delete</a>
                   </td>
                 </tr>
@@ -56,7 +57,7 @@
       </div>
       <!-- /.col -->
     </div>
-    {{ $dishtypes->links() }}
+    {{ $comment->links() }}
 
     <!-- /.row -->
   </section>
