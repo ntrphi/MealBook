@@ -742,7 +742,9 @@ $firstURLSegment = 'cookings';
       @foreach ($post as $posts)
       <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
         <div class="card-blog">
+          <div class="img-frame-blog">
           <img class="card-img rounded-0" src="{{$posts->image}}" alt="">
+          </div>
           <div class="blog-body">
             <ul class="blog-info">
               <li><a href="">{{$posts->user->name}}</a></li>

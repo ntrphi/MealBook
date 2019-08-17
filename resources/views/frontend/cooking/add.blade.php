@@ -65,7 +65,7 @@
                     <div class="col-md-7">
                         <h6 class="pt-3">Cách làm</h6>
                         <div class="congThucDiv">
-                            <textarea id="" cols="30" rows="10" name="recipe" placeholder="Nhập công thực tại đây..."></textarea>
+                            <textarea id="editor1" cols="30" rows="10" name="recipe" placeholder="Nhập công thực tại đây..."></textarea>
                             @if( $errors->has('recipe') )
                             <p class="text-warning">{{ $errors->first('recipe')}}</p>
                             @endif
@@ -153,5 +153,6 @@
         });
         // some js code
     });
+    CKEDITOR.replace( 'editor1' );  
 </script>
 @endsection
