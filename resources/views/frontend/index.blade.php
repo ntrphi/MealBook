@@ -17,7 +17,7 @@ $firstURLSegment = 'cookings';
     @if(Auth::check())
     <div class="hero-left col-md-6 col-12">
       <h1 class="hero-title">{{$meal->name}}</h1>
-      <span>Tác giả:  <a href="{{route('userpage',Auth::user()->id)}}"><strong>{{$meal->getAuthor->name}}</strong></a></span>
+      <span>Tác giả: <a href="{{route('userpage',Auth::user()->id)}}"><strong>{{$meal->getAuthor->name}}</strong></a></span>
       <div class="d-sm-flex flex-wrap">
 
         <p> {{$meal->short_desc}}.</p>
@@ -30,9 +30,10 @@ $firstURLSegment = 'cookings';
           @endif
           <span>
             @if(Auth::check())
-            <a title="Thích" class="point {{Auth::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
+            <a title="Thích" class="point {{Auth
+              ::guest() ? 'off' : '($meal->isPoint()) ' }} {{$meal->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$meal->id}}').submit();">
               @endif
-              <img src="/images/like_png.png" class="like-but"  alt="">
+              <img src="/images/like_png.png" class="like-but" alt="">
               @if(Auth::check())
               <form id="point-{{$name}}-{{$meal->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
                 @csrf
@@ -46,29 +47,40 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$meal->comment->count()}} <span title="Bình luận">  <button type="button" class="btn-comment" data-toggle="modal" data-target="#show-add"><img src="/images/comment-icon.jpg" class="cmt-but" alt=""></span></button></span>
+        <span>{{$meal->comment->count()}} <span title="Bình luận"> <button type="button" class="btn-comment" data-toggle="modal" data-target="#show-add"><img src="/images/comment-icon.jpg" class="cmt-but" alt=""></span></button></span>
 
       </div>
-      <!-- <ul class="hero-info d-flex mt-5">
-        <li class="ml-0">
-          <a href="">
-            <h4>Like</h4>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <h4>Comment</h4>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <h4>Share</h4>
-          </a>
-        </li>
-      </ul> -->
-      
+      <section class="cmt-home-popular">
+        <div class="comments-area comments-area-home">
+          @foreach($meal->comment as $comments)
+          <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+              <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                  <img src="images/blog/c1.png" alt="">
+                </div>
+                <div class="desc">
+                  <h4 class="mt-1 mb-0">
+                    <a href="#">{{$comments->user->name}}</a>
+                  </h4>
+                  <p class="mt-1 mb-0"> {{$comments->content}}</p>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <p class="date ml-0">{{$comments->created_at}}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </section>
+
+
     </div>
-11
+    11
     <div class="hero-right col-md-6 col-12">
       <!-- for mam 4 mon -->
       @if($meal->mealBookDishes->count() == 4)
@@ -86,9 +98,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
@@ -97,9 +109,9 @@ $firstURLSegment = 'cookings';
 
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
 
@@ -131,9 +143,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
@@ -141,9 +153,9 @@ $firstURLSegment = 'cookings';
               </div>
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -174,9 +186,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
@@ -184,9 +196,9 @@ $firstURLSegment = 'cookings';
               </div>
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -205,9 +217,9 @@ $firstURLSegment = 'cookings';
     @else
     <div class="hero-left pt-4 col-md-6 col-12">
       <h1 class="hero-title">{{$mealRandom->name}}</h1>
-      
+
       <span>Tác giả: @if(Auth::check()) <a href="{{route('userpage',Auth::user()->id)}}">@endif
-      <strong>{{$meal->getAuthor->name}}</strong></a></span>
+          <strong>{{$meal->getAuthor->name}}</strong></a></span>
       <div class="d-sm-flex flex-wrap">
 
         <p>{{$mealRandom->short_desc}}.</p>
@@ -236,10 +248,10 @@ $firstURLSegment = 'cookings';
               @endif
             </a></span></span>
 
-        <span>{{$mealRandom->comment->count()}} <span class="pl-1"><img src="/images/comment-icon.jpg" width="20" height="20" alt=""></span></span>
+        <span>{{$mealRandom->comment->count()}} <span class="pl-1"><img src="/images/comment-icon.jpg" class="cmt-but" alt=""></span></span>
 
       </div>
-      <ul class="hero-info d-flex mt-5">
+      <!-- <ul class="hero-info d-flex mt-5">
         <li class="ml-0">
           <a href="">
             <h4>Like</h4>
@@ -255,7 +267,7 @@ $firstURLSegment = 'cookings';
             <h4>Share</h4>
           </a>
         </li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="hero-right col-md-6 col-12">
@@ -275,9 +287,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
@@ -285,9 +297,9 @@ $firstURLSegment = 'cookings';
               </div>
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -317,9 +329,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="">
                   Xem chi tiet
@@ -327,9 +339,9 @@ $firstURLSegment = 'cookings';
               </div>
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -360,9 +372,9 @@ $firstURLSegment = 'cookings';
 
                 <h5 class="congThucTitle">Công thức :</h5>
                 <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
+                  @foreach ($cookings->ingredientDetail as $detail)
+                  <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                  @endforeach
                 </div>
                 <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                   Xem chi tiet
@@ -370,9 +382,9 @@ $firstURLSegment = 'cookings';
               </div>
               <div class="container">
                 <div class="row">
-                    <span class="d-block mx-auto x-but">
+                  <span class="d-block mx-auto x-but">
                     <i class="fa fa-times-circle"></i>
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -449,21 +461,21 @@ $firstURLSegment = 'cookings';
 
                   <h5 class="congThucTitle">Công thức :</h5>
                   <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
-                </div>
+                    @foreach ($cookings->ingredientDetail as $detail)
+                    <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                    @endforeach
+                  </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
                 </div>
                 <div class="container">
-                <div class="row">
+                  <div class="row">
                     <span class="d-block mx-auto x-but">
-                    <i class="fa fa-times-circle"></i>
+                      <i class="fa fa-times-circle"></i>
                     </span>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
             @endforeach
@@ -490,21 +502,21 @@ $firstURLSegment = 'cookings';
 
                   <h5 class="congThucTitle">Công thức :</h5>
                   <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
-                </div>
+                    @foreach ($cookings->ingredientDetail as $detail)
+                    <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                    @endforeach
+                  </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
                 </div>
                 <div class="container">
-                <div class="row">
+                  <div class="row">
                     <span class="d-block mx-auto x-but">
-                    <i class="fa fa-times-circle"></i>
+                      <i class="fa fa-times-circle"></i>
                     </span>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
             @endforeach
@@ -530,21 +542,21 @@ $firstURLSegment = 'cookings';
                 <div class="container-fluid">
                   <h5 class="congThucTitle">Công thức :</h5>
                   <div class="cooking-body">
-                @foreach ($cookings->ingredientDetail as $detail)
-                    <p class="excert"><span> {{$detail->ingredient}}</span> -  <span>{{$detail->amount}}</span>   </p> 
-                @endforeach
-                </div>
+                    @foreach ($cookings->ingredientDetail as $detail)
+                    <p class="excert"><span> {{$detail->ingredient}}</span> - <span>{{$detail->amount}}</span> </p>
+                    @endforeach
+                  </div>
                   <a class="xemThemBtn" href="{{route('showCooking',$cookings->id)}}">
                     Xem chi tiet
                   </a>
                 </div>
                 <div class="container">
-                <div class="row">
+                  <div class="row">
                     <span class="d-block mx-auto x-but">
-                    <i class="fa fa-times-circle"></i>
+                      <i class="fa fa-times-circle"></i>
                     </span>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
 
@@ -560,8 +572,7 @@ $firstURLSegment = 'cookings';
           @if(Auth::check())
           <a title="point" class="point {{Auth::guest() ? 'off ' : '($mealbook->isPoint()) ' }} {{$mealbook->isPoint() ? 'off likedStatus' :''}}" onclick="event.preventDefault(); document.getElementById('point-{{$name}}-{{$mealbook->id}}').submit();">
             @endif
-            <img src="/images/like_png.png" class="like-but"
-             alt="">
+            <img src="/images/like_png.png" class="like-but" alt="">
             @if(Auth::check())
             <form id="point-{{$name}}-{{$mealbook->id}}" action="/{{$firstURLSegment}}/{{$name}}/point" method="POST" style="display: none;">
               @csrf
@@ -574,7 +585,7 @@ $firstURLSegment = 'cookings';
             </form>
             @endif
           </a>
-          <p class="mt-2 ml-2">
+          <p class=" ml-2">
             @if($mealbook->point()->sum('point') > 0)
             <span>{{$mealbook->point()->sum('point')}}</span>
             @else
@@ -587,11 +598,11 @@ $firstURLSegment = 'cookings';
             <h3>{{$mealbook->name}}</h3>
           </a>
           <p class="mt-2">
-          {{$mealbook->short_desc}}
+            {{$mealbook->short_desc}}
           </p>
-            <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between">
 
-            </div>
+          </div>
         </div>
       </div>
       @endforeach
@@ -622,7 +633,7 @@ $firstURLSegment = 'cookings';
       <div class="col-lg-6 food-card-parent">
         <div class="align-items-center food-card">
           <div class="food-card-frame">
-          <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
+            <img class="mr-3 img-fluid mr-sm-4" src="{{$item->avatar}}" alt="">
           </div>
           <div class="media-body pl-0">
             <div class="row justify-content-between position-relative ">
@@ -650,7 +661,7 @@ $firstURLSegment = 'cookings';
                   @endif
                 </p>
               </div>
-              <a class="d-block mt-3 col-md-12"  href="{{route('showCooking',$item->id)}}">
+              <a class="d-block mt-3 col-md-12" href="{{route('showCooking',$item->id)}}">
                 <h4>{{$item->name}}</h4>
               </a>
               <p class="col-md-12 bestDishesOfWeekDesc">{{$item->short_desc}}</p>
@@ -693,10 +704,12 @@ $firstURLSegment = 'cookings';
         <div class="chef-card">
 
           <div class="img-frame-top-member">
-          <img class="card-img rounded-0" src="{{$users->image}}" alt="">
+            <img class="card-img rounded-0" src="{{$users->image}}" alt="">
           </div>
           <div class="chef-footer">
-            <a href="{{route('userpage',$users->id)}}"><h4>{{$users->name}}</h4></a>
+            <a href="{{route('userpage',$users->id)}}">
+              <h4>{{$users->name}}</h4>
+            </a>
             <p><span>{{$users->mealCount()}} Mâm Cơm</span>
               <span>{{$users->cookingCount()}} Món Ăn</span></p>
             <p>Tổng Like : @if($users->isPoint() >= 10 )
@@ -710,7 +723,7 @@ $firstURLSegment = 'cookings';
             @endif
             </p>
           </div>
-          
+
         </div>
       </div>
       @endforeach
@@ -745,56 +758,55 @@ $firstURLSegment = 'cookings';
     </div>
   </div>
   @if($meal instanceof App\MealBook)
-@php
-$name = 'mealbook';
-$firstURLSegment = 'mealbooks';
-@endphp
-@elseif($meal instanceof App\CookingRecipe)
-@php
-$name = 'cooking';
-$firstURLSegment = 'cookings';
-@endphp
-@endif
+  @php
+  $name = 'mealbook';
+  $firstURLSegment = 'mealbooks';
+  @endphp
+  @elseif($meal instanceof App\CookingRecipe)
+  @php
+  $name = 'cooking';
+  $firstURLSegment = 'cookings';
+  @endphp
+  @endif
 
 
   <div class="modal fade" id="show-add" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-      <form class="form-contact comment_form" action="/{{$firstURLSegment}}/{{$meal->id}}/comment" id="commentForm" method="post">
-                <div class="row">
-                  <div class="col-12">{{ csrf_field() }}
-                    <input type="hidden" name="id" value="{{$meal->id}}">
-                    <div class="form-group">
-                      <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>
-                      @if( $errors->has('content') )
-                      <p class="text-warning">{{ $errors->first('content')}}</p>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
-                      @if( $errors->has('title') )
-                      <p class="text-warning">{{ $errors->first('title')}}</p>
-                      @endif
-                    </div>
-                  </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form class="form-contact comment_form" action="/{{$firstURLSegment}}/{{$meal->id}}/comment" id="commentForm" method="post">
+            <div class="row">
+              <div class="col-12">{{ csrf_field() }}
+                <input type="hidden" name="id" value="{{$meal->id}}">
+                <div class="form-group">
+                  <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" {{old('content')}} placeholder="Write Comment"></textarea>
+                  @if( $errors->has('content') )
+                  <p class="text-warning">{{ $errors->first('content')}}</p>
+                  @endif
                 </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <input class="form-control" name="title" id="name" type="text" placeholder="Tiêu Đề" {{old('title')}}>
+                  @if( $errors->has('title') )
+                  <p class="text-warning">{{ $errors->first('title')}}</p>
+                  @endif
+                </div>
+              </div>
+            </div>
             @if(Auth::user())
             <div class="form-group">
               <button type="submit" class="button button-contactForm">Bình luận</button>
             </div>
             @endif
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -805,6 +817,6 @@ $firstURLSegment = 'cookings';
 
 
 
-  
+
 </section>
 @endsection
