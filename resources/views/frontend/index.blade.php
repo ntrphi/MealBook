@@ -403,34 +403,6 @@ $firstURLSegment = 'cookings';
   </div>
 </section>
 <!--================Hero Banner Section end =================-->
-<section class="container">
-  <div class="comments-area comments-area-home">
-    @foreach($meal->comment as $comments)
-    <div class="comment-list">
-      <div class="single-comment justify-content-between d-flex">
-        <div class="user justify-content-between d-flex">
-          <div class="thumb">
-            <img src="images/blog/c1.png" alt="">
-          </div>
-          <div class="desc">
-            <h4 class="mt-1 mb-0">
-              <a href="#">{{$comments->user->name}}</a>
-            </h4>
-            <p class="mt-1 mb-0"> {{$comments->content}}</p>
-            <div class="d-flex justify-content-between">
-              <div class="d-flex align-items-center">
-                <p class="date ml-0">{{$comments->created_at}}</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    @endforeach
-  </div>
-</section>
-
 
 
 <!--================Featured Section Start =================-->
