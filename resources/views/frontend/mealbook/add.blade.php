@@ -189,7 +189,7 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">Mô Tả Ngắn</label>
-                            <textarea rows="" cols="" name="short_desc"></textarea>
+                            <textarea rows="" cols="" class="form-control" name="short_desc"></textarea>
                             @if( $errors->has('short_desc') )
                             <p class="text-warning">{{ $errors->first('short_desc')}}</p>
                             @endif

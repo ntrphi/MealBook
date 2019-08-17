@@ -734,7 +734,9 @@
     height: 200px;
     overflow: hidden;
 }
-
+.chef-div{
+    max-width: 100%;
+}
 
 /* ================================================================ */
 @media (min-width: 1420px){

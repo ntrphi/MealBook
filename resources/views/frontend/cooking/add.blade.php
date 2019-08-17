@@ -26,15 +26,15 @@
                 <p class="text-warning">{{ $errors->first('name')}}</p>
                 @endif
             </div>
-            <div class="form-group mt-5">
+            <div class="form-group mt-4">
                 <label class="text-dark font-weight-bold off-outline" for="my-input">Mô tả ngắn</label>
                 <textarea rows="5" cols="" class="form-control border-gray" name="short_desc" value="{{old('short_desc')}}"></textarea>
                 @if( $errors->has('short_desc') )
                 <p class="text-warning">{{ $errors->first('short_desc')}}</p>
                 @endif
             </div>
-            <div class="form-group mt-2">
-                <select name="dish_type_id">
+            <div class="form-group mt-3">
+                <select class="form-control col-3" name="dish_type_id">
                     @foreach($dishType as $item)
                     <option value="<?php echo $item->id;  ?>"><?php echo $item->name;  ?></option>
                     @endforeach
