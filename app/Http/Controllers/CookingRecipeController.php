@@ -170,12 +170,12 @@ class CookingRecipeController extends Controller
     public function update(Request $request)
     {
         $rules = [
-            'name' => 'required | min:4|max:30|unique:cooking_recipes',
+            'name' => 'required | min:4|max:30',
             'avatar' => 'required | image',
             'short_desc' => 'required | min:4',
             'recipe' => 'required|min:4',
             'ingredient' => 'required|array',
-            'amount.' => 'required|array',
+            'amount' => 'required|array',
         ];
 
         $msg = [
@@ -183,7 +183,6 @@ class CookingRecipeController extends Controller
             'min' => ':attribute quá ngắn mời nhập dài hơn.',
             'max' => ':attribute có vẻ tên hơi dài bạn rút gọn bớt.',
             'avatar.image' => ':attribute không đúng định dạng',
-            'name.unique' => ':attribute đã có, mời ghi nội dung khác',
         ];
 
         $validator = Validator::make($request->all(), $rules, $msg);

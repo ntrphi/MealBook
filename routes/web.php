@@ -104,7 +104,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('restore/{id}', 'MealbookController@restore')->name('mealbook.restore');
     });
     Route::group(['prefix' => 'comment', 'middleware' => 'role'], function () {
-        Route::get('list-comment', 'CommentController@index')->name('list.comment');
-        Route::get('delete/{id}', 'CommentController@delete');
+        Route::get('list-comment', 'AdminController@getCommentList')->name('list.comment');
+        Route::get('delete/{id}', 'CommentController@delete')->name('comment.delete');
     });
 });

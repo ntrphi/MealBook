@@ -14,10 +14,7 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
 
-   public function index(){
-      $comment = Comment::latest()->paginate(10);
-      return view('comments.list',compact('comment'));
-   }
+  
 
     public function postComment(Post $post,Request $request){
       $this->authorize('create');	
@@ -93,10 +90,9 @@ class CommentController extends Controller
          return back();
       }
    }
-   public function delete(Request $request)
+   public function delete($id)
    {
-      $id = $request->id;
-      $comment = Comment::find($id);
+      $comment = Comment::findOrFail($id);
       $comment->delete();
       return back();
    }
