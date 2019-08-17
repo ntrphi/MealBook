@@ -46,7 +46,7 @@
 
       <div class="row">
         <div class="col-12">
-          <h2 class="contact-title">Ghóp Ý Nội Dung Cho Website Với Form Bên Dưới</h2>
+          <h2 class="contact-title">Góp Ý Nội Dung Cho Website Với Form Bên Dưới</h2>
         </div>
         <div class="col-lg-8">
           <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
