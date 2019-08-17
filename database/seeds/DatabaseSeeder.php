@@ -11,18 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([RolesTableSeeder::class,DishTypesTableSeeder::class,PointsTableSeeder::class]);
+         $this->call([RolesTableSeeder::class,DishTypesTableSeeder::class,IngredientTableSeeder::class]);
     
          factory(App\User::class, 5)->create()
             ->each(function($item){
-                $item->mealBook()->saveMany(factory(App\MealBook::class,rand(1,10))->make()
-                )->each(function($meal){
-                    $meal->mealBookDishe()->saveMany(factory(App\MealBookDishe::class,rand(1,2))->make());
-                     });
+                $item->mealBook()->saveMany(factory(App\MealBook::class,rand(1,10))->make());
                 $item->cookingRecipe()->saveMany(factory(App\CookingRecipe::class,rand(1,10))->make());
-                $item->mealBookComment()->saveMany(factory(App\MealBookComment::class,rand(1,10))->make());
-                $item->cookingRecipesComment()->saveMany(factory(App\CookingRecipesComment::class,rand(1,10))->make());
-
+                $item->post()->saveMany(factory(App\Post::Class,rand(1,10))->make());
+                $item->comment()->saveMany(factory(App\Comment::class,rand(1,20))->make());
+                $item->point()->saveMany(factory(App\Point::class,rand(1,20))->make());
         });
     }
 }

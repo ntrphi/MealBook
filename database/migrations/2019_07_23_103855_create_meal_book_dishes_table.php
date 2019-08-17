@@ -16,8 +16,8 @@ class CreateMealBookDishesTable extends Migration
         Schema::create('meal_book_dishes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('meal_book_id')->unsigned();
-            $table->unsignedInteger('dish_id')->unsigned();
-            $table->foreign('dish_id')->references('id')->on('dish_types');
+            $table->unsignedInteger('cooking_recipe_id')->unsigned();
+            $table->foreign('cooking_recipe_id')->references('id')->on('cooking_recipes');
             $table->foreign('meal_book_id')->references('id')->on('meal_books');
         });
     }

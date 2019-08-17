@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
 {
-    public function  mealBookComment(){
-        return $this->hasMany(MealBookComment::class);
+    protected $fillable = [
+        'user_id','point','author_id',
+    ];
+    public function user(){
+        return $this->belongsTo(User::class);
     }
-    public function  cookingRecipesComment(){
-        return $this->hasMany(CookingRecipesComment::class);
+
+    public function pointable(){
+        return $this->morphTo();
     }
-   
 }

@@ -21,6 +21,7 @@ class CreateCookingRecipesTable extends Migration
             $table->string('avatar');
             $table->text('ingredient');
             $table->text('recipe');
+             $table->softDeletes();
             $table->timestamps();
             $table->foreign('dish_type_id')->references('id')->on('dish_types')->onDelete('SET NULL');
             $table->foreign('author_id')->references('id')->on('users')->onDelete('SET NULL');
