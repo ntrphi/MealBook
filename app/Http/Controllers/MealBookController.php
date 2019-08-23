@@ -52,20 +52,61 @@ class MealBookController extends Controller
         } else {
 
         $name= $request->input('name');
-        // nhận 1 mảng ID của món ăn
+  
         $dishes = $_POST['cookingrecipes'];
-    
-        // tạo mâm cơm mới lưu trên bảng meal_book
+  
         $meal_book = new MealBook;
 
         $meal_book->name=$name;
         $meal_book->short_desc = $request->short_desc;
         $meal_book->user_id=$request->role_id;
         $meal_book->save();
-        // lưu mealbook_id và dish_id trên bảng trung gian
+    
         $meal_book->mealBookDishes()->sync($dishes);
-        // return về trang nào đấy
+     
         return redirect()->route('index');
         }
+    }
+
+    public function  edit($id){
+   
+        $cooking = CookingRecipe::all();
+        $mealbook = MealBook::find($id);
+
+        return view('admin.mealbooks.form',compact('mealbook','cooking'));
+    }
+
+    public function update(Request $request){
+        $dishes = $request->cookingrecipes;
+      
+       $mealbook = MealBook::find($request->id);
+  
+       $mealbook->name = $request->name;
+       $mealbook->short_desc = $request->short_desc;
+       $mealbook->user_id = $request->role_id;
+       $mealbook->save();
+     
+       $mealbook->mealBookDishes()->sync($dishes);
+    
+       return redirect()->route('mealbook.list');
+    }
+
+    public function destroy($id){
+        $mealbook = MealBook::withTrashed()->find($id);
+        if($mealbook->trashed()){
+            $mealbook->mealBookDishes()->detach();
+            $mealbook->forceDelete();
+            return redirect()->route('mealbook.list');
+        }
+      
+        $mealbook->delete();
+        return redirect()->route('mealbook.list');
+     
+    }
+    public function restore($id){
+        $mealbook = MealBook::withTrashed()->find($id);
+        $mealbook->restore();
+        return redirect()->route('mealbook.list');
+
     }
 }

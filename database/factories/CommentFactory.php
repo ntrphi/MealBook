@@ -15,6 +15,5 @@ $factory->define(App\Comment::class, function (Faker $faker) {
         'content' => $faker->paragraphs(rand(1,2),true),
         'commentable_type' => $commentableType,
         'commentable_id' => $commentable->id,
-        'point' => App\Point::Pluck('id')->random(),
     ];
 });

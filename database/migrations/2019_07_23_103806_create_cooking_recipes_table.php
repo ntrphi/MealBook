@@ -19,7 +19,6 @@ class CreateCookingRecipesTable extends Migration
             $table->unsignedInteger('dish_type_id')->nullable();
             $table->unsignedInteger('author_id')->nullable();
             $table->string('avatar');
-            $table->text('ingredient');
             $table->text('recipe');
              $table->softDeletes();
             $table->timestamps();

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\CookingRecipe;
 use App\DishType;
-use App\Ingredient;
+use App\IngredientSample;
 use App\IngredientDetail;
 use Illuminate\Support\MessageBag;
 use Validator;
@@ -55,20 +55,25 @@ class CookingRecipeController extends Controller
      */
     public function autocomplete(Request $request)
     {
-        $data = Ingredient::select("name")->where("name", "LIKE", "%{$request->input('query')}%")->get();
+        
+        $data = IngredientSample::select("name")->where("name", "LIKE", "%{$request->input('query')}%")->get();
+  
         return response()->json($data);
     }
 
+
+
     public function store(Request $request)
     {
-
+      
         $rules = [
             'name' => 'required | min:4|max:30|unique:cooking_recipes',
             'avatar' => 'required | image',
             'short_desc' => 'required | min:4',
             'recipe' => 'required|min:4',
             'ingredient' => 'required|array',
-            'amount.' => 'required|array',
+            'amount' => 'required|array',
+            'amount.*'=> 'required|min:1',
         ];
 
         $msg = [
@@ -77,6 +82,7 @@ class CookingRecipeController extends Controller
             'max' => ':attribute có vẻ tên hơi dài bạn rút gọn bớt.',
             'avatar.image' => ':attribute không đúng định dạng',
             'name.unique' => ':attribute đã có, mời ghi nội dung khác',
+           
         ];
 
         $validator = Validator::make($request->all(), $rules, $msg);
@@ -85,10 +91,11 @@ class CookingRecipeController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-
+         
             $ingredient = $_POST['ingredient'];
             $amount = $_POST['amount'];
-
+            $recipe = htmlspecialchars(stripslashes(trim($request->recipe)));
+     
             $fileName = null;
             if (request()->hasFile('avatar')) {
                 $file = request()->file('avatar');
@@ -100,7 +107,7 @@ class CookingRecipeController extends Controller
             $cooking->dish_type_id = $request->dish_type_id;
             $cooking->author_id = Auth::user()->id;
             $cooking->avatar = './images/' . $fileName;
-            $cooking->recipe = $request->recipe;
+            $cooking->recipe = $recipe;
             $cooking->short_desc = $request->short_desc;
             $cooking->save();
 
@@ -113,6 +120,8 @@ class CookingRecipeController extends Controller
             return redirect()->route('cookingAll');
         }
     }
+
+
 
     /**
      * Display the specified resource.

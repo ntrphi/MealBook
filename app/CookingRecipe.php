@@ -42,4 +42,5 @@ class CookingRecipe extends Model
     public function theIngredient(){
         return $this->ingredientDetail()->where('cooking_recipe_id',$this->id)->get();
     }
+
 }

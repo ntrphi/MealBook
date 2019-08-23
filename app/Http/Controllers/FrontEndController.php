@@ -20,7 +20,7 @@ class FrontEndController extends Controller
      */
     public function index()
     {
-        
+     
         $meal = MealBook::latest()->first();
         $mealRandom = MealBook::get()->random();
         $mealHot = MealBook::latest()->paginate(5);
